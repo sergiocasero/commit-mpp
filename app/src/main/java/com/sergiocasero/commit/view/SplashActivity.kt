@@ -1,4 +1,4 @@
-package com.sergiocasero.commit
+package com.sergiocasero.commit.view
 
 import androidx.appcompat.app.AppCompatActivity
 
