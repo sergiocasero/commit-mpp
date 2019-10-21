@@ -1,0 +1,3 @@
+rootProject.name = 'commit-mpp'
+
+include ':app'
