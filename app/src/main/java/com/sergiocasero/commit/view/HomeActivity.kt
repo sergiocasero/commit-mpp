@@ -5,6 +5,7 @@ import androidx.appcompat.widget.Toolbar
 import com.sergiocasero.commit.R
 import com.sergiocasero.commit.di.ACTIVITY_MODULE
 import com.sergiocasero.commit.presenter.HomePresenter
+import com.sergiocasero.commit.presenter.HomeView
 import com.sergiocasero.commit.view.adapter.ViewPagerAdapter
 import com.sergiocasero.commit.view.fragments.TalksListFragment
 import kotlinx.android.synthetic.main.activity_home.*
@@ -13,7 +14,7 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.provider
 
-class HomeActivity : RootActivity<HomePresenter.View>(), HomePresenter.View {
+class HomeActivity : RootActivity<HomeView>(), HomeView {
 
     override val progress: View by lazy { progressView }
 

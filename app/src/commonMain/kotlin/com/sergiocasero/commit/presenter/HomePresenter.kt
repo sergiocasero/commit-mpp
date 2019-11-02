@@ -4,16 +4,17 @@ import com.sergiocasero.commit.error.ErrorHandler
 import com.sergiocasero.commit.executor.Executor
 
 class HomePresenter(
-    view: View,
+    view: HomeView,
     errorHandler: ErrorHandler,
     executor: Executor
-) : Presenter<HomePresenter.View>(errorHandler = errorHandler, executor = executor, view = view) {
+) : Presenter<HomeView>(errorHandler = errorHandler, executor = executor, view = view) {
 
     override fun attach() {
 
     }
 
-    interface View : Presenter.View {
+}
 
-    }
+interface HomeView : Presenter.View {
+
 }

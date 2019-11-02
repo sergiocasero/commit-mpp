@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import app
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, HomeView {
     
     @IBOutlet weak var menuBarView: MenuTabsView!
     
@@ -53,7 +54,6 @@ class ViewController: UIViewController {
         }
         
         let contentVC = storyboard?.instantiateViewController(withIdentifier: "ContentVC") as! ContentVC
-        contentVC.strTitle = tabs[index]
         contentVC.pageIndex = index
         currentIndex = index
         return contentVC
@@ -116,11 +116,35 @@ extension ViewController: UIPageViewControllerDataSource, UIPageViewControllerDe
         if finished {
             if completed {
                 let cvc = pageViewController.viewControllers!.first as! ContentVC
-                let newIndex = cvc.pageIndex
+                let newIndex = cvc.pageIndex + 1
                 menuBarView.collView.selectItem(at: IndexPath.init(item: newIndex, section: 0), animated: true, scrollPosition: .centeredVertically)
                 menuBarView.collView.scrollToItem(at: IndexPath.init(item: newIndex, section: 0), at: .centeredHorizontally, animated: true)
             }
         }
+        
+    }
+    
+    func showProgress() {
+        
+    }
+    
+    func hideProgress() {
+        
+    }
+    
+    func showError(error: String) {
+        
+    }
+    
+    func showError(errorId: Int32) {
+        
+    }
+    
+    func showMessage(message: String) {
+        
+    }
+    
+    func showMessage(messageId: Int32) {
         
     }
     

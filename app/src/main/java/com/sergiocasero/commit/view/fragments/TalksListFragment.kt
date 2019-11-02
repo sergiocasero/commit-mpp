@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.View
 import com.sergiocasero.commit.R
 import com.sergiocasero.commit.presenter.TalksListPresenter
+import com.sergiocasero.commit.presenter.TalksView
 import kotlinx.android.synthetic.main.fragment_talks_list.*
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.provider
 
-class TalksListFragment : RootFragment<TalksListPresenter.View>(), TalksListPresenter.View {
+class TalksListFragment : RootFragment<TalksView>(), TalksView{
 
     companion object {
         const val TRACK_ID_EXTRA = "TRACK_ID_EXTRA"
