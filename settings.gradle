@@ -1,3 +1,7 @@
+enableFeaturePreview('GRADLE_METADATA')
+
 rootProject.name = 'commit-mpp'
 
 include ':app'
+include ':backend'
+include ':common'
