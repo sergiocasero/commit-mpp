@@ -11,7 +11,7 @@ import com.sergiocasero.commit.extension.toast
 import com.sergiocasero.commit.presenter.Presenter
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
-import org.kodein.di.android.kodein
+import org.kodein.di.android.x.kodein
 import org.kodein.di.android.subKodein
 
 
