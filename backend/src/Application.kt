@@ -7,8 +7,8 @@ import io.ktor.features.*
 import io.ktor.routing.*
 import io.ktor.http.*
 import io.ktor.auth.*
-import io.ktor.client.features.auth.basic.*
 import io.ktor.gson.*
+import org.jetbrains.exposed.sql.Database
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
 
@@ -33,10 +33,7 @@ fun Application.module(testing: Boolean = false) {
         }
     }
 
-    install(ContentNegotiation) {
-        gson {
-        }
-    }
+    install(ContentNegotiation) { gson {} }
 
     routing {
         get("/") {
@@ -54,5 +51,7 @@ fun Application.module(testing: Boolean = false) {
             call.respond(mapOf("hello" to "world"))
         }
     }
+
+    Database.connect("jdbc:h2:mem:regular;DB_CLOSE_DELAY=-1;", "org.h2.Driver")
 }
 

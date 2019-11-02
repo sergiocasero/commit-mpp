@@ -36,6 +36,9 @@ dependencies {
     implementation "io.ktor:ktor-auth:$ktor_version"
     implementation "io.ktor:ktor-gson:$ktor_version"
 
+    implementation 'org.jetbrains.exposed:exposed:0.16.1'
+    implementation "com.h2database:h2:1.4.199"
+
     implementation project(":common")
 
     testImplementation "io.ktor:ktor-server-tests:$ktor_version"
