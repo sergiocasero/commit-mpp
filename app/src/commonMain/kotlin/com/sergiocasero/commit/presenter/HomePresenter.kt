@@ -9,12 +9,16 @@ class HomePresenter(
     executor: Executor
 ) : Presenter<HomeView>(errorHandler = errorHandler, executor = executor, view = view) {
 
-    override fun attach() {
+    companion object {
+        private const val TRACKS_NUMBER = 12
+    }
 
+    override fun attach() {
+        view.showTracks(TRACKS_NUMBER)
     }
 
 }
 
 interface HomeView : Presenter.View {
-
+    fun showTracks(tracks: Int)
 }
