@@ -30,7 +30,6 @@ class BasicCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = UIColor(red:0.13, green:0.13, blue:0.13, alpha:1.0)
         titleLabel.textAlignment = .center
         titleLabel.textColor = .white
         addSubview(titleLabel)

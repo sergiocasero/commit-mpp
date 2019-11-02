@@ -148,7 +148,7 @@ extension ViewController: UIPageViewControllerDataSource, UIPageViewControllerDe
         
         menuBarView.dataArray = tabs
         menuBarView.isSizeToFitCellsNeeded = true
-        menuBarView.collView.backgroundColor = UIColor.init(white: 0.97, alpha: 0.97)
+        menuBarView.collView.backgroundColor = UIColor(red:0.13, green:0.13, blue:0.13, alpha:1.0)
         
         presentPageVCOnView()
         
