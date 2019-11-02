@@ -13,29 +13,21 @@ class ViewController: UIViewController, HomeView {
     
     @IBOutlet weak var menuBarView: MenuTabsView!
     
+    var tabs : [String] = []
+    
+    private lazy var presenter: HomePresenter = HomePresenter(
+        view: self,
+        errorHandler: IosErrorHandler(),
+        executor: Executor())
+    
     var currentIndex: Int = 0
-    var tabs = ["Menu TAB 1","Menu TAB 2","Menu TAB 3","Menu TAB 4","Menu TAB 5","Menu TAB 6"]
     var pageController: UIPageViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        menuBarView.dataArray = tabs
-        menuBarView.isSizeToFitCellsNeeded = true
-        menuBarView.collView.backgroundColor = UIColor.init(white: 0.97, alpha: 0.97)
-        
-        presentPageVCOnView()
-        
-        menuBarView.menuDelegate = self
-        pageController.delegate = self
-        pageController.dataSource = self
-        
-        menuBarView.collView.selectItem(at: IndexPath.init(item: 0, section: 0), animated: true, scrollPosition: .centeredVertically)
-        pageController.setViewControllers([viewController(At: 0)!], direction: .forward, animated: true, completion: nil)
-    
-
+        presenter.attach()
     }
- 
+    
     func presentPageVCOnView() {
         self.pageController = storyboard?.instantiateViewController(withIdentifier: "PageControllerVC") as! PageControllerVC
         self.pageController.view.frame = CGRect.init(x: 0, y: menuBarView.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - menuBarView.frame.maxY)
@@ -145,6 +137,27 @@ extension ViewController: UIPageViewControllerDataSource, UIPageViewControllerDe
     }
     
     func showMessage(messageId: Int32) {
+        
+    }
+    
+    func showTracks(tracks: Int32) {
+        tabs.removeAll()
+        for n in 0...tracks {
+            tabs.append("Track \(n)")
+        }
+        
+        menuBarView.dataArray = tabs
+        menuBarView.isSizeToFitCellsNeeded = true
+        menuBarView.collView.backgroundColor = UIColor.init(white: 0.97, alpha: 0.97)
+        
+        presentPageVCOnView()
+        
+        menuBarView.menuDelegate = self
+        pageController.delegate = self
+        pageController.dataSource = self
+        
+        menuBarView.collView.selectItem(at: IndexPath.init(item: 0, section: 0), animated: true, scrollPosition: .centeredVertically)
+        pageController.setViewControllers([viewController(At: 0)!], direction: .forward, animated: true, completion: nil)
         
     }
     
