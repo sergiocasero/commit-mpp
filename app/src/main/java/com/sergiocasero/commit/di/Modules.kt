@@ -1,6 +1,7 @@
 package com.sergiocasero.commit.di
 
 import android.content.Context
+import com.sergiocasero.commit.error.AndroidErrorHandler
 import com.sergiocasero.commit.error.ErrorHandler
 import com.sergiocasero.commit.executor.Executor
 import org.kodein.di.Kodein
@@ -12,7 +13,7 @@ const val ACTIVITY_MODULE = "activityModule"
 fun appModule(context: Context) = Kodein.Module("appModule") {
     bind<Context>() with singleton { context }
     bind<Executor>() with singleton { Executor() }
-    bind<ErrorHandler>() with singleton { ErrorHandler(context = context) }
+    bind<ErrorHandler>() with singleton { AndroidErrorHandler(context = context) }
 }
 
 val domainModule = Kodein.Module("domainModule") {

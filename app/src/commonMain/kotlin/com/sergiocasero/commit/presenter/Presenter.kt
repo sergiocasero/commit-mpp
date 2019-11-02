@@ -33,3 +33,4 @@ abstract class Presenter<out V : Presenter.View>(
         fun showMessage(messageId: Int)
     }
 }
+

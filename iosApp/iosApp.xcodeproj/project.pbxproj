@@ -7,13 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AD17B2EB236C1F0A00D855A2 /* MenuTabsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17B2EA236C1F0A00D855A2 /* MenuTabsView.swift */; };
+		AD17B2ED236C1F3700D855A2 /* ContentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17B2EC236C1F3700D855A2 /* ContentVC.swift */; };
+		AD17B2EF236C1F6200D855A2 /* PageControllerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17B2EE236C1F6200D855A2 /* PageControllerVC.swift */; };
+		AD17B2F1236C1F9100D855A2 /* BasicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17B2F0236C1F9100D855A2 /* BasicCell.swift */; };
+		AD17B2F3236C1FB600D855A2 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD17B2F2236C1FB600D855A2 /* Extensions.swift */; };
+		AD2883F2236DAEFE00C256C1 /* app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD2883F1236DAEFE00C256C1 /* app.framework */; };
+		AD2883F4236DAF5200C256C1 /* app.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = AD2883F3236DAF5200C256C1 /* app.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		AD2883F6236DAFA600C256C1 /* IosErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD2883F5236DAFA600C256C1 /* IosErrorHandler.swift */; };
 		F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861D7E0207FA40F0085E80D /* AppDelegate.swift */; };
 		F861D7E3207FA40F0085E80D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861D7E2207FA40F0085E80D /* ViewController.swift */; };
 		F861D7E6207FA40F0085E80D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F861D7E4207FA40F0085E80D /* Main.storyboard */; };
 		F861D7EB207FA4100085E80D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F861D7E9207FA4100085E80D /* LaunchScreen.storyboard */; };
 		F861D7F6207FA4100085E80D /* iosAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F861D7F5207FA4100085E80D /* iosAppTests.swift */; };
-		F861D80C207FA4200085E80D /* app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F861D805207FA4200085E80D /* app.framework */; };
-		F861D80D207FA4200085E80D /* app.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F861D805207FA4200085E80D /* app.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -24,23 +30,16 @@
 			remoteGlobalIDString = F861D7DC207FA40F0085E80D;
 			remoteInfo = iosApp;
 		};
-		F861D80A207FA4200085E80D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F861D7D5207FA40F0085E80D /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F861D804207FA4200085E80D;
-			remoteInfo = app;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		F861D811207FA4200085E80D /* Embed Frameworks */ = {
+		AD2883EF236DAE2800C256C1 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F861D80D207FA4200085E80D /* app.framework in Embed Frameworks */,
+				AD2883F4236DAF5200C256C1 /* app.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -48,6 +47,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		AD17B2EA236C1F0A00D855A2 /* MenuTabsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuTabsView.swift; sourceTree = "<group>"; };
+		AD17B2EC236C1F3700D855A2 /* ContentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentVC.swift; sourceTree = "<group>"; };
+		AD17B2EE236C1F6200D855A2 /* PageControllerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControllerVC.swift; sourceTree = "<group>"; };
+		AD17B2F0236C1F9100D855A2 /* BasicCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicCell.swift; sourceTree = "<group>"; };
+		AD17B2F2236C1FB600D855A2 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		AD2883F1236DAEFE00C256C1 /* app.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = app.framework; path = ../app/build/bin/ios/debugFramework/app.framework; sourceTree = "<group>"; };
+		AD2883F3236DAF5200C256C1 /* app.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = app.framework; path = ../app/build/bin/ios/debugFramework/app.framework; sourceTree = "<group>"; };
+		AD2883F5236DAFA600C256C1 /* IosErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IosErrorHandler.swift; sourceTree = "<group>"; };
 		F861D7DD207FA40F0085E80D /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F861D7E0207FA40F0085E80D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F861D7E2207FA40F0085E80D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -66,7 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F861D80C207FA4200085E80D /* app.framework in Frameworks */,
+				AD2883F2236DAEFE00C256C1 /* app.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,13 +87,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		AD2883F0236DAEFE00C256C1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AD2883F1236DAEFE00C256C1 /* app.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F861D7D4207FA40F0085E80D = {
 			isa = PBXGroup;
 			children = (
+				AD2883F3236DAF5200C256C1 /* app.framework */,
 				F861D813207FA4520085E80D /* app */,
 				F861D7DF207FA40F0085E80D /* iosApp */,
 				F861D7F4207FA4100085E80D /* iosAppTests */,
 				F861D7DE207FA40F0085E80D /* Products */,
+				AD2883F0236DAEFE00C256C1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -108,6 +125,12 @@
 				F861D7E4207FA40F0085E80D /* Main.storyboard */,
 				F861D7E9207FA4100085E80D /* LaunchScreen.storyboard */,
 				F861D7EC207FA4100085E80D /* Info.plist */,
+				AD17B2EA236C1F0A00D855A2 /* MenuTabsView.swift */,
+				AD17B2EC236C1F3700D855A2 /* ContentVC.swift */,
+				AD17B2EE236C1F6200D855A2 /* PageControllerVC.swift */,
+				AD17B2F0236C1F9100D855A2 /* BasicCell.swift */,
+				AD17B2F2236C1FB600D855A2 /* Extensions.swift */,
+				AD2883F5236DAFA600C256C1 /* IosErrorHandler.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -131,12 +154,11 @@
 				F861D7D9207FA40F0085E80D /* Sources */,
 				F861D7DA207FA40F0085E80D /* Frameworks */,
 				F861D7DB207FA40F0085E80D /* Resources */,
-				F861D811207FA4200085E80D /* Embed Frameworks */,
+				AD2883EF236DAE2800C256C1 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F861D80B207FA4200085E80D /* PBXTargetDependency */,
 			);
 			name = iosApp;
 			productName = iosApp;
@@ -258,7 +280,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F861D7E3207FA40F0085E80D /* ViewController.swift in Sources */,
+				AD17B2EB236C1F0A00D855A2 /* MenuTabsView.swift in Sources */,
+				AD17B2EF236C1F6200D855A2 /* PageControllerVC.swift in Sources */,
+				AD2883F6236DAFA600C256C1 /* IosErrorHandler.swift in Sources */,
+				AD17B2ED236C1F3700D855A2 /* ContentVC.swift in Sources */,
+				AD17B2F1236C1F9100D855A2 /* BasicCell.swift in Sources */,
 				F861D7E1207FA40F0085E80D /* AppDelegate.swift in Sources */,
+				AD17B2F3236C1FB600D855A2 /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,11 +305,6 @@
 			isa = PBXTargetDependency;
 			target = F861D7DC207FA40F0085E80D /* iosApp */;
 			targetProxy = F861D7F2207FA4100085E80D /* PBXContainerItemProxy */;
-		};
-		F861D80B207FA4200085E80D /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F861D804207FA4200085E80D /* app */;
-			targetProxy = F861D80A207FA4200085E80D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
