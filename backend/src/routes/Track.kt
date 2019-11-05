@@ -7,11 +7,11 @@ import io.ktor.routing.get
 import io.ktor.routing.route
 import io.ktor.routing.routing
 
-fun Application.day(repository: BackendRepository) {
+fun Application.track(repository: BackendRepository) {
     routing {
-        route("/day") {
-            get { call.execute(repository.getDays()) }
-            get("/{id}/track") { call.execute(repository.getDayTracks(call.parameters["id"]?.toLongOrNull() ?: 0)) }
+        route("/track") {
+            get { call.execute(repository.getTracks()) }
+            get("/{id}/slot") { call.execute(repository.getTrackSlots(call.parameters["id"]?.toLongOrNull() ?: 0))}
         }
     }
 }
