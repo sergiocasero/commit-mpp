@@ -1,9 +1,18 @@
 plugins {
     id 'org.jetbrains.kotlin.multiplatform' version '1.3.50'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.3.50'
 }
 repositories {
+    google()
+    jcenter()
     mavenCentral()
+    maven { url "https://storage.googleapis.com/r8-releases/raw" }
+    maven { url 'https://dl.bintray.com/netguru/maven/' }
+    maven {
+        url "https://jitpack.io"
+    }
 }
+
 group 'com.sergiocasero.commit.common'
 version '0.0.2'
 
@@ -24,6 +33,7 @@ kotlin {
         commonMain {
             dependencies {
                 implementation kotlin('stdlib-common')
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serialization_version"
             }
         }
         commonTest {
@@ -35,6 +45,7 @@ kotlin {
         jvmMain {
             dependencies {
                 implementation kotlin('stdlib-jdk8')
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version"
             }
         }
         jvmTest {
@@ -54,6 +65,9 @@ kotlin {
             }
         }
         iosMain {
+            dependencies {
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$serialization_version"
+            }
         }
         iosTest {
         }

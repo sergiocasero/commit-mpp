@@ -1,5 +1,8 @@
 package com.sergiocasero.commit.common.model
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Speaker(
     val avatar: String,
     val description: String?,

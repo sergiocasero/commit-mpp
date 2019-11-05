@@ -1,13 +1,8 @@
 package com.sergiocasero.commit.common.model
 
-data class ContentsItem(
-    val id: Long?,
-    val type: String,
-    val title: String?,
-    val description: String?,
-    val creationDate: Long?
-)
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class Contents(
     val id: Long?,
     val type: String,
