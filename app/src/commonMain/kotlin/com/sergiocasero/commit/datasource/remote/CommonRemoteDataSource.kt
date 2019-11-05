@@ -8,6 +8,7 @@ import io.ktor.client.features.ClientRequestException
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
 import io.ktor.client.request.HttpRequestBuilder
+import io.ktor.client.request.get
 import io.ktor.http.HttpStatusCode
 import io.ktor.http.takeFrom
 
@@ -23,8 +24,10 @@ class CommonRemoteDataSource : RemoteDataSource {
         }
     }
 
-    override fun getSlot(slotId: Long): Either<Error, Slot> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override suspend fun getSlot(slotId: Long): Either<Error, Slot> = execute {
+        client.get<Slot> {
+            apiUrl("/slot/$slotId")
+        }
     }
 
     private suspend fun <R> execute(f: suspend () -> R): Either<Error, R> =

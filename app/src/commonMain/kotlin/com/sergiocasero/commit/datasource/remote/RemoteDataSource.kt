@@ -5,5 +5,5 @@ import com.sergiocasero.commit.common.result.Either
 import com.sergiocasero.commit.common.result.Error
 
 interface RemoteDataSource {
-    fun getSlot(slotId: Long): Either<Error, Slot>
+    suspend fun getSlot(slotId: Long): Either<Error, Slot>
 }
