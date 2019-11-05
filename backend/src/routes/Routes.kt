@@ -14,6 +14,7 @@ fun Application.routes() {
     val repository = CommitBackendRepository(local = H2LocalDataSource(), remote = KtorRemoteDataSource())
     day(repository)
     track(repository)
+    slot(repository)
 }
 
 suspend fun <R : Any> ApplicationCall.execute(either: Either<Error, R>) {

@@ -16,9 +16,30 @@ interface LocalDataSource {
 
     suspend fun getDay(dayId: Long): Either<Error, Day>
     suspend fun getTrack(trackId: Long): Either<Error, Track>
+    suspend fun getSlots(): Either<Error, ListResponse<Slot>>
+    suspend fun getSlot(slotId: Long): Either<Error, Slot>
 }
 
 class H2LocalDataSource : LocalDataSource {
+
+    override suspend fun getSlots(): Either<Error, ListResponse<Slot>> = execute {
+        ListResponse(
+            transaction {
+                SlotVo.selectAll().toList().map {
+                    val contents = ContentsVo.select { ContentsVo.slotId eq it[SlotVo.id] }.firstOrNull()?.toContents()
+                    it.toSlot(contents)
+                }
+            })
+    }
+
+    override suspend fun getSlot(slotId: Long): Either<Error, Slot> = execute {
+        transaction {
+            val slotVo = SlotVo.select { SlotVo.id eq slotId }.first()
+            val contents = ContentsVo.select { ContentsVo.slotId eq slotVo[SlotVo.id] }.firstOrNull()?.toContents()
+            slotVo.toSlot(contents)
+        }
+    }
+
     override suspend fun getTrack(trackId: Long): Either<Error, Track> = execute {
         val slots = transaction {
             SlotVo.select { SlotVo.trackId eq trackId }.toList().map {

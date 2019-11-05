@@ -10,11 +10,12 @@ import kotlinx.coroutines.launch
 
 interface BackendRepository {
     suspend fun getDays(): Either<Error, ListResponse<DayItem>>
-
     suspend fun getTracks(): Either<Error, ListResponse<TrackItem>>
+    suspend fun getSlots(): Either<Error, ListResponse<Slot>>
 
     suspend fun getDay(dayId: Long): Either<Error, Day>
     suspend fun getTrack(trackId: Long): Either<Error, Track>
+    suspend fun getSlot(slotId: Long): Either<Error, Slot>
 }
 
 class CommitBackendRepository(
@@ -31,9 +32,11 @@ class CommitBackendRepository(
     }
 
     override suspend fun getDays(): Either<Error, ListResponse<DayItem>> = local.getDays()
-
     override suspend fun getTracks(): Either<Error, ListResponse<TrackItem>> = local.getTracks()
-    override suspend fun getDay(dayId: Long): Either<Error, Day> = local.getDay(dayId)
+    override suspend fun getSlots(): Either<Error, ListResponse<Slot>> = local.getSlots()
 
     override suspend fun getTrack(trackId: Long): Either<Error, Track> = local.getTrack(trackId)
+    override suspend fun getDay(dayId: Long): Either<Error, Day> = local.getDay(dayId)
+    override suspend fun getSlot(slotId: Long): Either<Error, Slot> = local.getSlot(slotId)
+
 }
