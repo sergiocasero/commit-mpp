@@ -5,15 +5,15 @@ repositories {
     mavenCentral()
 }
 group 'com.sergiocasero.commit.common'
-version '0.0.1'
+version '0.0.2'
 
 apply plugin: 'maven-publish'
 
 kotlin {
     jvm()
-     js {
-         browser {}
-         nodejs {}
+    js {
+        browser {}
+        nodejs {}
     }
     // For ARM, should be changed to iosArm32 or iosArm64
     // For Linux, should be changed to e.g. linuxX64
