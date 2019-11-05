@@ -4,8 +4,12 @@ import com.sergiocasero.commit.common.model.Slot
 import com.sergiocasero.commit.common.result.Either
 import com.sergiocasero.commit.common.result.Error
 import io.ktor.client.HttpClient
+import io.ktor.client.features.ClientRequestException
 import io.ktor.client.features.json.JsonFeature
 import io.ktor.client.features.json.serializer.KotlinxSerializer
+import io.ktor.client.request.HttpRequestBuilder
+import io.ktor.http.HttpStatusCode
+import io.ktor.http.takeFrom
 
 class CommonRemoteDataSource : RemoteDataSource {
 
@@ -21,5 +25,29 @@ class CommonRemoteDataSource : RemoteDataSource {
 
     override fun getSlot(slotId: Long): Either<Error, Slot> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    private suspend fun <R> execute(f: suspend () -> R): Either<Error, R> =
+        try {
+            Either.Right(f())
+        } catch (e: Exception) {
+            Either.Left(
+                when (e) {
+                    is ClientRequestException -> when (e.response.status) {
+                        HttpStatusCode.Unauthorized -> Error.InvalidCredentials
+                        HttpStatusCode.NotFound -> Error.NotFound
+                        HttpStatusCode.BadRequest -> Error.NoInternet
+                        else -> Error.Default
+                    }
+                    else -> Error.Default
+                }
+            )
+        }
+
+    private fun HttpRequestBuilder.apiUrl(path: String) {
+        url {
+            takeFrom(END_POINT)
+            encodedPath = path
+        }
     }
 }
