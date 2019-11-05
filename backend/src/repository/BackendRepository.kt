@@ -1,9 +1,6 @@
 package com.sergiocasero.repository
 
-import com.sergiocasero.commit.common.model.Day
-import com.sergiocasero.commit.common.model.ListResponse
-import com.sergiocasero.commit.common.model.Slot
-import com.sergiocasero.commit.common.model.Track
+import com.sergiocasero.commit.common.model.*
 import com.sergiocasero.commit.common.result.Either
 import com.sergiocasero.commit.common.result.Error
 import com.sergiocasero.db.LocalDataSource
@@ -12,11 +9,12 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
 
 interface BackendRepository {
-    suspend fun getDays(): Either<Error, ListResponse<Day>>
+    suspend fun getDays(): Either<Error, ListResponse<DayItem>>
 
-    suspend fun getTracks(): Either<Error, ListResponse<Track>>
-    suspend fun getDayTracks(dayId: Long): Either<Error, ListResponse<Track>>
-    suspend fun getTrackSlots(trackId: Long): Either<Error, ListResponse<Slot>>
+    suspend fun getTracks(): Either<Error, ListResponse<TrackItem>>
+
+    suspend fun getDay(dayId: Long): Either<Error, Day>
+    suspend fun getTrack(trackId: Long): Either<Error, Track>
 }
 
 class CommitBackendRepository(
@@ -32,10 +30,10 @@ class CommitBackendRepository(
 
     }
 
-    override suspend fun getDays(): Either<Error, ListResponse<Day>> = local.getDays()
+    override suspend fun getDays(): Either<Error, ListResponse<DayItem>> = local.getDays()
 
-    override suspend fun getTracks(): Either<Error, ListResponse<Track>> = local.getTracks()
-    override suspend fun getDayTracks(dayId: Long): Either<Error, ListResponse<Track>> = local.getDayTracks(dayId)
+    override suspend fun getTracks(): Either<Error, ListResponse<TrackItem>> = local.getTracks()
+    override suspend fun getDay(dayId: Long): Either<Error, Day> = local.getDay(dayId)
 
-    override suspend fun getTrackSlots(trackId: Long): Either<Error, ListResponse<Slot>> = local.getTrackSlots(trackId)
+    override suspend fun getTrack(trackId: Long): Either<Error, Track> = local.getTrack(trackId)
 }

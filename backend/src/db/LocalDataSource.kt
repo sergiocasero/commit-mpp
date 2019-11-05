@@ -11,33 +11,38 @@ import org.joda.time.DateTime
 interface LocalDataSource {
     suspend fun saveData(data: CommitResponse)
 
-    suspend fun getDays(): Either<Error, ListResponse<Day>>
+    suspend fun getDays(): Either<Error, ListResponse<DayItem>>
+    suspend fun getTracks(): Either<Error, ListResponse<TrackItem>>
 
-    suspend fun getTracks(): Either<Error, ListResponse<Track>>
-    suspend fun getDayTracks(dayId: Long): Either<Error, ListResponse<Track>>
-    suspend fun getTrackSlots(trackId: Long): Either<Error, ListResponse<Slot>>
+    suspend fun getDay(dayId: Long): Either<Error, Day>
+    suspend fun getTrack(trackId: Long): Either<Error, Track>
 }
 
 class H2LocalDataSource : LocalDataSource {
-    override suspend fun getTrackSlots(trackId: Long): Either<Error, ListResponse<Slot>> = execute {
-        ListResponse(
-            transaction {
-                SlotVo.select { SlotVo.trackId eq trackId }.toList().map {
-                    val contents = ContentsVo.select { ContentsVo.slotId eq it[SlotVo.id] }.firstOrNull()?.toContents()
-                    it.toSlot(contents)
-                }
-            })
+    override suspend fun getTrack(trackId: Long): Either<Error, Track> = execute {
+        val slots = transaction {
+            SlotVo.select { SlotVo.trackId eq trackId }.toList().map {
+                val contents = ContentsVo.select { ContentsVo.slotId eq it[SlotVo.id] }.firstOrNull()?.toContents()
+                it.toSlot(contents)
+            }
+        }
+        val trackItem = transaction { TrackVo.select { TrackVo.id eq trackId }.first().toTrack() }
+
+        Track(slots = slots, id = trackItem.id, name = trackItem.name)
     }
 
-    override suspend fun getTracks(): Either<Error, ListResponse<Track>> = execute {
+    override suspend fun getTracks(): Either<Error, ListResponse<TrackItem>> = execute {
         transaction { ListResponse(TrackVo.selectAll().toList().map { it.toTrack() }) }
     }
 
-    override suspend fun getDayTracks(dayId: Long): Either<Error, ListResponse<Track>> = execute {
-        transaction { ListResponse(TrackVo.select { TrackVo.dayId eq dayId }.toList().map { it.toTrack() }) }
+    override suspend fun getDay(dayId: Long): Either<Error, Day> = execute {
+        val tracks = transaction { TrackVo.select { TrackVo.dayId eq dayId }.toList().map { it.toTrack() } }
+        val dayItem = transaction { DayVo.select { DayVo.id eq dayId }.first().toDay() }
+
+        Day(id = dayItem.id, name = dayItem.name, tracks = tracks)
     }
 
-    override suspend fun getDays(): Either<Error, ListResponse<Day>> = execute {
+    override suspend fun getDays(): Either<Error, ListResponse<DayItem>> = execute {
         transaction { ListResponse(DayVo.selectAll().toList().map { it.toDay() }) }
     }
 
@@ -114,12 +119,12 @@ class H2LocalDataSource : LocalDataSource {
         }
     }
 
-    private fun ResultRow.toDay() = Day(
+    private fun ResultRow.toDay() = DayItem(
         id = this[DayVo.id],
         name = this[DayVo.name]
     )
 
-    private fun ResultRow.toTrack() = Track(
+    private fun ResultRow.toTrack() = TrackItem(
         id = this[TrackVo.id],
         name = this[TrackVo.name]
     )

@@ -11,7 +11,7 @@ fun Application.day(repository: BackendRepository) {
     routing {
         route("/day") {
             get { call.execute(repository.getDays()) }
-            get("/{id}/track") { call.execute(repository.getDayTracks(call.parameters["id"]?.toLongOrNull() ?: 0)) }
+            get("/{id}") { call.execute(repository.getDay(call.parameters["id"]?.toLongOrNull() ?: 0)) }
         }
     }
 }

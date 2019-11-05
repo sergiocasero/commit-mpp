@@ -11,7 +11,7 @@ fun Application.track(repository: BackendRepository) {
     routing {
         route("/track") {
             get { call.execute(repository.getTracks()) }
-            get("/{id}/slot") { call.execute(repository.getTrackSlots(call.parameters["id"]?.toLongOrNull() ?: 0))}
+            get("/{id}") { call.execute(repository.getTrack(call.parameters["id"]?.toLongOrNull() ?: 0)) }
         }
     }
 }
