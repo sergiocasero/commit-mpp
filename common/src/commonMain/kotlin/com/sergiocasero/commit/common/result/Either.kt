@@ -1,4 +1,4 @@
-package com.sergiocasero.commit.result
+package com.sergiocasero.commit.common.result
 
 sealed class Either<L, R> {
     class Left<L, R>(val error: L) : Either<L, R>() {

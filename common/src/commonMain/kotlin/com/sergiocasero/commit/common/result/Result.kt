@@ -1,4 +1,4 @@
-package com.sergiocasero.commit.result
+package com.sergiocasero.commit.common.result
 
 sealed class Error {
     object NoInternet : Error()
