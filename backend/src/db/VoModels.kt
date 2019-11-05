@@ -43,7 +43,7 @@ object SpeakerVo : Table("speaker") {
     val twitterAccount = varchar("twitterAccount", 60).nullable()
 }
 
-object ContentsSpeakerVo : Table() {
-    val contentsId = long("contentsId")
+object SlotSpeakerVo : Table() {
+    val slotId = long("slotId")
     val speakerId = long("speakerId")
 }

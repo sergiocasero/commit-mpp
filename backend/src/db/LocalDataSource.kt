@@ -22,11 +22,19 @@ interface LocalDataSource {
 
 class H2LocalDataSource : LocalDataSource {
 
+    private fun getSlotSpeakers(contentId: Long): List<Speaker> = transaction {
+        val ids = SlotSpeakerVo.select { SlotSpeakerVo.slotId eq contentId }.toList()
+
+        ids.map { SpeakerVo.select { SpeakerVo.id eq it[SlotSpeakerVo.speakerId] }.first().toSpeaker() }
+    }
+
     override suspend fun getSlots(): Either<Error, ListResponse<Slot>> = execute {
         ListResponse(
             transaction {
                 SlotVo.selectAll().toList().map {
-                    val contents = ContentsVo.select { ContentsVo.slotId eq it[SlotVo.id] }.firstOrNull()?.toContents()
+                    val speakers = getSlotSpeakers(it[SlotVo.id])
+                    val contents =
+                        ContentsVo.select { ContentsVo.slotId eq it[SlotVo.id] }.firstOrNull()?.toContents(speakers)
                     it.toSlot(contents)
                 }
             })
@@ -35,7 +43,9 @@ class H2LocalDataSource : LocalDataSource {
     override suspend fun getSlot(slotId: Long): Either<Error, Slot> = execute {
         transaction {
             val slotVo = SlotVo.select { SlotVo.id eq slotId }.first()
-            val contents = ContentsVo.select { ContentsVo.slotId eq slotVo[SlotVo.id] }.firstOrNull()?.toContents()
+            val speakers = getSlotSpeakers(slotId)
+            val contents =
+                ContentsVo.select { ContentsVo.slotId eq slotVo[SlotVo.id] }.firstOrNull()?.toContents(speakers)
             slotVo.toSlot(contents)
         }
     }
@@ -43,7 +53,9 @@ class H2LocalDataSource : LocalDataSource {
     override suspend fun getTrack(trackId: Long): Either<Error, Track> = execute {
         val slots = transaction {
             SlotVo.select { SlotVo.trackId eq trackId }.toList().map {
-                val contents = ContentsVo.select { ContentsVo.slotId eq it[SlotVo.id] }.firstOrNull()?.toContents()
+                val speakers = getSlotSpeakers(it[SlotVo.id])
+                val contents =
+                    ContentsVo.select { ContentsVo.slotId eq it[SlotVo.id] }.firstOrNull()?.toContents(speakers)
                 it.toSlot(contents)
             }
         }
@@ -69,7 +81,7 @@ class H2LocalDataSource : LocalDataSource {
 
     override suspend fun saveData(data: CommitResponse) {
         transaction {
-            SchemaUtils.create(DayVo, TrackVo, SlotVo, ContentsVo, SpeakerVo, ContentsSpeakerVo)
+            SchemaUtils.create(DayVo, TrackVo, SlotVo, ContentsVo, SpeakerVo, SlotSpeakerVo)
             data.days.forEach { day ->
                 DayVo.insert {
                     it[id] = day.id
@@ -115,8 +127,8 @@ class H2LocalDataSource : LocalDataSource {
                                     it[twitterAccount] = speaker.twitterAccount
                                 }
 
-                                ContentsSpeakerVo.insert {
-                                    it[contentsId] = slotContent.id ?: 0
+                                SlotSpeakerVo.insert {
+                                    it[slotId] = slot.id
                                     it[speakerId] = speaker.id
                                 }
                             }
@@ -150,12 +162,13 @@ class H2LocalDataSource : LocalDataSource {
         name = this[TrackVo.name]
     )
 
-    private fun ResultRow.toContents() = Contents(
+    private fun ResultRow.toContents(speakers: List<Speaker>) = Contents(
         id = this[ContentsVo.id],
         type = this[ContentsVo.type],
         description = this[ContentsVo.description],
         creationDate = this[ContentsVo.creationDate].millis,
-        title = this[ContentsVo.title]
+        title = this[ContentsVo.title],
+        speakers = speakers
     )
 
     private fun ResultRow.toSlot(contents: Contents?) = Slot(
@@ -166,5 +179,16 @@ class H2LocalDataSource : LocalDataSource {
         state = this[SlotVo.state],
         trackId = this[SlotVo.trackId],
         userId = this[SlotVo.userId]
+    )
+
+    private fun ResultRow.toSpeaker() = Speaker(
+        id = this[SpeakerVo.id],
+        name = this[SpeakerVo.name],
+        description = this[SpeakerVo.description],
+        avatar = this[SpeakerVo.avatar],
+        isOrganizer = this[SpeakerVo.isOrganizer] == 1,
+        rating = Rating(ratingAverage = this[SpeakerVo.ratingAverage], entriesCount = this[SpeakerVo.entriesCount]),
+        twitterAccount = this[SpeakerVo.twitterAccount],
+        uuid = this[SpeakerVo.uuid]
     )
 }
