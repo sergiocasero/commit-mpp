@@ -2,7 +2,7 @@ package com.sergiocasero.commit.presenter
 
 import com.sergiocasero.commit.error.ErrorHandler
 import com.sergiocasero.commit.executor.Executor
-import com.sergiocasero.commit.result.Error
+import com.sergiocasero.commit.common.result.Error
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 

@@ -1,0 +1,5 @@
+{
+  "name": "CommitConf multiplatform middleware",
+  "description": "Midleware built with kotlin multiplatform for commit talk",
+  "image": "heroku/java"
+}

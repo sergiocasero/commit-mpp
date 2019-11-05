@@ -1,7 +1,7 @@
 package com.sergiocasero.commit.error
 
 import android.content.Context
-import com.sergiocasero.commit.result.Error
+import com.sergiocasero.commit.common.result.Error
 
 /*
 actual class ErrorHandler(context: Context) {
