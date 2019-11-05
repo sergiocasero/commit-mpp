@@ -33,6 +33,7 @@ android {
         exclude 'META-INF/*'
     }
 
+    tasks.lint.enabled = false
 }
 
 tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
@@ -79,8 +80,8 @@ kotlin {
         }
         commonTest {
             dependencies {
-        		implementation kotlin('test-common')
-        		implementation kotlin('test-annotations-common')
+                implementation kotlin('test-common')
+                implementation kotlin('test-annotations-common')
             }
         }
         androidMain {
