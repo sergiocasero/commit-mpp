@@ -1,15 +1,13 @@
 package com.sergiocasero.commit.view
 
 import android.view.View
-import com.sergiocasero.commit.R
 import androidx.appcompat.widget.Toolbar
-import com.sergiocasero.commit.common.model.DayItem
-import com.sergiocasero.commit.common.model.ListResponse
+import com.sergiocasero.commit.R
+import com.sergiocasero.commit.common.model.Days
 import com.sergiocasero.commit.di.ACTIVITY_MODULE
 import com.sergiocasero.commit.presenter.HomePresenter
 import com.sergiocasero.commit.presenter.HomeView
 import com.sergiocasero.commit.view.adapter.ViewPagerAdapter
-import com.sergiocasero.commit.view.fragments.TalksListFragment
 import kotlinx.android.synthetic.main.activity_home.*
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
@@ -49,7 +47,7 @@ class HomeActivity : RootActivity<HomeView>(), HomeView {
 
     }
 
-    override fun showDays(days: ListResponse<DayItem>) {
+    override fun showDays(days: Days) {
 
     }
 

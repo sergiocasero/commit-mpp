@@ -1,8 +1,6 @@
 package com.sergiocasero.commit.repository
 
-import com.sergiocasero.commit.common.model.DayItem
-import com.sergiocasero.commit.common.model.ListResponse
-import com.sergiocasero.commit.common.model.Slot
+import com.sergiocasero.commit.common.model.*
 import com.sergiocasero.commit.common.result.Either
 import com.sergiocasero.commit.common.result.Error
 import com.sergiocasero.commit.datasource.local.LocalDataSource
@@ -13,5 +11,6 @@ class CommonClientRepository(
     private val remote: RemoteDataSource
 ) : ClientRepository {
     override suspend fun getSlot(slotId: Long): Either<Error, Slot> = remote.getSlot(slotId)
-    override suspend fun getDays(): Either<Error, ListResponse<DayItem>> = remote.getDays()
+    override suspend fun getDays(): Either<Error, Days> = remote.getDays()
+    override suspend fun getDayTracks(dayId: Long): Either<Error, Day> = remote.getDayTracks(dayId)
 }

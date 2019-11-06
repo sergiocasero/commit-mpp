@@ -2,6 +2,12 @@ package com.sergiocasero.commit.common.model
 
 import kotlinx.serialization.Serializable
 
+
+@Serializable
+data class Days(
+    val items: List<DayItem>
+)
+
 @Serializable
 data class DayItem(
     val id: Long,

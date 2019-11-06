@@ -1,7 +1,6 @@
 package com.sergiocasero.commit.presenter
 
-import com.sergiocasero.commit.common.model.DayItem
-import com.sergiocasero.commit.common.model.ListResponse
+import com.sergiocasero.commit.common.model.Days
 import com.sergiocasero.commit.error.ErrorHandler
 import com.sergiocasero.commit.executor.Executor
 import com.sergiocasero.commit.repository.ClientRepository
@@ -32,5 +31,5 @@ class HomePresenter(
 }
 
 interface HomeView : Presenter.View {
-    fun showDays(days: ListResponse<DayItem>)
+    fun showDays(days: Days)
 }
