@@ -39,6 +39,7 @@ class SlotDetailActivity : RootActivity<SlotDetailView>(), SlotDetailView {
             adapter = speakerAdapter
             layoutManager = LinearLayoutManager(this@SlotDetailActivity)
         }
+
     }
 
     override fun registerListeners() {
@@ -53,9 +54,13 @@ class SlotDetailActivity : RootActivity<SlotDetailView>(), SlotDetailView {
         container.animateChild()
         println(slot)
 
-        slot.contents?.speakers?.let {
+        slot.contents?.let { contents ->
+            toolbar.title = contents.title
+            setSupportActionBar(toolbar)
+
             speakerAdapter.clear()
-            speakerAdapter.addAll(it)
+            speakerAdapter.addAll(contents.speakers)
         }
+
     }
 }
