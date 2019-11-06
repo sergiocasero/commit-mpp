@@ -24,6 +24,7 @@ class SlotDetailActivity : RootActivity<SlotDetailView>(), SlotDetailView {
         bind<SlotDetailPresenter>() with provider {
             SlotDetailPresenter(
                 repository = instance(),
+                navigator = instance(),
                 executor = instance(),
                 errorHandler = instance(),
                 view = this@SlotDetailActivity

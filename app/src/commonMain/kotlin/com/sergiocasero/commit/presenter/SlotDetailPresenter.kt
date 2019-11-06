@@ -4,11 +4,13 @@ import com.sergiocasero.commit.common.model.Slot
 import com.sergiocasero.commit.common.model.Speaker
 import com.sergiocasero.commit.error.ErrorHandler
 import com.sergiocasero.commit.executor.Executor
+import com.sergiocasero.commit.navigator.Navigator
 import com.sergiocasero.commit.repository.ClientRepository
 import kotlinx.coroutines.launch
 
 class SlotDetailPresenter(
     private val repository: ClientRepository,
+    private val navigator: Navigator,
     view: SlotDetailView,
     errorHandler: ErrorHandler,
     executor: Executor
@@ -32,7 +34,7 @@ class SlotDetailPresenter(
     }
 
     fun onSpeakerTwitterClick(speaker: Speaker) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        speaker.twitterAccount?.let { navigator.openSpeakerTwitter(it) }
     }
 }
 

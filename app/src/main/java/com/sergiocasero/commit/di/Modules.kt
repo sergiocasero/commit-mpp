@@ -8,6 +8,7 @@ import com.sergiocasero.commit.datasource.remote.RemoteDataSource
 import com.sergiocasero.commit.error.AndroidErrorHandler
 import com.sergiocasero.commit.error.ErrorHandler
 import com.sergiocasero.commit.executor.Executor
+import com.sergiocasero.commit.navigator.Navigator
 import com.sergiocasero.commit.repository.ClientRepository
 import com.sergiocasero.commit.repository.CommonClientRepository
 import org.kodein.di.Kodein
@@ -21,6 +22,7 @@ fun appModule(context: Context) = Kodein.Module("appModule") {
     bind<Context>() with singleton { context }
     bind<Executor>() with singleton { Executor() }
     bind<ErrorHandler>() with singleton { AndroidErrorHandler(context = context) }
+    bind<Navigator>() with singleton { Navigator(context = context) }
 }
 
 val domainModule = Kodein.Module("domainModule") {
