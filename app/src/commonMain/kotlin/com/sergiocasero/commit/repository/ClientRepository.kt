@@ -6,6 +6,6 @@ import com.sergiocasero.commit.common.result.Error
 
 interface ClientRepository {
     suspend fun getSlot(slotId: Long): Either<Error, Slot>
-    suspend fun getDays(): Either<Error, Days>
+    suspend fun getDays(): Either<Error, DaysResponse>
     suspend fun getDayTracks(dayId: Long): Either<Error, Day>
 }

@@ -11,6 +11,6 @@ class CommonClientRepository(
     private val remote: RemoteDataSource
 ) : ClientRepository {
     override suspend fun getSlot(slotId: Long): Either<Error, Slot> = remote.getSlot(slotId)
-    override suspend fun getDays(): Either<Error, Days> = remote.getDays()
+    override suspend fun getDays(): Either<Error, DaysResponse> = remote.getDays()
     override suspend fun getDayTracks(dayId: Long): Either<Error, Day> = remote.getDayTracks(dayId)
 }

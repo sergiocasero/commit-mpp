@@ -4,7 +4,7 @@ import android.view.Menu
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 import com.sergiocasero.commit.R
-import com.sergiocasero.commit.common.model.Days
+import com.sergiocasero.commit.common.model.DaysResponse
 import com.sergiocasero.commit.di.ACTIVITY_MODULE
 import com.sergiocasero.commit.presenter.HomePresenter
 import com.sergiocasero.commit.presenter.HomeView
@@ -51,7 +51,7 @@ class HomeActivity : RootActivity<HomeView>(), HomeView {
         }
     }
 
-    override fun showDays(days: Days) {
+    override fun showDays(days: DaysResponse) {
         days.items.forEach { day ->
             this.days.menu.add(Menu.NONE, day.id.toInt(), Menu.NONE, day.name).setIcon(R.drawable.ic_calendar_white_24dp)
         }
