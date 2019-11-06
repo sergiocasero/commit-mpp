@@ -1,6 +1,7 @@
 package com.sergiocasero.commit.presenter
 
 import com.sergiocasero.commit.common.model.Slot
+import com.sergiocasero.commit.common.model.Speaker
 import com.sergiocasero.commit.error.ErrorHandler
 import com.sergiocasero.commit.executor.Executor
 import com.sergiocasero.commit.repository.ClientRepository
@@ -30,6 +31,9 @@ class SlotDetailPresenter(
         }
     }
 
+    fun onSpeakerTwitterClick(speaker: Speaker) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
 }
 
 interface SlotDetailView : Presenter.View {

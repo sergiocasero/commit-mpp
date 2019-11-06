@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="talks_list_margin">10dp</dimen>
+    <dimen name="item_speaker_margin">16dp</dimen>
+    <dimen name="item_speaker_avatar_size">120dp</dimen>
+    <dimen name="speaker_name_text_size">24sp</dimen>
+    <dimen name="item_speaker_corner_radius">10dp</dimen>
+    <dimen name="item_speaker_avatar_background_height">110dp</dimen>
 </resources>

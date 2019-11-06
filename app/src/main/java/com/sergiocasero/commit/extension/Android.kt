@@ -3,12 +3,15 @@ package com.sergiocasero.commit.extension
 import android.content.Context
 import android.os.SystemClock
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.transition.TransitionManager
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.google.android.material.snackbar.Snackbar
 import com.sergiocasero.commit.R
 
@@ -66,6 +69,13 @@ fun ImageView.load(url: String) {
         .into(this)
 }
 
+fun ImageView.loadAndRound(url: String) {
+    Glide.with(this)
+        .load(url)
+        .apply(RequestOptions.circleCropTransform())
+        .into(this)
+}
+
 /**
  * View
  * */
@@ -77,13 +87,15 @@ fun View.showMe() {
     this.visibility = View.VISIBLE
 }
 
-fun Context.snackbar(container: View,
-                     message: String,
-                     action: Int = R.string.retry,
-                     backgroundColor: Int = R.color.red_800,
-                     showAction: Boolean = true,
-                     length: Int = Snackbar.LENGTH_INDEFINITE,
-                     retryCallback: () -> Unit = {}) {
+fun Context.snackbar(
+    container: View,
+    message: String,
+    action: Int = R.string.retry,
+    backgroundColor: Int = R.color.red_800,
+    showAction: Boolean = true,
+    length: Int = Snackbar.LENGTH_INDEFINITE,
+    retryCallback: () -> Unit = {}
+) {
     val color = ContextCompat.getColor(this, R.color.white)
     val snackbar = Snackbar.make(container, message, length)
         .setActionTextColor(color)
@@ -95,4 +107,8 @@ fun Context.snackbar(container: View,
     snackbar.view.setBackgroundResource(backgroundColor)
     snackbar.view.findViewById<TextView>(com.google.android.material.R.id.snackbar_text).setTextColor(color)
     snackbar.show()
+}
+
+fun ViewGroup.animateChild() {
+    TransitionManager.beginDelayedTransition(this)
 }

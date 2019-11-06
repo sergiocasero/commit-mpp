@@ -2,4 +2,7 @@
 <resources>
     <color name="red_800">#C62828</color>
     <color name="white">#FFFFFF</color>
+    <color name="red_commit">#FE3600</color>
+    <color name="material_grey_900">#ff212121</color>
+    <color name="twitter">#1C9DEB</color>
 </resources>
