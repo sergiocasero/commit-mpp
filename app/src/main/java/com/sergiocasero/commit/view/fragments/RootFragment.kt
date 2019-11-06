@@ -56,8 +56,6 @@ abstract class RootFragment<out V : Presenter.View> : Fragment(), KodeinAware, P
 
     override fun showError(error: String) = toast(error)
 
-    override fun showError(errorId: Int) = toast(errorId)
-
     override fun showProgress() = progress.showMe()
 
     override fun hideProgress() = progress.hideMe()

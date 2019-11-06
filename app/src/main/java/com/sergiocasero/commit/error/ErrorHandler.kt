@@ -12,8 +12,11 @@ actual class ErrorHandler(context: Context) {
 */
 
 class AndroidErrorHandler(context: Context) : ErrorHandler {
-    override fun convert(error: Error): String {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun convert(error: Error): String = when (error) {
+        Error.NoInternet -> "No internet"
+        Error.NotFound -> "Not found"
+        Error.InvalidCredentials -> "Invalidate Credentials"
+        Error.Default -> "Default error"
     }
 
 }

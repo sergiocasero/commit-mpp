@@ -3,6 +3,8 @@ package com.sergiocasero.commit.view
 import android.view.View
 import com.sergiocasero.commit.R
 import androidx.appcompat.widget.Toolbar
+import com.sergiocasero.commit.common.model.DayItem
+import com.sergiocasero.commit.common.model.ListResponse
 import com.sergiocasero.commit.di.ACTIVITY_MODULE
 import com.sergiocasero.commit.presenter.HomePresenter
 import com.sergiocasero.commit.presenter.HomeView
@@ -29,6 +31,7 @@ class HomeActivity : RootActivity<HomeView>(), HomeView {
     override val activityModule: Kodein.Module = Kodein.Module(ACTIVITY_MODULE) {
         bind<HomePresenter>() with provider {
             HomePresenter(
+                repository = instance(),
                 view = this@HomeActivity,
                 errorHandler = instance(),
                 executor = instance()
@@ -46,16 +49,11 @@ class HomeActivity : RootActivity<HomeView>(), HomeView {
 
     }
 
-
-    override fun showMessage(message: String) {
-
-    }
-
-    override fun showMessage(messageId: Int) {
+    override fun showDays(days: ListResponse<DayItem>) {
 
     }
 
-    override fun showTracks(tracks: Int) {
+    /*override fun showTracks(tracks: Int) {
         for (i in 0..tracks) {
             viewPagerAdapter.addFragment("Track $i", TalksListFragment.newInstance(i))
         }
@@ -64,6 +62,6 @@ class HomeActivity : RootActivity<HomeView>(), HomeView {
             offscreenPageLimit = viewPagerAdapter.count
         }
         tab.setupWithViewPager(viewPager)
-    }
+    }*/
 
 }
