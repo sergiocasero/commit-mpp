@@ -43,6 +43,8 @@ class SlotDetailActivity : RootActivity<SlotDetailView>(), SlotDetailView {
             isNestedScrollingEnabled = false
         }
 
+        setSupportActionBar(toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 
     override fun registerListeners() {
@@ -60,7 +62,6 @@ class SlotDetailActivity : RootActivity<SlotDetailView>(), SlotDetailView {
         slot.contents?.let { contents ->
             description.text = contents.description
             toolbar.title = contents.title
-            setSupportActionBar(toolbar)
 
             speakerAdapter.clear()
             speakerAdapter.addAll(contents.speakers)
