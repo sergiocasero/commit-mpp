@@ -56,15 +56,4 @@ class HomeActivity : RootActivity<HomeView>(), HomeView {
     override fun registerListeners() {
 
     }
-
-
-    override fun showMessage(message: String) {
-
-    }
-
-    override fun showMessage(messageId: Int) {
-
-    }
-
-
 }

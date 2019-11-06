@@ -44,14 +44,6 @@ class SlotDetailActivity : RootActivity<SlotDetailView>(), SlotDetailView {
         // Nothing to do yet
     }
 
-    override fun showMessage(message: String) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
-    override fun showMessage(messageId: Int) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
-
     override fun getSlotId(): Long {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
