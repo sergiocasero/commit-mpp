@@ -1,6 +1,8 @@
 package com.sergiocasero.commit.view
 
+import android.content.res.ColorStateList
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sergiocasero.commit.R
 import com.sergiocasero.commit.common.model.Slot
@@ -44,7 +46,7 @@ class SlotDetailActivity : RootActivity<SlotDetailView>(), SlotDetailView {
     }
 
     override fun registerListeners() {
-        // Nothing to do yet
+        fav.setOnClickListener { presenter.onFavClick() }
     }
 
     // TODO Change this hardcoded number
@@ -63,6 +65,24 @@ class SlotDetailActivity : RootActivity<SlotDetailView>(), SlotDetailView {
             speakerAdapter.clear()
             speakerAdapter.addAll(contents.speakers)
         }
+    }
 
+    override fun showFavUI(isFav: Boolean) {
+        val textColor = ContextCompat.getColor(
+            this, when (isFav) {
+                true -> R.color.pink_500
+                false -> R.color.white
+            }
+        )
+
+        val backgroundColor = ContextCompat.getColor(
+            this, when (isFav) {
+                true -> R.color.yellow_500
+                false -> R.color.grey_500
+            }
+        )
+
+        fav.backgroundTintList = ColorStateList.valueOf(backgroundColor)
+        fav.imageTintList = ColorStateList.valueOf(textColor)
     }
 }

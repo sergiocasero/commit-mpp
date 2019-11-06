@@ -16,8 +16,11 @@ class SlotDetailPresenter(
     executor: Executor
 ) : Presenter<SlotDetailView>(errorHandler = errorHandler, executor = executor, view = view) {
 
+    private var isFav = false
+
     override fun attach() {
         getSlot(view.getSlotId())
+        view.showFavUI(isFav)
     }
 
     private fun getSlot(slotId: Long) {
@@ -33,6 +36,12 @@ class SlotDetailPresenter(
         }
     }
 
+    fun onFavClick() {
+        isFav = !isFav
+        view.showFavUI(isFav)
+        // TODO do something stuff on db
+    }
+
     fun onSpeakerTwitterClick(speaker: Speaker) {
         speaker.twitterAccount?.let { navigator.openSpeakerTwitter(it) }
     }
@@ -41,4 +50,5 @@ class SlotDetailPresenter(
 interface SlotDetailView : Presenter.View {
     fun getSlotId(): Long
     fun showSlot(slot: Slot)
+    fun showFavUI(isFav: Boolean)
 }
