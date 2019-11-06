@@ -11,12 +11,12 @@ import org.joda.time.DateTime
 interface LocalDataSource {
     suspend fun saveData(data: CommitResponse)
 
-    suspend fun getDays(): Either<Error, ListResponse<DayItem>>
-    suspend fun getTracks(): Either<Error, ListResponse<TrackItem>>
+    suspend fun getDays(): Either<Error, DaysResponse>
+    suspend fun getTracks(): Either<Error, TracksResponse>
 
     suspend fun getDay(dayId: Long): Either<Error, Day>
     suspend fun getTrack(trackId: Long): Either<Error, Track>
-    suspend fun getSlots(): Either<Error, ListResponse<Slot>>
+    suspend fun getSlots(): Either<Error, SlotsResponse>
     suspend fun getSlot(slotId: Long): Either<Error, Slot>
 }
 
@@ -26,10 +26,11 @@ class H2LocalDataSource : LocalDataSource {
         val ids = SlotSpeakerVo.select { SlotSpeakerVo.slotId eq contentId }.toList()
 
         ids.map { SpeakerVo.select { SpeakerVo.id eq it[SlotSpeakerVo.speakerId] }.first().toSpeaker() }
+            .sortedBy { it.name }
     }
 
-    override suspend fun getSlots(): Either<Error, ListResponse<Slot>> = execute {
-        ListResponse(
+    override suspend fun getSlots(): Either<Error, SlotsResponse> = execute {
+        SlotsResponse(
             transaction {
                 SlotVo.selectAll().toList().map {
                     val speakers = getSlotSpeakers(it[SlotVo.id])
@@ -37,7 +38,7 @@ class H2LocalDataSource : LocalDataSource {
                         ContentsVo.select { ContentsVo.slotId eq it[SlotVo.id] }.firstOrNull()?.toContents(speakers)
                     it.toSlot(contents)
                 }
-            })
+            }.sortedBy { it.start })
     }
 
     override suspend fun getSlot(slotId: Long): Either<Error, Slot> = execute {
@@ -64,19 +65,20 @@ class H2LocalDataSource : LocalDataSource {
         Track(slots = slots, id = trackItem.id, name = trackItem.name)
     }
 
-    override suspend fun getTracks(): Either<Error, ListResponse<TrackItem>> = execute {
-        transaction { ListResponse(TrackVo.selectAll().toList().map { it.toTrack() }) }
+    override suspend fun getTracks(): Either<Error, TracksResponse> = execute {
+        transaction { TracksResponse(TrackVo.selectAll().toList().map { it.toTrack() }.sortedBy { it.name }) }
     }
 
     override suspend fun getDay(dayId: Long): Either<Error, Day> = execute {
-        val tracks = transaction { TrackVo.select { TrackVo.dayId eq dayId }.toList().map { it.toTrack() } }
+        val tracks =
+            transaction { TrackVo.select { TrackVo.dayId eq dayId }.toList().map { it.toTrack() } }.sortedBy { it.name }
         val dayItem = transaction { DayVo.select { DayVo.id eq dayId }.first().toDay() }
 
         Day(id = dayItem.id, name = dayItem.name, tracks = tracks)
     }
 
-    override suspend fun getDays(): Either<Error, ListResponse<DayItem>> = execute {
-        transaction { ListResponse(DayVo.selectAll().toList().map { it.toDay() }) }
+    override suspend fun getDays(): Either<Error, DaysResponse> = execute {
+        transaction { DaysResponse(DayVo.selectAll().toList().map { it.toDay() }.sortedBy { it.name }) }
     }
 
     override suspend fun saveData(data: CommitResponse) {
@@ -110,7 +112,7 @@ class H2LocalDataSource : LocalDataSource {
                                 it[type] = slotContent.type
                                 it[title] = slotContent.title
                                 it[description] = slotContent.description
-                                it[creationDate] = DateTime(slotContent.creationDate)
+                                it[creationDate] = DateTime(slotContent.creationDate ?: 0)
                                 it[slotId] = slot.id
                             }
 

@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 
 @Serializable
-data class Days(
+data class DaysResponse(
     val items: List<DayItem>
 )
 
