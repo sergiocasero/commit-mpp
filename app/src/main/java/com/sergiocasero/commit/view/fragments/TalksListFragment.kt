@@ -15,11 +15,11 @@ class TalksListFragment : RootFragment<TalksView>(), TalksView {
 
     companion object {
         const val TRACK_ID_EXTRA = "TRACK_ID_EXTRA"
-        fun newInstance(trackId: Int): TalksListFragment {
+        fun newInstance(trackId: Long): TalksListFragment {
             val fragment = TalksListFragment()
 
             val bundle = Bundle()
-            bundle.putInt(TRACK_ID_EXTRA, trackId)
+            bundle.putLong(TRACK_ID_EXTRA, trackId)
 
             fragment.arguments = bundle
             return fragment
@@ -50,11 +50,10 @@ class TalksListFragment : RootFragment<TalksView>(), TalksView {
         // Nothing to do yet
     }
 
-    override fun obtainTrackId(): Int = arguments?.getInt(TRACK_ID_EXTRA) ?: throw Exception()
+    override fun obtainTrackId(): Long = arguments?.getLong(TRACK_ID_EXTRA) ?: throw Exception()
 
     override fun showTrackId(id: String) {
         trackId.text = id
     }
-
 
 }

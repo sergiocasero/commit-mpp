@@ -19,9 +19,15 @@ class ViewPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(
 
     override fun getCount(): Int = fragments.size
 
+    fun clear() {
+        fragments.clear()
+        notifyDataSetChanged()
+    }
+
     fun addFragment(title: String, fragment: Fragment) {
         titles.add(title)
         fragments.add(fragment)
     }
 
+    // FIXME: Prevent fragment destroy
 }

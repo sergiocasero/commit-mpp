@@ -17,5 +17,5 @@ class TalksListPresenter(
 
 interface TalksView : Presenter.View {
     fun showTrackId(id: String)
-    fun obtainTrackId(): Int
+    fun obtainTrackId(): Long
 }

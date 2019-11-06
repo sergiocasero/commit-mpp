@@ -5,10 +5,12 @@ import android.view.View
 import androidx.appcompat.widget.Toolbar
 import com.sergiocasero.commit.R
 import com.sergiocasero.commit.common.model.DaysResponse
+import com.sergiocasero.commit.common.model.TrackItem
 import com.sergiocasero.commit.di.ACTIVITY_MODULE
 import com.sergiocasero.commit.presenter.HomePresenter
 import com.sergiocasero.commit.presenter.HomeView
 import com.sergiocasero.commit.view.adapter.ViewPagerAdapter
+import com.sergiocasero.commit.view.fragments.TalksListFragment
 import kotlinx.android.synthetic.main.activity_home.*
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
@@ -53,20 +55,25 @@ class HomeActivity : RootActivity<HomeView>(), HomeView {
 
     override fun showDays(days: DaysResponse) {
         days.items.forEach { day ->
-            this.days.menu.add(Menu.NONE, day.id.toInt(), Menu.NONE, day.name)
+            this.days.menu.add(Menu.NONE, day.id.toInt(), Menu.NONE, day.id.toString())
                 .setIcon(R.drawable.ic_calendar_white_24dp)
         }
     }
 
-    /*override fun showTracks(tracks: Int) {
-        for (i in 0..tracks) {
-            viewPagerAdapter.addFragment("Track $i", TalksListFragment.newInstance(i))
+    override fun showTracks(tracks: List<TrackItem>) {
+        viewPagerAdapter.clear()
+        tracks.forEach {
+            viewPagerAdapter.addFragment(it.name, TalksListFragment.newInstance(it.id))
         }
         viewPager.apply {
             adapter = viewPagerAdapter
             offscreenPageLimit = viewPagerAdapter.count
         }
         tab.setupWithViewPager(viewPager)
+    }
+
+    /*override fun showTracks(tracks: Int) {
+
     }*/
 
 }

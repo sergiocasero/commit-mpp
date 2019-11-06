@@ -1,6 +1,7 @@
 package com.sergiocasero.commit.presenter
 
 import com.sergiocasero.commit.common.model.DaysResponse
+import com.sergiocasero.commit.common.model.TrackItem
 import com.sergiocasero.commit.error.ErrorHandler
 import com.sergiocasero.commit.executor.Executor
 import com.sergiocasero.commit.repository.ClientRepository
@@ -29,11 +30,21 @@ class HomePresenter(
     }
 
     fun onDaySelected(dayTitle: String) {
-        print("DAY TITLE: $dayTitle")
+        scope.launch {
+            view.showProgress()
+            repository.getDayTracks(dayTitle.toLong()).fold(
+                error = onError,
+                success = {
+                    view.showTracks(it.tracks)
+                }
+            )
+            view.hideProgress()
+        }
     }
 
 }
 
 interface HomeView : Presenter.View {
     fun showDays(days: DaysResponse)
+    fun showTracks(tracks: List<TrackItem>)
 }
