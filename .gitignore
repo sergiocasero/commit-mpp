@@ -17,3 +17,5 @@ local.properties
 .database
 
 app/.idea/
+
+.idea/

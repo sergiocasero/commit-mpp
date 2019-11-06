@@ -1,10 +1,12 @@
 plugins {
     id 'org.jetbrains.kotlin.multiplatform' version '1.3.50'
+    id 'org.jetbrains.kotlin.plugin.serialization' version '1.3.50'
 }
 repositories {
     google()
     jcenter()
     mavenCentral()
+    maven { url "https://jitpack.io" }
 }
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android-extensions'
@@ -73,7 +75,14 @@ kotlin {
         commonMain {
             dependencies {
                 implementation kotlin('stdlib-common')
+
                 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core-common:1.3.2'
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-common:$serialization_version"
+
+                implementation "io.ktor:ktor-client-core:$ktor_version"
+                implementation "io.ktor:ktor-client-json:$ktor_version"
+                implementation "io.ktor:ktor-client-serialization:$ktor_version"
+
 
                 implementation project(':common')
             }
@@ -87,7 +96,13 @@ kotlin {
         androidMain {
             dependencies {
                 implementation kotlin('stdlib')
+
                 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.2'
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version"
+
+                implementation "io.ktor:ktor-client-android:$ktor_version"
+                implementation "io.ktor:ktor-client-json-jvm:$ktor_version"
+                implementation "io.ktor:ktor-client-serialization-jvm:$ktor_version"
 
                 implementation project(':common')
             }
@@ -101,6 +116,11 @@ kotlin {
         iosMain {
             dependencies {
                 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core-native:1.3.2'
+                implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime-native:$serialization_version"
+
+                implementation "io.ktor:ktor-client-ios:$ktor_version"
+                implementation "io.ktor:ktor-client-json-native:$ktor_version"
+                implementation "io.ktor:ktor-client-serialization-native:$ktor_version"
 
                 implementation project(':common')
             }

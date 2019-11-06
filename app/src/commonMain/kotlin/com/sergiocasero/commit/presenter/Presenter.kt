@@ -1,8 +1,8 @@
 package com.sergiocasero.commit.presenter
 
+import com.sergiocasero.commit.common.result.Error
 import com.sergiocasero.commit.error.ErrorHandler
 import com.sergiocasero.commit.executor.Executor
-import com.sergiocasero.commit.common.result.Error
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
@@ -12,7 +12,8 @@ import kotlinx.coroutines.SupervisorJob
 abstract class Presenter<out V : Presenter.View>(
     protected val errorHandler: ErrorHandler,
     executor: Executor,
-    val view: V) {
+    val view: V
+) {
 
     private val job = SupervisorJob()
 
@@ -28,9 +29,6 @@ abstract class Presenter<out V : Presenter.View>(
         fun showProgress()
         fun hideProgress()
         fun showError(error: String)
-        fun showError(errorId: Int)
-        fun showMessage(message: String)
-        fun showMessage(messageId: Int)
     }
 }
 
