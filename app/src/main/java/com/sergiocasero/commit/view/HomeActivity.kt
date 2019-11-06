@@ -46,14 +46,15 @@ class HomeActivity : RootActivity<HomeView>(), HomeView {
 
     override fun registerListeners() {
         days.setOnNavigationItemSelectedListener {
-            print(it.itemId)
-         true
+            presenter.onDaySelected(it.title.toString())
+            true
         }
     }
 
     override fun showDays(days: Days) {
         days.items.forEach { day ->
-            this.days.menu.add(Menu.NONE, day.id.toInt(), Menu.NONE, day.name).setIcon(R.drawable.ic_calendar_white_24dp)
+            this.days.menu.add(Menu.NONE, day.id.toInt(), Menu.NONE, day.name)
+                .setIcon(R.drawable.ic_calendar_white_24dp)
         }
     }
 

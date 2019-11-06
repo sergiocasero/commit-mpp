@@ -28,6 +28,10 @@ class HomePresenter(
         }
     }
 
+    fun onDaySelected(dayTitle: String) {
+        print("DAY TITLE: $dayTitle")
+    }
+
 }
 
 interface HomeView : Presenter.View {
