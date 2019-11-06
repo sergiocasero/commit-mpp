@@ -4,7 +4,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/item_speaker_margin"
+    android:layout_margin="@dimen/default_margin"
     app:cardCornerRadius="@dimen/item_speaker_corner_radius">
 
     <View
@@ -15,7 +15,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/item_speaker_margin">
+        android:layout_margin="@dimen/default_margin">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/twitter"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/speaker_name_text_size"
             android:textStyle="bold"
-            android:layout_marginTop="@dimen/item_speaker_margin"
+            android:layout_marginTop="@dimen/default_margin"
             app:layout_constraintTop_toBottomOf="@+id/avatar"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
@@ -51,7 +51,7 @@
             android:id="@+id/description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/item_speaker_margin"
+            android:layout_marginTop="@dimen/default_margin"
             app:layout_constraintTop_toBottomOf="@+id/name"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />

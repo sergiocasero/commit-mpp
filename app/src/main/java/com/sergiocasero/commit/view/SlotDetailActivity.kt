@@ -38,6 +38,7 @@ class SlotDetailActivity : RootActivity<SlotDetailView>(), SlotDetailView {
         with(speakers) {
             adapter = speakerAdapter
             layoutManager = LinearLayoutManager(this@SlotDetailActivity)
+            isNestedScrollingEnabled = false
         }
 
     }
@@ -46,15 +47,16 @@ class SlotDetailActivity : RootActivity<SlotDetailView>(), SlotDetailView {
         // Nothing to do yet
     }
 
-    override fun getSlotId(): Long {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    // TODO Change this hardcoded number
+    override fun getSlotId(): Long = 387404009
 
     override fun showSlot(slot: Slot) {
         container.animateChild()
-        println(slot)
+
+        time.text = getString(R.string.slot_time, slot.start, slot.end)
 
         slot.contents?.let { contents ->
+            description.text = contents.description
             toolbar.title = contents.title
             setSupportActionBar(toolbar)
 

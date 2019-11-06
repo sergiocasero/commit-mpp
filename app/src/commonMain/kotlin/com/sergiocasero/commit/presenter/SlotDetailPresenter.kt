@@ -17,7 +17,7 @@ class SlotDetailPresenter(
 ) : Presenter<SlotDetailView>(errorHandler = errorHandler, executor = executor, view = view) {
 
     override fun attach() {
-        getSlot(387404009)
+        getSlot(view.getSlotId())
     }
 
     private fun getSlot(slotId: Long) {
