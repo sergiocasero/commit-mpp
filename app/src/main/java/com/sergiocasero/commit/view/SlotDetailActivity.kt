@@ -97,4 +97,10 @@ class SlotDetailActivity : RootActivity<SlotDetailView>(), SlotDetailView {
         fav.backgroundTintList = ColorStateList.valueOf(backgroundColor)
         fav.imageTintList = ColorStateList.valueOf(textColor)
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
 }
