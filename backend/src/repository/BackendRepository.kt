@@ -7,6 +7,7 @@ import com.sergiocasero.db.LocalDataSource
 import com.sergiocasero.remote.RemoteDataSource
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 interface BackendRepository {
     suspend fun getDays(): Either<Error, DaysResponse>
@@ -16,6 +17,7 @@ interface BackendRepository {
     suspend fun getDay(dayId: Long): Either<Error, Day>
     suspend fun getTrack(trackId: Long): Either<Error, Track>
     suspend fun getSlot(slotId: Long): Either<Error, Slot>
+    suspend fun update(): String
 }
 
 class CommitBackendRepository(
@@ -24,11 +26,7 @@ class CommitBackendRepository(
 ) : BackendRepository {
 
     init {
-        GlobalScope.launch {
-            val data = remote.parseData()
-            local.saveData(data)
-        }
-
+        runBlocking { update() }
     }
 
     override suspend fun getDays(): Either<Error, DaysResponse> = local.getDays()
@@ -39,4 +37,12 @@ class CommitBackendRepository(
     override suspend fun getDay(dayId: Long): Either<Error, Day> = local.getDay(dayId)
     override suspend fun getSlot(slotId: Long): Either<Error, Slot> = local.getSlot(slotId)
 
+    override suspend fun update(): String {
+        GlobalScope.launch {
+            val data = remote.parseData()
+            local.saveData(data)
+        }
+
+        return "ok"
+    }
 }
