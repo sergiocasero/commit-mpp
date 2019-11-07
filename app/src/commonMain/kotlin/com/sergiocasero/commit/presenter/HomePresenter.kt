@@ -27,7 +27,7 @@ class HomePresenter(
                     days.clear()
                     days.addAll(daysResponse.items)
                     view.showDays(days.mapIndexed { index, dayItem -> dayItem.toView(index) })
-                    onDaySelected(0) // Change for today
+                    onDaySelected(0) // TODO: Change for today and prevent nulls
                 }
             )
             view.hideProgress()
