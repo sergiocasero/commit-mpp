@@ -17,7 +17,7 @@ apply plugin: "com.heroku.sdk.heroku-gradle"
 apply plugin: "com.github.johnrengelman.shadow"
 
 group 'com.sergiocasero'
-version '0.0.3'
+version '0.0.4'
 mainClassName = "io.ktor.server.netty.EngineMain"
 
 sourceSets {
