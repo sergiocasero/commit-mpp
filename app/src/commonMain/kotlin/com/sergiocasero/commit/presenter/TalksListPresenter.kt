@@ -3,11 +3,13 @@ package com.sergiocasero.commit.presenter
 import com.sergiocasero.commit.common.model.Slot
 import com.sergiocasero.commit.error.ErrorHandler
 import com.sergiocasero.commit.executor.Executor
+import com.sergiocasero.commit.navigator.Navigator
 import com.sergiocasero.commit.repository.ClientRepository
 import kotlinx.coroutines.launch
 
 class TalksListPresenter(
     private val repository: ClientRepository,
+    private val navigator: Navigator,
     view: TalksView,
     errorHandler: ErrorHandler,
     executor: Executor
@@ -27,7 +29,7 @@ class TalksListPresenter(
     }
 
     fun onSlotClicked(slot: Slot) {
-
+        navigator.navigateToSlotDetail(slot.id)
     }
 
 }

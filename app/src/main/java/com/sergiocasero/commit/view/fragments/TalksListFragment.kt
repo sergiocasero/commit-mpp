@@ -41,7 +41,8 @@ class TalksListFragment : RootFragment<TalksView>(), TalksView {
                 view = this@TalksListFragment,
                 errorHandler = instance(),
                 executor = instance(),
-                repository = instance()
+                repository = instance(),
+                navigator = instance()
             )
         }
     }
