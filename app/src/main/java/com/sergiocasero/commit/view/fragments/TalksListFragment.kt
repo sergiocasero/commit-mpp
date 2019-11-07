@@ -40,7 +40,8 @@ class TalksListFragment : RootFragment<TalksView>(), TalksView {
             TalksListPresenter(
                 view = this@TalksListFragment,
                 errorHandler = instance(),
-                executor = instance()
+                executor = instance(),
+                repository = instance()
             )
         }
     }

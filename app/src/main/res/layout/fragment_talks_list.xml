@@ -11,7 +11,7 @@
         android:layout_marginStart="@dimen/talks_list_margin"
         android:layout_marginRight="@dimen/talks_list_margin"
         android:layout_marginEnd="@dimen/talks_list_margin"
-        android:visibility="gone"
+        android:visibility="visible"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
