@@ -110,7 +110,10 @@ class H2LocalDataSource : LocalDataSource {
                             ContentsVo.insert {
                                 it[id] = slotContent.id ?: 0
                                 it[type] = slotContent.type
-                                it[title] = slotContent.title
+                                it[title] = when(slotContent.type) {
+                                    "EXTEND" -> day.tracks.flatMap { it.slots }.firstOrNull { it.end == slot.end && it.contents?.type == "BREAK" }?.contents?.title
+                                    else -> slotContent.title
+                                }
                                 it[description] = slotContent.description
                                 it[creationDate] = DateTime(slotContent.creationDate ?: 0)
                                 it[slotId] = slot.id
