@@ -6,8 +6,8 @@ import kotlinx.serialization.Serializable
 data class Contents(
     val id: Long?,
     val type: String,
-    val title: String?,
-    val description: String?,
+    val title: String? = "",
+    val description: String? = null,
     val creationDate: Long?,
     val speakers: List<Speaker>
 )

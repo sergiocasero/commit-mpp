@@ -1,5 +1,7 @@
 package com.sergiocasero.commit.view
 
+import android.content.Context
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.view.View
 import androidx.core.content.ContextCompat
@@ -17,7 +19,17 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.provider
 
+
 class SlotDetailActivity : RootActivity<SlotDetailView>(), SlotDetailView {
+
+    companion object {
+        private const val SLOT_ID_EXTRA = "SLOT_ID_EXTRA"
+        fun getCallingIntent(context: Context, slotId: Long): Intent {
+            val callingIntent = Intent(context, SlotDetailActivity::class.java)
+            callingIntent.putExtra(SLOT_ID_EXTRA, slotId)
+            return callingIntent
+        }
+    }
 
     override val progress: View by lazy { progressView }
     override val layoutResourceId: Int = R.layout.activity_slot_detail
@@ -51,8 +63,7 @@ class SlotDetailActivity : RootActivity<SlotDetailView>(), SlotDetailView {
         fav.setOnClickListener { presenter.onFavClick() }
     }
 
-    // TODO Change this hardcoded number
-    override fun getSlotId(): Long = 387404009
+    override fun getSlotId(): Long = intent?.extras?.getLong(SLOT_ID_EXTRA) ?: throw IllegalArgumentException()
 
     override fun showSlot(slot: Slot) {
         container.animateChild()
@@ -86,4 +97,10 @@ class SlotDetailActivity : RootActivity<SlotDetailView>(), SlotDetailView {
         fav.backgroundTintList = ColorStateList.valueOf(backgroundColor)
         fav.imageTintList = ColorStateList.valueOf(textColor)
     }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return true
+    }
+
 }

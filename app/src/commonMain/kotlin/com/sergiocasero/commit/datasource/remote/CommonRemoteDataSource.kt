@@ -3,6 +3,7 @@ package com.sergiocasero.commit.datasource.remote
 import com.sergiocasero.commit.common.model.Day
 import com.sergiocasero.commit.common.model.DaysResponse
 import com.sergiocasero.commit.common.model.Slot
+import com.sergiocasero.commit.common.model.Track
 import com.sergiocasero.commit.common.result.Either
 import com.sergiocasero.commit.common.result.Error
 import io.ktor.client.HttpClient
@@ -44,10 +45,17 @@ class CommonRemoteDataSource : RemoteDataSource {
         }
     }
 
+    override suspend fun getTrack(trackId: Long): Either<Error, Track> = execute {
+        client.get<Track> {
+            apiUrl("/track/$trackId")
+        }
+    }
+
     private suspend fun <R> execute(f: suspend () -> R): Either<Error, R> =
         try {
             Either.Right(f())
         } catch (e: Exception) {
+            print(e.toString())
             Either.Left(
                 when (e) {
                     is ClientRequestException -> when (e.response.status) {
