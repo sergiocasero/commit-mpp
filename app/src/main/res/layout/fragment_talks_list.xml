@@ -4,13 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/trackId"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/talks"
+        android:id="@+id/slots"
         android:layout_marginTop="@dimen/talks_list_margin"
         android:layout_marginLeft="@dimen/talks_list_margin"
         android:layout_marginStart="@dimen/talks_list_margin"

@@ -2,9 +2,12 @@ package com.sergiocasero.commit.view.fragments
 
 import android.os.Bundle
 import android.view.View
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.sergiocasero.commit.R
+import com.sergiocasero.commit.common.model.Slot
 import com.sergiocasero.commit.presenter.TalksListPresenter
 import com.sergiocasero.commit.presenter.TalksView
+import com.sergiocasero.commit.view.adapter.SlotAdapter
 import kotlinx.android.synthetic.main.fragment_talks_list.*
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
@@ -26,7 +29,7 @@ class TalksListFragment : RootFragment<TalksView>(), TalksView {
         }
     }
 
-    override val progress: View by lazy { TODO() }
+    override val progress: View by lazy { progressView }
 
     override val presenter: TalksListPresenter by instance()
 
@@ -42,8 +45,15 @@ class TalksListFragment : RootFragment<TalksView>(), TalksView {
         }
     }
 
+    private val slotAdapter by lazy {
+        SlotAdapter { slot -> presenter.onSlotClicked(slot) }
+    }
+
     override fun initializeUI() {
-        // Nothing to do yet
+        slots.apply {
+            adapter = slotAdapter
+            layoutManager = LinearLayoutManager(context)
+        }
     }
 
     override fun registerListeners() {
@@ -52,8 +62,8 @@ class TalksListFragment : RootFragment<TalksView>(), TalksView {
 
     override fun obtainTrackId(): Long = arguments?.getLong(TRACK_ID_EXTRA) ?: throw Exception()
 
-    override fun showTrackId(id: String) {
-        trackId.text = id
+    override fun showSlots(slots: List<Slot>) {
+        slotAdapter.replace(slots)
     }
 
 }

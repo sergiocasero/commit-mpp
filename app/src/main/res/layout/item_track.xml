@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:paddingTop="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/startDate"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
+        android:textStyle="bold"
+        android:textColor="@color/red_800"
+        android:layout_marginStart="16dp"
+        tools:text="13:00"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/endDate"
+        app:layout_constraintTop_toBottomOf="@+id/startDate"
+        app:layout_constraintStart_toStartOf="@+id/startDate"
+        android:layout_marginTop="4dp"
+        android:layout_width="wrap_content"
+        android:textStyle="bold"
+        tools:text="14:00"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/material_grey_900"
+        android:id="@+id/title"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/startDate"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Ganarse la vida en Google Play y otras Historias de Terror" />
+
+    <TextView
+        android:id="@+id/speakers"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@+id/title"
+        app:layout_constraintEnd_toEndOf="@+id/title"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        tools:text="Pablo A. Martinez" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

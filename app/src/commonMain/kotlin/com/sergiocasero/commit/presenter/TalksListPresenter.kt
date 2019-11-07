@@ -1,5 +1,6 @@
 package com.sergiocasero.commit.presenter
 
+import com.sergiocasero.commit.common.model.Slot
 import com.sergiocasero.commit.error.ErrorHandler
 import com.sergiocasero.commit.executor.Executor
 
@@ -10,12 +11,16 @@ class TalksListPresenter(
 ) : Presenter<TalksView>(errorHandler = errorHandler, executor = executor, view = view) {
 
     override fun attach() {
-        view.showTrackId(view.obtainTrackId().toString())
+
+    }
+
+    fun onSlotClicked(slot: Slot) {
+
     }
 
 }
 
 interface TalksView : Presenter.View {
-    fun showTrackId(id: String)
     fun obtainTrackId(): Long
+    fun showSlots(slots: List<Slot>)
 }
