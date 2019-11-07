@@ -15,4 +15,7 @@ actual class Navigator {
             false -> app.openURL(webUrl)
         }
     }
+
+    actual fun navigateToSlotDetail(slotId: Long) {
+    }
 }
