@@ -1,5 +1,7 @@
 package com.sergiocasero.commit.datasource.remote
 
+import com.sergiocasero.commit.common.model.Day
+import com.sergiocasero.commit.common.model.DaysResponse
 import com.sergiocasero.commit.common.model.Slot
 import com.sergiocasero.commit.common.result.Either
 import com.sergiocasero.commit.common.result.Error
@@ -27,6 +29,18 @@ class CommonRemoteDataSource : RemoteDataSource {
     override suspend fun getSlot(slotId: Long): Either<Error, Slot> = execute {
         client.get<Slot> {
             apiUrl("/slot/$slotId")
+        }
+    }
+
+    override suspend fun getDays(): Either<Error, DaysResponse> = execute {
+        client.get<DaysResponse> {
+            apiUrl("/day")
+        }
+    }
+
+    override suspend fun getDayTracks(dayId: Long): Either<Error, Day> = execute {
+        client.get<Day> {
+            apiUrl("/day/$dayId")
         }
     }
 

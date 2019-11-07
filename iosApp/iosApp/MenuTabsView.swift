@@ -60,13 +60,11 @@ class MenuTabsView: UIView, UICollectionViewDelegate, UICollectionViewDataSource
     
     
     private func customIntializer () {
-        
         collView.register(BasicCell.self, forCellWithReuseIdentifier: cellId)
         addSubview(collView)
         addConstraintsWithFormatString(formate: "V:|[v0]|", views: collView)
         addConstraintsWithFormatString(formate: "H:|[v0]|", views: collView)
         backgroundColor = .clear
-        
     }
     
     

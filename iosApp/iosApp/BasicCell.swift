@@ -21,7 +21,7 @@ class BasicCell: UICollectionViewCell {
         
         didSet{
             UIView.animate(withDuration: 0.30) {
-                self.indicatorView.backgroundColor = self.isSelected ? UIColor.blue : UIColor.clear
+                self.indicatorView.backgroundColor = self.isSelected ? UIColor.white : UIColor.clear
                 self.layoutIfNeeded()
             }
         }
@@ -31,6 +31,7 @@ class BasicCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         titleLabel.textAlignment = .center
+        titleLabel.textColor = .white
         addSubview(titleLabel)
         addConstraintsWithFormatString(formate: "H:|[v0]|", views: titleLabel)
         addConstraintsWithFormatString(formate: "V:|[v0]|", views: titleLabel)
