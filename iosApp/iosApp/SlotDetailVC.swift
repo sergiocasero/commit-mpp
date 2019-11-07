@@ -136,6 +136,9 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
         cell.setBorderColor(UIColor.colorFromHex("#212121"), for: .normal)
         cell.setBorderWidth(1, for: .normal)
         
+        
+        
+        
         let url = URL(string: speaker.avatar)
         let data = try? Data(contentsOf: url!)
         cell.avatar.image = UIImage(data: data!)
@@ -149,6 +152,26 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
         cell.bio.text = speaker.description
         cell.bio.numberOfLines = 50
         
+        if speaker.twitterAccount != nil {
+            let bounds = cell.bounds
+            
+            let twitter = MDCFloatingButton()
+            twitter.setImage(UIImage(named:"twitter")?.withRenderingMode(.alwaysTemplate), for: .normal)
+            twitter.backgroundColor = UIColor.colorFromHex("#1CA1F2")
+            twitter.setImageTintColor(UIColor.white, for: .normal)
+            twitter.sizeToFit()
+            twitter.tag = indexPath.row
+            twitter.addTarget(self, action: #selector(twitterClick), for: .touchUpInside)
+            twitter.center = CGPoint(x: bounds.width - 50, y: 90)
+            
+            
+            cell.addSubview(twitter)
+        }
+        
         return cell
+    }
+    
+    @objc func twitterClick(sender: UIButton) {
+        presenter.onSpeakerTwitterClick(speaker: speakers[sender.tag])
     }
 }
