@@ -58,7 +58,7 @@ class H2LocalDataSource : LocalDataSource {
                 val contents =
                     ContentsVo.select { ContentsVo.slotId eq it[SlotVo.id] }.firstOrNull()?.toContents(speakers)
                 it.toSlot(contents)
-            }
+            }.sortedBy { it.start }
         }
         val trackItem = transaction { TrackVo.select { TrackVo.id eq trackId }.first().toTrack() }
 
