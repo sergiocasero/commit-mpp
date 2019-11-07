@@ -1,0 +1,9 @@
+use_frameworks!
+
+target 'iosApp' do
+  pod 'AFNetworking', '~> 3.0'
+  pod 'FBSDKCoreKit', '~> 4.9'
+  pod 'MaterialComponents', '~> 93.4'
+end
+
+workspace 'iosApp'
