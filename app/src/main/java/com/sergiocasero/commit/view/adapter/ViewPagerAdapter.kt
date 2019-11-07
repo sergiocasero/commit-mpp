@@ -2,12 +2,14 @@ package com.sergiocasero.commit.view.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
+import androidx.viewpager.widget.PagerAdapter
 
 /**
  * ViewPagerAdapter.
  */
-class ViewPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(fragmentManager) {
+class ViewPagerAdapter(fragmentManager: FragmentManager) :
+    FragmentStatePagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
 
     private val titles: MutableList<String> = mutableListOf()
 
@@ -20,6 +22,7 @@ class ViewPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(
     override fun getCount(): Int = fragments.size
 
     fun clear() {
+        titles.clear()
         fragments.clear()
         notifyDataSetChanged()
     }
@@ -27,6 +30,10 @@ class ViewPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(
     fun addFragment(title: String, fragment: Fragment) {
         titles.add(title)
         fragments.add(fragment)
+    }
+
+    override fun getItemPosition(`object`: Any): Int {
+        return PagerAdapter.POSITION_NONE
     }
 
     fun addFragments(fragments: List<Pair<String, Fragment>>) {
@@ -37,5 +44,4 @@ class ViewPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(
         notifyDataSetChanged()
     }
 
-    // FIXME: Prevent fragment destroy
 }

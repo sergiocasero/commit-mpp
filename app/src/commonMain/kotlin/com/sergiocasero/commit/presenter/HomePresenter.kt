@@ -1,9 +1,11 @@
 package com.sergiocasero.commit.presenter
 
-import com.sergiocasero.commit.common.model.DaysResponse
+import com.sergiocasero.commit.common.model.DayItem
 import com.sergiocasero.commit.common.model.TrackItem
 import com.sergiocasero.commit.error.ErrorHandler
 import com.sergiocasero.commit.executor.Executor
+import com.sergiocasero.commit.mapper.toView
+import com.sergiocasero.commit.models.DayView
 import com.sergiocasero.commit.repository.ClientRepository
 import kotlinx.coroutines.launch
 
@@ -14,25 +16,26 @@ class HomePresenter(
     executor: Executor
 ) : Presenter<HomeView>(errorHandler = errorHandler, executor = executor, view = view) {
 
+    private var days: List<DayItem> = listOf()
+
     override fun attach() {
         scope.launch {
             view.showProgress()
-
             repository.getDays().fold(
                 error = onError,
-                success = {
-                    view.showDays(it)
+                success = { daysResponse ->
+                    days = daysResponse.items
+                    view.showDays(days.mapIndexed { index, dayItem -> dayItem.toView(index) })
                 }
             )
-
             view.hideProgress()
         }
     }
 
-    fun onDaySelected(dayTitle: String) {
+    fun onDaySelected(dayPos: Int) {
         scope.launch {
             view.showProgress()
-            repository.getDayTracks(dayTitle.toLong()).fold(
+            repository.getDayTracks(days[dayPos].id).fold(
                 error = onError,
                 success = {
                     view.showTracks(it.tracks)
@@ -45,6 +48,6 @@ class HomePresenter(
 }
 
 interface HomeView : Presenter.View {
-    fun showDays(days: DaysResponse)
+    fun showDays(days: List<DayView>)
     fun showTracks(tracks: List<TrackItem>)
 }
