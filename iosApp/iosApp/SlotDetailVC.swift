@@ -51,10 +51,11 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
     func initializeUI() {
         time.textAlignment = .center
         
-        let plusImage = UIImage(named:"plus")?.withRenderingMode(.alwaysTemplate)
+        let plusImage = UIImage(named:"heart")?.withRenderingMode(.alwaysTemplate)
 
         fav.setImage(plusImage, for: .normal)
         fav.backgroundColor = UIColor.gray
+        fav.setImageTintColor(UIColor.white, for: .normal)
         fav.sizeToFit()
         
         let screen = UIScreen.main.bounds
@@ -109,11 +110,11 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
     }
     
     func showFavUI(isFav: Bool) {
-        if isFav {
-            fav.backgroundColor = UIColor.blue
-        } else {
-            fav.backgroundColor = UIColor.gray
-        }
+        let color = isFav ? UIColor.purple : UIColor.white
+        let background = isFav ? UIColor.yellow : UIColor.gray
+        
+        fav.setImageTintColor(color, for: .normal)
+        fav.backgroundColor = background
     }
     
     
