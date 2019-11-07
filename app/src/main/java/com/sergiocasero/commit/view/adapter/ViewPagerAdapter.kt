@@ -29,5 +29,13 @@ class ViewPagerAdapter(fragmentManager: FragmentManager) : FragmentPagerAdapter(
         fragments.add(fragment)
     }
 
+    fun addFragments(fragments: List<Pair<String, Fragment>>) {
+        clear()
+        fragments.forEach {
+            addFragment(it.first, it.second)
+        }
+        notifyDataSetChanged()
+    }
+
     // FIXME: Prevent fragment destroy
 }

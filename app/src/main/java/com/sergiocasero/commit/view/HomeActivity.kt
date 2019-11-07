@@ -3,6 +3,7 @@ package com.sergiocasero.commit.view
 import android.view.Menu
 import android.view.View
 import androidx.appcompat.widget.Toolbar
+import androidx.fragment.app.Fragment
 import com.sergiocasero.commit.R
 import com.sergiocasero.commit.common.model.DaysResponse
 import com.sergiocasero.commit.common.model.TrackItem
@@ -49,6 +50,8 @@ class HomeActivity : RootActivity<HomeView>(), HomeView {
             adapter = viewPagerAdapter
             offscreenPageLimit = viewPagerAdapter.count
         }
+
+        tab.setupWithViewPager(viewPager)
     }
 
     override fun registerListeners() {
@@ -66,11 +69,11 @@ class HomeActivity : RootActivity<HomeView>(), HomeView {
     }
 
     override fun showTracks(tracks: List<TrackItem>) {
-        viewPagerAdapter.clear()
-        tracks.forEach {
-            viewPagerAdapter.addFragment(it.name, TalksListFragment.newInstance(it.id))
-        }
-        viewPagerAdapter.notifyDataSetChanged()
-        tab.setupWithViewPager(viewPager)
+        viewPagerAdapter.addFragments(tracks.map {
+            Pair<String, Fragment>(
+                it.name,
+                TalksListFragment.newInstance(it.id)
+            )
+        })
     }
 }
