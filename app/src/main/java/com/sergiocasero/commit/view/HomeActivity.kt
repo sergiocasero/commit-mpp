@@ -44,6 +44,11 @@ class HomeActivity : RootActivity<HomeView>(), HomeView {
         val toolbar = findViewById<Toolbar>(R.id.toolbar)
         toolbar.title = getString(R.string.app_name)
         setSupportActionBar(toolbar)
+
+        viewPager.apply {
+            adapter = viewPagerAdapter
+            offscreenPageLimit = viewPagerAdapter.count
+        }
     }
 
     override fun registerListeners() {
@@ -65,15 +70,7 @@ class HomeActivity : RootActivity<HomeView>(), HomeView {
         tracks.forEach {
             viewPagerAdapter.addFragment(it.name, TalksListFragment.newInstance(it.id))
         }
-        viewPager.apply {
-            adapter = viewPagerAdapter
-            offscreenPageLimit = viewPagerAdapter.count
-        }
+        viewPagerAdapter.notifyDataSetChanged()
         tab.setupWithViewPager(viewPager)
     }
-
-    /*override fun showTracks(tracks: Int) {
-
-    }*/
-
 }
