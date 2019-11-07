@@ -16,7 +16,7 @@ class HomePresenter(
     executor: Executor
 ) : Presenter<HomeView>(errorHandler = errorHandler, executor = executor, view = view) {
 
-    private var days: List<DayItem> = listOf()
+    private val days: MutableList<DayItem> = mutableListOf()
 
     override fun attach() {
         scope.launch {
@@ -24,7 +24,8 @@ class HomePresenter(
             repository.getDays().fold(
                 error = onError,
                 success = { daysResponse ->
-                    days = daysResponse.items
+                    days.clear()
+                    days.addAll(daysResponse.items)
                     view.showDays(days.mapIndexed { index, dayItem -> dayItem.toView(index) })
                 }
             )
