@@ -10,12 +10,19 @@ import UIKit
 import app
 
 class ViewController: UIViewController, HomeView {
+    func showDays(days: CommonDaysResponse) {
+        // Nothing to do yet
+    }
     
     @IBOutlet weak var menuBarView: MenuTabsView!
     
     var tabs : [String] = []
     
     private lazy var presenter: HomePresenter = HomePresenter(
+        repository: CommonClientRepository(
+            local: CommonLocalDataSource(),
+            remote: CommonRemoteDataSource()
+        ),
         view: self,
         errorHandler: IosErrorHandler(),
         executor: Executor())
