@@ -11,9 +11,19 @@ import app
 
 class ContentVC: UIViewController, TalksView {
     
+    func obtainTrackId() -> Int64 {
+        return 0
+    }
+    
+    func showSlots(slots: [CommonSlot]) {
+        
+    }
+    
     @IBOutlet weak var nameLabel: UILabel!
     
     private lazy var presenter: TalksListPresenter = TalksListPresenter(
+        repository: CommonClientRepository(local: CommonLocalDataSource(), remote: CommonRemoteDataSource()),
+        navigator: Navigator(),
         view: self,
         errorHandler: IosErrorHandler(),
         executor: Executor())

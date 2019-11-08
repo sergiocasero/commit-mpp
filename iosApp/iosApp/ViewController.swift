@@ -10,9 +10,14 @@ import UIKit
 import app
 
 class ViewController: UIViewController, HomeView {
-    func showDays(days: CommonDaysResponse) {
-        // Nothing to do yet
+    func showDays(days: [DayView]) {
+        
     }
+    
+    func showTracks(tracks: [CommonTrackItem]) {
+        
+    }
+    
     
     @IBOutlet weak var menuBarView: MenuTabsView!
     
