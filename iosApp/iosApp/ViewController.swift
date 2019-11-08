@@ -15,7 +15,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     @IBOutlet weak var daysMenu: UICollectionView!
     
-    var tabs : [String] = []
+    var tabs : [TabsView] = []
     
     var days: [DayView] = []
     
@@ -66,26 +66,28 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
     func presentPageVCOnView() {
         self.pageController = storyboard?.instantiateViewController(withIdentifier: "PageControllerVC") as! PageControllerVC
-        self.pageController.view.frame = CGRect.init(x: 0, y: menuBarView.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - menuBarView.frame.maxY)
+        self.pageController.view.frame = CGRect.init(x: 0, y: menuBarView.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - menuBarView.frame.maxY - daysMenu.frame.height)
         self.addChildViewController(self.pageController)
         self.view.addSubview(self.pageController.view)
         self.pageController.didMove(toParentViewController: self)
-        
     }
     
     //Present ViewController At The Given Index
     
     func viewController(At index: Int) -> UIViewController? {
         
+        print("viewController set \(index)")
+        
         if((self.menuBarView.dataArray.count == 0) || (index >= self.menuBarView.dataArray.count)) {
             return nil
         }
         
         let contentVC = storyboard?.instantiateViewController(withIdentifier: "ContentVC") as! ContentVC
+        contentVC.trackId = Int64(tabs[index].id)
         contentVC.pageIndex = index
         currentIndex = index
         return contentVC
-        
+
     }
     
     func showDays(days: [DayView]) {
@@ -94,24 +96,23 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     }
     
     func showTracks(tracks: [CommonTrackItem]) {
-        /*  tabs.removeAll()
-         for n in tracks.indices {
-         tabs.append("Track \(n)")
-         }
-         
-         menuBarView.dataArray = tabs
-         menuBarView.isSizeToFitCellsNeeded = true
-         menuBarView.collView.backgroundColor = UIColor(red:0.13, green:0.13, blue:0.13, alpha:1.0)
-         
-         presentPageVCOnView()
-         
-         menuBarView.menuDelegate = self
-         pageController.delegate = self
-         pageController.dataSource = self
-         
-         menuBarView.collView.selectItem(at: IndexPath.init(item: 0, section: 0), animated: true, scrollPosition: .centeredVertically)
-         pageController.setViewControllers([viewController(At: 0)!], direction: .forward, animated: true, completion: nil)
-         */
+        tabs.removeAll()
+        for (index, track) in tracks.enumerated() {
+            tabs.append(TabsView(index: index, name: track.name, id: track.id))
+        }
+
+        menuBarView.dataArray = tabs
+        menuBarView.isSizeToFitCellsNeeded = true
+        menuBarView.collView.backgroundColor = UIColor(red:0.13, green:0.13, blue:0.13, alpha:1.0)
+
+        presentPageVCOnView()
+
+        menuBarView.menuDelegate = self
+        pageController.delegate = self
+        pageController.dataSource = self
+
+        menuBarView.collView.selectItem(at: IndexPath.init(item: 0, section: 0), animated: true, scrollPosition: .centeredVertically)
+        pageController.setViewControllers([viewController(At: 0)!], direction: .forward, animated: true, completion: nil)
     }
     
     func showProgress() {
@@ -154,25 +155,31 @@ extension ViewController: UIPageViewControllerDataSource, UIPageViewControllerDe
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
+        
         var index = (viewController as! ContentVC).pageIndex
+      /*  print("viewControllerBefore \(index)")
         
         if (index == 0) || (index == NSNotFound) {
             return nil
         }
         
         index -= 1
+        print("viewControllerBefore new \(index)")*/
         return self.viewController(At: index)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
         var index = (viewController as! ContentVC).pageIndex
+     /*   print("viewControllerAfter \(index)")
         
         if (index == tabs.count) || (index == NSNotFound) {
             return nil
         }
         
-        index += 1
+        currentIndex = index
+    
+        print("viewControllerAfter new \(index)")*/
         return self.viewController(At: index)
         
     }
@@ -180,8 +187,11 @@ extension ViewController: UIPageViewControllerDataSource, UIPageViewControllerDe
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
         if finished {
             if completed {
+                print("FINISH TRANSITION")
                 let cvc = pageViewController.viewControllers!.first as! ContentVC
+                print("FINISH INDEX \(cvc.pageIndex)")
                 let newIndex = cvc.pageIndex + 1
+                print("FINISH NEW INDEX \(newIndex)")
                 menuBarView.collView.selectItem(at: IndexPath.init(item: newIndex, section: 0), animated: true, scrollPosition: .centeredVertically)
                 menuBarView.collView.scrollToItem(at: IndexPath.init(item: newIndex, section: 0), at: .centeredHorizontally, animated: true)
             }

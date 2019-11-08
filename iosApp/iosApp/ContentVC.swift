@@ -11,14 +11,9 @@ import app
 
 class ContentVC: UIViewController, TalksView {
     
-    func obtainTrackId() -> Int64 {
-        return 0
-    }
-    
-    func showSlots(slots: [CommonSlot]) {
-        
-    }
-    
+    var pageIndex: Int = 0
+    var trackId: Int64 = 0
+
     @IBOutlet weak var nameLabel: UILabel!
     
     private lazy var presenter: TalksListPresenter = TalksListPresenter(
@@ -28,7 +23,6 @@ class ContentVC: UIViewController, TalksView {
         errorHandler: IosErrorHandler(),
         executor: Executor())
  
-    var pageIndex: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,32 +34,20 @@ class ContentVC: UIViewController, TalksView {
     }
     
     func hideProgress() {
-    
+        
     }
     
     func showError(error: String) {
-    
+        
     }
     
-    func showError(errorId: Int32) {
-    
+    func obtainTrackId() -> Int64 {
+        return trackId
     }
     
-    func showMessage(message: String) {
-    
-    }
-    
-    func showMessage(messageId: Int32) {
-    
-    }
-    
-    func showTrackId(id: String) {
-        print("ID: " + id)
-        nameLabel.text = id
-    }
-    
-    func obtainTrackId() -> Int32 {
-        return Int32(pageIndex)
+    func showSlots(slots: [CommonSlot]) {
+        print("trackId: \(trackId)")
+        print("contentVCIndex: \(pageIndex)")
     }
     
 }
