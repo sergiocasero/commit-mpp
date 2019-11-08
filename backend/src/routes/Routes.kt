@@ -15,6 +15,7 @@ fun Application.routes() {
     day(repository)
     track(repository)
     slot(repository)
+    update(repository)
 }
 
 suspend fun <R : Any> ApplicationCall.execute(either: Either<Error, R>) {

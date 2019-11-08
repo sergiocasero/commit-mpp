@@ -19,3 +19,5 @@ local.properties
 app/.idea/
 
 .idea/
+
+iosApp/.idea
