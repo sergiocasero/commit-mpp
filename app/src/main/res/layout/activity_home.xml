@@ -48,8 +48,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="?attr/colorPrimary"
-            app:itemIconTint="@color/white"
-            app:itemTextColor="@color/white" />
+            app:itemIconTint="@color/bottom_color_selector"
+            app:itemTextColor="@color/bottom_color_selector" />
 
     </LinearLayout>
 
