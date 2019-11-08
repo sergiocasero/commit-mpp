@@ -9,12 +9,13 @@ actual class Navigator(private val context: Context) {
 
     actual fun openSpeakerTwitter(twitterUser: String) {
         val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://twitter.com/$twitterUser"))
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(intent)
     }
 
     actual fun navigateToSlotDetail(slotId: Long) {
         val intent = SlotDetailActivity.getCallingIntent(context, slotId)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(intent)
     }
 

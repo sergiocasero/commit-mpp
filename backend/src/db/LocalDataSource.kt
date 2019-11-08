@@ -58,7 +58,7 @@ class H2LocalDataSource : LocalDataSource {
                 val contents =
                     ContentsVo.select { ContentsVo.slotId eq it[SlotVo.id] }.firstOrNull()?.toContents(speakers)
                 it.toSlot(contents)
-            }
+            }.sortedBy { it.start }
         }
         val trackItem = transaction { TrackVo.select { TrackVo.id eq trackId }.first().toTrack() }
 
@@ -110,7 +110,10 @@ class H2LocalDataSource : LocalDataSource {
                             ContentsVo.insert {
                                 it[id] = slotContent.id ?: 0
                                 it[type] = slotContent.type
-                                it[title] = slotContent.title
+                                it[title] = when(slotContent.type) {
+                                    "EXTEND" -> day.tracks.flatMap { it.slots }.firstOrNull { it.end == slot.end && it.contents?.type == "BREAK" }?.contents?.title
+                                    else -> slotContent.title
+                                }
                                 it[description] = slotContent.description
                                 it[creationDate] = DateTime(slotContent.creationDate ?: 0)
                                 it[slotId] = slot.id
