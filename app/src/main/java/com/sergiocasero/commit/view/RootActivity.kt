@@ -47,8 +47,6 @@ abstract class RootActivity<out V : Presenter.View> : AppCompatActivity(), Kodei
 
     override fun showError(error: String) = toast(error)
 
-    override fun showError(errorId: Int) = toast(errorId)
-
     override fun showProgress() = progress.showMe()
 
     override fun hideProgress() = progress.hideMe()

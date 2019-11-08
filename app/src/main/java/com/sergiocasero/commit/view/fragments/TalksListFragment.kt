@@ -11,7 +11,7 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.provider
 
-class TalksListFragment : RootFragment<TalksView>(), TalksView{
+class TalksListFragment : RootFragment<TalksView>(), TalksView {
 
     companion object {
         const val TRACK_ID_EXTRA = "TRACK_ID_EXTRA"
@@ -43,19 +43,11 @@ class TalksListFragment : RootFragment<TalksView>(), TalksView{
     }
 
     override fun initializeUI() {
-
+        // Nothing to do yet
     }
 
     override fun registerListeners() {
-
-    }
-
-    override fun showMessage(message: String) {
-
-    }
-
-    override fun showMessage(messageId: Int) {
-
+        // Nothing to do yet
     }
 
     override fun obtainTrackId(): Int = arguments?.getInt(TRACK_ID_EXTRA) ?: throw Exception()
