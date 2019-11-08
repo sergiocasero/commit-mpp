@@ -68,6 +68,8 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
 
         view.addSubview(fav)
         view.addSubview(progress)
+        
+        
     }
     
     func registerListeners() {
@@ -135,8 +137,6 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
         
         cell.setBorderColor(UIColor.colorFromHex("#212121"), for: .normal)
         cell.setBorderWidth(1, for: .normal)
-        
-        
         
         
         let url = URL(string: speaker.avatar)
