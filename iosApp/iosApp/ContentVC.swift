@@ -8,13 +8,16 @@
 
 import UIKit
 import app
+import MaterialComponents
 
-class ContentVC: UIViewController, TalksView {
+class ContentVC: UIViewController , UICollectionViewDataSource, UICollectionViewDelegate, TalksView{
     
     var pageIndex: Int = 0
     var trackId: Int64 = 0
-
-    @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var slotsView: UICollectionView!
+    
+     var slots : [CommonSlot] = []
     
     private lazy var presenter: TalksListPresenter = TalksListPresenter(
         repository: CommonClientRepository(local: CommonLocalDataSource(), remote: CommonRemoteDataSource()),
@@ -46,8 +49,33 @@ class ContentVC: UIViewController, TalksView {
     }
     
     func showSlots(slots: [CommonSlot]) {
-        print("trackId: \(trackId)")
-        print("contentVCIndex: \(pageIndex)")
+        self.slots = slots
+        self.slotsView.reloadData()
     }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return slots.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "SlotCell", for: indexPath) as! SlotCell
+        
+        let slot = self.slots[indexPath.row]
+        
+        cell.cornerRadius = 8
+        cell.setShadowElevation(ShadowElevation(rawValue: 6), for: .normal)
+        cell.setShadowColor(UIColor.colorFromHex("#212121"), for: .normal)
+        
+        cell.setBorderColor(UIColor.colorFromHex("#212121"), for: .normal)
+        cell.setBorderWidth(1, for: .normal)
+        
+        cell.startDate.text = slot.start
+        cell.endDate.text = slot.end
+        cell.title.text  = slot.contents?.title
+        cell.speakers.text = slot.contents?.speakers.map({$0.name}).joined(separator: ", ")
+        
+        return cell
+    }
+    
     
 }

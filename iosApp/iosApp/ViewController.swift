@@ -64,6 +64,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let day = days[indexPath.item]
+        print(day)
+        presenter.onDaySelected(dayPos: day.pos)
+    }
+    
     func presentPageVCOnView() {
         self.pageController = storyboard?.instantiateViewController(withIdentifier: "PageControllerVC") as! PageControllerVC
         self.pageController.view.frame = CGRect.init(x: 0, y: menuBarView.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - menuBarView.frame.maxY - daysMenu.frame.height)
