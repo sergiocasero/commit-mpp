@@ -9,19 +9,15 @@
 import UIKit
 import app
 
-class ViewController: UIViewController, HomeView {
-    func showDays(days: [DayView]) {
-        
-    }
-    
-    func showTracks(tracks: [CommonTrackItem]) {
-        
-    }
-    
-    
+class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, HomeView {
+
     @IBOutlet weak var menuBarView: MenuTabsView!
     
+    @IBOutlet weak var daysMenu: UICollectionView!
+    
     var tabs : [String] = []
+    
+    var days: [DayView] = []
     
     private lazy var presenter: HomePresenter = HomePresenter(
         repository: CommonClientRepository(
@@ -38,6 +34,34 @@ class ViewController: UIViewController, HomeView {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.attach()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+       return days.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dayCell", for: indexPath) as! DayViewCell
+        
+        let day = self.days[indexPath.row]
+
+        cell.dayName.text = day.title
+        cell.dayName.lineBreakMode = .byClipping
+        cell.dayIcon.image = UIImage(named: "calendar")
+    
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        let totalCellWidth = 80 * collectionView.numberOfItems(inSection: 0)
+        let totalSpacingWidth = 10 * (collectionView.numberOfItems(inSection: 0) - 1)
+        
+        let leftInset = (collectionView.layer.frame.size.width - CGFloat(totalCellWidth + totalSpacingWidth)) / 2
+        let rightInset = leftInset
+        
+        return UIEdgeInsets(top: 0, left: leftInset, bottom: 0, right: rightInset)
+        
     }
     
     func presentPageVCOnView() {
@@ -61,6 +85,44 @@ class ViewController: UIViewController, HomeView {
         contentVC.pageIndex = index
         currentIndex = index
         return contentVC
+        
+    }
+    
+    func showDays(days: [DayView]) {
+        self.days = days
+        self.daysMenu.reloadData()
+    }
+    
+    func showTracks(tracks: [CommonTrackItem]) {
+        /*  tabs.removeAll()
+         for n in tracks.indices {
+         tabs.append("Track \(n)")
+         }
+         
+         menuBarView.dataArray = tabs
+         menuBarView.isSizeToFitCellsNeeded = true
+         menuBarView.collView.backgroundColor = UIColor(red:0.13, green:0.13, blue:0.13, alpha:1.0)
+         
+         presentPageVCOnView()
+         
+         menuBarView.menuDelegate = self
+         pageController.delegate = self
+         pageController.dataSource = self
+         
+         menuBarView.collView.selectItem(at: IndexPath.init(item: 0, section: 0), animated: true, scrollPosition: .centeredVertically)
+         pageController.setViewControllers([viewController(At: 0)!], direction: .forward, animated: true, completion: nil)
+         */
+    }
+    
+    func showProgress() {
+        
+    }
+    
+    func hideProgress() {
+        
+    }
+    
+    func showError(error: String) {
         
     }
     
@@ -116,7 +178,6 @@ extension ViewController: UIPageViewControllerDataSource, UIPageViewControllerDe
     }
    
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
-        
         if finished {
             if completed {
                 let cvc = pageViewController.viewControllers!.first as! ContentVC
@@ -125,52 +186,6 @@ extension ViewController: UIPageViewControllerDataSource, UIPageViewControllerDe
                 menuBarView.collView.scrollToItem(at: IndexPath.init(item: newIndex, section: 0), at: .centeredHorizontally, animated: true)
             }
         }
-        
-    }
-    
-    func showProgress() {
-        
-    }
-    
-    func hideProgress() {
-        
-    }
-    
-    func showError(error: String) {
-        
-    }
-    
-    func showError(errorId: Int32) {
-        
-    }
-    
-    func showMessage(message: String) {
-        
-    }
-    
-    func showMessage(messageId: Int32) {
-        
-    }
-    
-    func showTracks(tracks: Int32) {
-        tabs.removeAll()
-        for n in 0...tracks {
-            tabs.append("Track \(n)")
-        }
-        
-        menuBarView.dataArray = tabs
-        menuBarView.isSizeToFitCellsNeeded = true
-        menuBarView.collView.backgroundColor = UIColor(red:0.13, green:0.13, blue:0.13, alpha:1.0)
-        
-        presentPageVCOnView()
-        
-        menuBarView.menuDelegate = self
-        pageController.delegate = self
-        pageController.dataSource = self
-        
-        menuBarView.collView.selectItem(at: IndexPath.init(item: 0, section: 0), animated: true, scrollPosition: .centeredVertically)
-        pageController.setViewControllers([viewController(At: 0)!], direction: .forward, animated: true, completion: nil)
-        
     }
     
 }

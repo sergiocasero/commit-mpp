@@ -36,7 +36,7 @@ class ContentVC: UIViewController, TalksView {
     }
     
     func showProgress() {
-        TestIosTestDani()
+        
     }
     
     func hideProgress() {
