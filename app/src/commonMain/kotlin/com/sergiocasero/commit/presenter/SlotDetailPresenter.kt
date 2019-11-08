@@ -18,9 +18,10 @@ class SlotDetailPresenter(
 
     private var isFav = false
 
+    private var slot: Slot? = null
+
     override fun attach() {
         getSlot(view.getSlotId())
-        view.showFavUI(isFav)
     }
 
     private fun getSlot(slotId: Long) {
@@ -29,17 +30,41 @@ class SlotDetailPresenter(
 
             repository.getSlot(slotId).fold(
                 error = onError,
-                success = { view.showSlot(it) }
+                success = {
+                    slot = it
+                    view.showSlot(it)
+                    checkFav(it)
+                }
             )
 
             view.hideProgress()
         }
     }
 
+    private fun checkFav(slot: Slot) {
+        scope.launch {
+            repository.isSlotFav(slot).fold(
+                error = onError,
+                success = {
+                    isFav = it
+                    view.showFavUI(isFav)
+                }
+            )
+        }
+    }
+
     fun onFavClick() {
-        isFav = !isFav
-        view.showFavUI(isFav)
-        // TODO do something stuff on db
+        scope.launch {
+            slot?.let {
+                repository.updateFavSlot(it, !isFav).fold(
+                    error = onError,
+                    success = {
+                        isFav = !isFav
+                        view.showFavUI(isFav)
+                    }
+                )
+            }
+        }
     }
 
     fun onSpeakerTwitterClick(speaker: Speaker) {
