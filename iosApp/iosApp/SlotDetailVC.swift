@@ -95,7 +95,7 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
     }
     
     func getSlotId() -> Int64 {
-        return 387404009
+        return self.slotId
     }
     
     func showSlot(slot: CommonSlot) {

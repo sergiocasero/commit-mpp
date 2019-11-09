@@ -29,7 +29,7 @@ class TalksListPresenter(
     }
 
     fun onSlotClicked(slot: Slot) {
-        navigator.navigateToSlotDetail(slot.id)
+        view.navigateToSlotDetail(slot.id)
     }
 
 }
@@ -37,4 +37,5 @@ class TalksListPresenter(
 interface TalksView : Presenter.View {
     fun obtainTrackId(): Long
     fun showSlots(slots: List<Slot>)
+    fun navigateToSlotDetail(slotId: Long)
 }

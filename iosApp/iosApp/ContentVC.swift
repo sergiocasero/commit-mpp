@@ -3,7 +3,7 @@ import app
 import MaterialComponents
 
 class ContentVC: UIViewController , UICollectionViewDataSource, UICollectionViewDelegate, TalksView{
-    
+
     var pageIndex: Int = 0
     var trackId: Int64 = 0
     
@@ -76,6 +76,12 @@ class ContentVC: UIViewController , UICollectionViewDataSource, UICollectionView
         }
     }
     
+    func navigateToSlotDetail(slotId: Int64) {
+        let slotDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "SlotDetailVC") as! SlotDetailVC
+        slotDetailVC.slotId = slotId
+        self.present(slotDetailVC, animated: true, completion: nil)
+    }
+    
 }
 
 extension UIView {
@@ -105,5 +111,6 @@ extension UIView {
         layer.shouldRasterize = true
         layer.rasterizationScale = scale ? UIScreen.main.scale : 1
     }
+
 }
 

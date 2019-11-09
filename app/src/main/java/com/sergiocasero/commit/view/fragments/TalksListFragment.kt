@@ -5,6 +5,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sergiocasero.commit.R
 import com.sergiocasero.commit.common.model.Slot
+import com.sergiocasero.commit.navigator.Navigator
 import com.sergiocasero.commit.presenter.TalksListPresenter
 import com.sergiocasero.commit.presenter.TalksView
 import com.sergiocasero.commit.view.adapter.SlotAdapter
@@ -32,6 +33,8 @@ class TalksListFragment : RootFragment<TalksView>(), TalksView {
     override val progress: View by lazy { progressView }
 
     override val presenter: TalksListPresenter by instance()
+
+    private val navigator: Navigator by instance()
 
     override val layoutResourceId: Int = R.layout.fragment_talks_list
 
@@ -68,4 +71,7 @@ class TalksListFragment : RootFragment<TalksView>(), TalksView {
         slotAdapter.replace(slots)
     }
 
+    override fun navigateToSlotDetail(slotId: Long) {
+        navigator.navigateToSlotDetail(slotId)
+    }
 }
