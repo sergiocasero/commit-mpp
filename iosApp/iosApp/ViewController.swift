@@ -44,12 +44,21 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dayCell", for: indexPath) as! DayViewCell
         
         let day = self.days[indexPath.row]
-
+        
+        cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tap(_:))))
         cell.dayName.text = day.title
         cell.dayName.lineBreakMode = .byClipping
         cell.dayIcon.image = UIImage(named: "calendar")
     
         return cell
+    }
+    
+    @objc func tap(_ sender: UITapGestureRecognizer) {
+        let location = sender.location(in: self.daysMenu)
+        let indexPath = self.daysMenu.indexPathForItem(at: location)
+        if let index = indexPath {
+            presenter.onDaySelected(dayPos: days[index.item].pos)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
