@@ -13,7 +13,7 @@
         <!--Slot DetailVC-->
         <scene sceneID="kZw-si-zws">
             <objects>
-                <viewController id="jUe-wx-nL5" customClass="SlotDetailVC" customModule="iosApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SlotDetailVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="jUe-wx-nL5" customClass="SlotDetailVC" customModule="iosApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hf8-wO-Cck">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

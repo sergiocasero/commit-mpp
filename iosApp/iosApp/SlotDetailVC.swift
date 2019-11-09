@@ -23,12 +23,14 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
     
     private let progress = MDCActivityIndicator()
     
+    var slotId : Int64 = 0
+    
     private lazy var presenter = SlotDetailPresenter(
         repository: CommonClientRepository(
             local: CommonLocalDataSource(),
             remote: CommonRemoteDataSource()
         ),
-        navigator: Navigator(),
+        navigator: Navigator(viewController: self),
         view: self,
         errorHandler: IosErrorHandler(),
         executor: Executor()
@@ -74,7 +76,6 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
     
     func registerListeners() {
         fav.addTarget(self, action: #selector(pressed), for: .touchUpInside)
-
     }
     
     @objc func pressed(sender: UIButton) {
@@ -174,4 +175,5 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
     @objc func twitterClick(sender: UIButton) {
         presenter.onSpeakerTwitterClick(speaker: speakers[sender.tag])
     }
+    
 }

@@ -13,7 +13,7 @@ class ContentVC: UIViewController , UICollectionViewDataSource, UICollectionView
     
     private lazy var presenter: TalksListPresenter = TalksListPresenter(
         repository: CommonClientRepository(local: CommonLocalDataSource(), remote: CommonRemoteDataSource()),
-        navigator: Navigator(),
+        navigator: Navigator(viewController: self),
         view: self,
         errorHandler: IosErrorHandler(),
         executor: Executor())
