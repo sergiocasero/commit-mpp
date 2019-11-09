@@ -10,7 +10,7 @@ actual class Navigator {
 
         val app = UIApplication.sharedApplication
 
-        when(app.canOpenURL(appUrl)) {
+        when (app.canOpenURL(appUrl)) {
             true -> app.openURL(appUrl)
             false -> app.openURL(webUrl)
         }

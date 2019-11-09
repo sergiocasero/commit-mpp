@@ -21,6 +21,7 @@ class ContentVC: UIViewController , UICollectionViewDataSource, UICollectionView
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.slotsView.delegate = self
         presenter.attach()
     }
     
@@ -54,6 +55,8 @@ class ContentVC: UIViewController , UICollectionViewDataSource, UICollectionView
         
         let slot = self.slots[indexPath.row]
         
+         cell.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(tap(_:))))
+        
         cell.dropShadow()
         cell.cornerRadius = 8
         
@@ -65,6 +68,13 @@ class ContentVC: UIViewController , UICollectionViewDataSource, UICollectionView
         return cell
     }
     
+    @objc func tap(_ sender: UITapGestureRecognizer) {
+        let location = sender.location(in: self.slotsView)
+        let indexPath = self.slotsView.indexPathForItem(at: location)
+        if let index = indexPath {
+            presenter.onSlotClicked(slot: slots[index.item])
+        }
+    }
     
 }
 

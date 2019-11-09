@@ -307,7 +307,7 @@
                                 </cells>
                                 <connections>
                                     <outlet property="dataSource" destination="YbD-9m-gAe" id="Xyi-RX-B1u"/>
-                                    <outlet property="delegate" destination="YbD-9m-gAe" id="yfO-H2-fzh"/>
+                                    <outlet property="delegate" destination="YbD-9m-gAe" id="ujJ-pO-B4i"/>
                                 </connections>
                             </collectionView>
                         </subviews>
