@@ -29,6 +29,12 @@ class TalksListPresenter(
     }
 
     fun onSlotClicked(slot: Slot) {
+        /*
+        * We should use navigator but it's not possible right now because we need the ios Framework to do
+        * the correct navigation. When we implement actual navigator class we cannot cast the ViewController to
+        * SlotDetailVC (Slot detail's view controller) because we don't have access to Swift project files.
+        * We use the view, because that view implementation have access to others Swift view controllers.
+        * */
         view.navigateToSlotDetail(slot.id)
     }
 
