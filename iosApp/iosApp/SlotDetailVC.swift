@@ -10,9 +10,7 @@ import app
 import MaterialComponents
 
 class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, SlotDetailView {
-    
-    @IBOutlet weak var toolbar: UINavigationBar!
-    
+
     @IBOutlet weak var time: UILabel!
     
     @IBOutlet weak var info: UITextView!
@@ -103,7 +101,7 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
     
         
         time.text = slot.start + " - " + slot.end
-        toolbar.topItem?.title = contents?.title
+        self.title = contents?.title
         info.text = contents?.description
         speakers = contents?.speakers ?? []
         
