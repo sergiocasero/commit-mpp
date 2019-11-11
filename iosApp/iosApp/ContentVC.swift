@@ -80,7 +80,6 @@ class ContentVC: UIViewController , UICollectionViewDataSource, UICollectionView
         let slotDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "SlotDetailVC") as! SlotDetailVC
         slotDetailVC.slotId = slotId
         self.navigationController?.pushViewController(slotDetailVC, animated: true)
-      //  self.pushViewController(slotDetailVC, animated: true, completion: nil)
     }
     
 }
