@@ -28,8 +28,8 @@ kotlin {
     // For Linux, should be changed to e.g. linuxX64
     // For MacOS, should be changed to e.g. macosX64
     // For Windows, should be changed to e.g. mingwX64
-    //iosArm64("ios")
-    iosX64("ios")
+    iosArm64("ios")
+    //iosX64("ios")
     sourceSets {
         commonMain {
             dependencies {
