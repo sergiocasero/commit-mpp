@@ -79,7 +79,8 @@ class ContentVC: UIViewController , UICollectionViewDataSource, UICollectionView
     func navigateToSlotDetail(slotId: Int64) {
         let slotDetailVC = self.storyboard?.instantiateViewController(withIdentifier: "SlotDetailVC") as! SlotDetailVC
         slotDetailVC.slotId = slotId
-        self.present(slotDetailVC, animated: true, completion: nil)
+        self.navigationController?.pushViewController(slotDetailVC, animated: true)
+      //  self.pushViewController(slotDetailVC, animated: true, completion: nil)
     }
     
 }
