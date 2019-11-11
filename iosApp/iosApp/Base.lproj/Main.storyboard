@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="sLs-Nm-nL0">
-                                <rect key="frame" x="20" y="284" width="374" height="524"/>
+                                <rect key="frame" x="20" y="91" width="374" height="717"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="bS5-gS-DuL">
                                     <size key="itemSize" width="331" height="450"/>
@@ -102,30 +102,25 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zZk-8X-Xsr">
-                                <rect key="frame" x="0.0" y="74" width="414" height="200"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="SRg-FZ-QCL"/>
-                                </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3he-Nt-ShN">
+                                <rect key="frame" x="10" y="60" width="394" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="sLs-Nm-nL0" firstAttribute="top" secondItem="zZk-8X-Xsr" secondAttribute="bottom" constant="10" id="5dM-KP-GPj"/>
+                            <constraint firstItem="3he-Nt-ShN" firstAttribute="top" secondItem="flT-wC-2sC" secondAttribute="bottom" constant="10" id="4et-fN-vIK"/>
+                            <constraint firstItem="sLs-Nm-nL0" firstAttribute="top" secondItem="3he-Nt-ShN" secondAttribute="bottom" constant="10" id="4li-Es-rgU"/>
                             <constraint firstItem="bVa-oF-c5d" firstAttribute="trailing" secondItem="sLs-Nm-nL0" secondAttribute="trailing" constant="20" id="9IB-PN-7jx"/>
-                            <constraint firstItem="zZk-8X-Xsr" firstAttribute="trailing" secondItem="bVa-oF-c5d" secondAttribute="trailing" id="CJ2-NM-zMR"/>
                             <constraint firstItem="sLs-Nm-nL0" firstAttribute="leading" secondItem="bVa-oF-c5d" secondAttribute="leading" constant="20" id="CqL-4l-1nY"/>
+                            <constraint firstItem="3he-Nt-ShN" firstAttribute="leading" secondItem="bVa-oF-c5d" secondAttribute="leading" constant="10" id="Dpp-Ed-cPP"/>
                             <constraint firstItem="sLs-Nm-nL0" firstAttribute="leading" secondItem="bVa-oF-c5d" secondAttribute="leading" constant="20" id="It9-bH-xxN"/>
-                            <constraint firstItem="sLs-Nm-nL0" firstAttribute="top" secondItem="zZk-8X-Xsr" secondAttribute="bottom" constant="10" id="M9k-jV-wT4"/>
                             <constraint firstAttribute="bottom" secondItem="sLs-Nm-nL0" secondAttribute="bottom" id="N90-pd-P2S"/>
                             <constraint firstAttribute="trailing" secondItem="sLs-Nm-nL0" secondAttribute="trailing" constant="20" id="OJ4-QW-CXz"/>
-                            <constraint firstItem="zZk-8X-Xsr" firstAttribute="leading" secondItem="bVa-oF-c5d" secondAttribute="leading" id="U8V-2K-1qB"/>
+                            <constraint firstItem="bVa-oF-c5d" firstAttribute="trailing" secondItem="3he-Nt-ShN" secondAttribute="trailing" constant="10" id="VI7-ab-0Xe"/>
                             <constraint firstItem="flT-wC-2sC" firstAttribute="leading" secondItem="bVa-oF-c5d" secondAttribute="leading" constant="120" id="gIi-qU-wzq"/>
-                            <constraint firstItem="zZk-8X-Xsr" firstAttribute="top" secondItem="flT-wC-2sC" secondAttribute="bottom" constant="24" id="kR2-Ut-FBZ"/>
                             <constraint firstItem="bVa-oF-c5d" firstAttribute="trailing" secondItem="flT-wC-2sC" secondAttribute="trailing" constant="120" id="mGb-Pi-Shb"/>
                             <constraint firstItem="flT-wC-2sC" firstAttribute="top" secondItem="bVa-oF-c5d" secondAttribute="top" constant="20" id="poR-Fa-Yz4"/>
                             <constraint firstItem="sLs-Nm-nL0" firstAttribute="leading" secondItem="bVa-oF-c5d" secondAttribute="leading" constant="20" id="qf6-Gt-Qbh"/>
@@ -134,7 +129,7 @@
                         <viewLayoutGuide key="safeArea" id="bVa-oF-c5d"/>
                     </view>
                     <connections>
-                        <outlet property="info" destination="zZk-8X-Xsr" id="4UY-2r-H2O"/>
+                        <outlet property="info" destination="3he-Nt-ShN" id="um3-gn-4O2"/>
                         <outlet property="speakersList" destination="sLs-Nm-nL0" id="Ne1-7U-kL0"/>
                         <outlet property="time" destination="flT-wC-2sC" id="yGq-nM-5A3"/>
                     </connections>

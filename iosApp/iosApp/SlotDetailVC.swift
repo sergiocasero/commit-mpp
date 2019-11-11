@@ -13,7 +13,7 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
 
     @IBOutlet weak var time: UILabel!
     
-    @IBOutlet weak var info: UITextView!
+    @IBOutlet weak var info: UILabel!
     
     @IBOutlet weak var speakersList: UICollectionView!
     
@@ -68,8 +68,6 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
 
         view.addSubview(fav)
         view.addSubview(progress)
-        
-        
     }
     
     func registerListeners() {
@@ -106,6 +104,9 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
         speakers = contents?.speakers ?? []
         
         print(speakers)
+        
+        info.sizeToFit()
+        info.numberOfLines = 0
         
         speakersList.reloadData()
     }
