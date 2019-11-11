@@ -71,6 +71,10 @@ class ContentVC: UIViewController , UICollectionViewDataSource, UICollectionView
         cell.speakers.text = slot.contents?.speakers.map({$0.name}).joined(separator: ", ")
         cell.speakers.sizeToFit()
         
+        if slot.contents?.type == "BREAK" || slot.contents?.type == "EXTEND" {
+            cell.backgroundColor = UIColor.gray
+        }
+        
         cell.sizeToFit()
         
         return cell
