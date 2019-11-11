@@ -241,7 +241,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Commit 2019" id="A9O-Bl-Vt4"/>
+                    <navigationItem key="navigationItem" title="Commit 2019" id="A9O-Bl-Vt4">
+                        <barButtonItem key="backBarButtonItem" title="Volver" id="FOM-TP-ltc"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="daysMenu" destination="K4G-II-pXZ" id="nWA-7D-tgg"/>
                         <outlet property="menuBarView" destination="WKZ-DR-kMG" id="evu-pD-yIM"/>
