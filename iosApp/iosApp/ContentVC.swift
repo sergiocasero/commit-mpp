@@ -62,8 +62,16 @@ class ContentVC: UIViewController , UICollectionViewDataSource, UICollectionView
         
         cell.startDate.text = slot.start
         cell.endDate.text = slot.end
+        
         cell.title.text  = slot.contents?.title
+        cell.title.numberOfLines = 0
+        cell.title.sizeToFit()
+        
+        cell.speakers.numberOfLines = 0
         cell.speakers.text = slot.contents?.speakers.map({$0.name}).joined(separator: ", ")
+        cell.speakers.sizeToFit()
+        
+        cell.sizeToFit()
         
         return cell
     }
