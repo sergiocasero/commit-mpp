@@ -72,7 +72,9 @@ class ContentVC: UIViewController , UICollectionViewDataSource, UICollectionView
         cell.speakers.sizeToFit()
         
         if slot.contents?.type == "BREAK" || slot.contents?.type == "EXTEND" {
-            cell.backgroundColor = UIColor.gray
+            cell.backgroundColor = UIColor.lightGray
+        } else {
+            cell.backgroundColor = UIColor.white
         }
         
         cell.sizeToFit()

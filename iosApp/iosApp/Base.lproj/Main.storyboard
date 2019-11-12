@@ -258,20 +258,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Lmw-0j-ai8">
-                                <rect key="frame" x="20" y="64" width="374" height="778"/>
+                                <rect key="frame" x="5" y="64" width="404" height="778"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Dve-yA-aSW">
-                                    <size key="itemSize" width="329" height="132"/>
+                                    <size key="itemSize" width="357" height="132"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="10" maxX="0.0" maxY="10"/>
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SlotCell" id="7bk-fC-HLY" customClass="SlotCell" customModule="iosApp" customModuleProvider="target">
-                                        <rect key="frame" x="22.5" y="10" width="329" height="132"/>
+                                        <rect key="frame" x="23.5" y="10" width="357" height="132"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
-                                            <rect key="frame" x="0.0" y="0.0" width="329" height="132"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="357" height="132"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5VZ-V1-1Yq">
@@ -295,13 +295,13 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWu-sN-n8X">
-                                                    <rect key="frame" x="75" y="47.5" width="246" height="20.5"/>
+                                                    <rect key="frame" x="75" y="47.5" width="274" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="TopLeft" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2J-F8-gVo">
-                                                    <rect key="frame" x="75" y="12" width="252" height="20.5"/>
+                                                    <rect key="frame" x="75" y="12" width="280" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -337,8 +337,8 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="SVr-N7-pKg" firstAttribute="bottom" secondItem="Lmw-0j-ai8" secondAttribute="bottom" constant="20" id="LpL-qg-cqb"/>
-                            <constraint firstItem="Lmw-0j-ai8" firstAttribute="leading" secondItem="SVr-N7-pKg" secondAttribute="leading" constant="20" id="aZT-d8-J7A"/>
-                            <constraint firstItem="SVr-N7-pKg" firstAttribute="trailing" secondItem="Lmw-0j-ai8" secondAttribute="trailing" constant="20" id="cOa-yk-aib"/>
+                            <constraint firstItem="Lmw-0j-ai8" firstAttribute="leading" secondItem="SVr-N7-pKg" secondAttribute="leading" constant="5" id="aZT-d8-J7A"/>
+                            <constraint firstItem="SVr-N7-pKg" firstAttribute="trailing" secondItem="Lmw-0j-ai8" secondAttribute="trailing" constant="5" id="cOa-yk-aib"/>
                             <constraint firstItem="Lmw-0j-ai8" firstAttribute="top" secondItem="SVr-N7-pKg" secondAttribute="top" constant="20" id="eoO-8l-zx9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SVr-N7-pKg"/>

@@ -66,7 +66,7 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
         progress.sizeToFit()
         progress.center = CGPoint(x: screen.width / 2, y : screen.height / 2)
 
-        view.addSubview(fav)
+        // view.addSubview(fav)
         view.addSubview(progress)
     }
     
@@ -105,8 +105,8 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
         
         print(speakers)
         
+        info.numberOfLines = 5
         info.sizeToFit()
-        info.numberOfLines = 0
         
         speakersList.reloadData()
     }
@@ -150,7 +150,7 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
         cell.name.text = speaker.name
         
         cell.bio.text = speaker.description
-        cell.bio.numberOfLines = 50
+        cell.bio.numberOfLines = 0
         
         if speaker.twitterAccount != nil {
             let bounds = cell.bounds
