@@ -258,7 +258,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Lmw-0j-ai8">
-                                <rect key="frame" x="5" y="64" width="404" height="778"/>
+                                <rect key="frame" x="5" y="44" width="404" height="818"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Dve-yA-aSW">
                                     <size key="itemSize" width="357" height="132"/>
@@ -336,10 +336,10 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="SVr-N7-pKg" firstAttribute="bottom" secondItem="Lmw-0j-ai8" secondAttribute="bottom" constant="20" id="LpL-qg-cqb"/>
+                            <constraint firstItem="SVr-N7-pKg" firstAttribute="bottom" secondItem="Lmw-0j-ai8" secondAttribute="bottom" id="LpL-qg-cqb"/>
                             <constraint firstItem="Lmw-0j-ai8" firstAttribute="leading" secondItem="SVr-N7-pKg" secondAttribute="leading" constant="5" id="aZT-d8-J7A"/>
                             <constraint firstItem="SVr-N7-pKg" firstAttribute="trailing" secondItem="Lmw-0j-ai8" secondAttribute="trailing" constant="5" id="cOa-yk-aib"/>
-                            <constraint firstItem="Lmw-0j-ai8" firstAttribute="top" secondItem="SVr-N7-pKg" secondAttribute="top" constant="20" id="eoO-8l-zx9"/>
+                            <constraint firstItem="Lmw-0j-ai8" firstAttribute="top" secondItem="SVr-N7-pKg" secondAttribute="top" id="eoO-8l-zx9"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SVr-N7-pKg"/>
                     </view>
