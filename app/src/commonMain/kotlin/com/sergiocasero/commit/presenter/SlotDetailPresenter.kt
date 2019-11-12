@@ -26,12 +26,7 @@ class SlotDetailPresenter(
     private fun getSlot(slotId: Long) {
         scope.launch {
             view.showProgress()
-
-            repository.getSlot(slotId).fold(
-                error = onError,
-                success = { view.showSlot(it) }
-            )
-
+            repository.getSlot(slotId).fold(error = { onRetry(it) { getSlot(slotId) } }, success = { view.showSlot(it) })
             view.hideProgress()
         }
     }

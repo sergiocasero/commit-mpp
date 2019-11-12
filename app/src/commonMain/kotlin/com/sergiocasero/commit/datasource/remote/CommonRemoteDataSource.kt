@@ -68,7 +68,6 @@ class CommonRemoteDataSource : RemoteDataSource {
                 }
             )
         }
-
     private fun HttpRequestBuilder.apiUrl(path: String) {
         url {
             takeFrom(END_POINT)

@@ -5,12 +5,20 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.sergiocasero.commit.extension.hideMe
 import com.sergiocasero.commit.extension.showMe
+import com.sergiocasero.commit.extension.snackbar
 import com.sergiocasero.commit.extension.toast
 import com.sergiocasero.commit.presenter.Presenter
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.android.subKodein
+import android.view.ViewGroup
+import androidx.core.app.ComponentActivity.ExtraData
+import androidx.core.content.ContextCompat.getSystemService
+import android.icu.lang.UCharacter.GraphemeClusterBreak.T
+import android.icu.lang.UCharacter.GraphemeClusterBreak.V
+
+
 
 abstract class RootActivity<out V : Presenter.View> : AppCompatActivity(), KodeinAware, Presenter.View {
 
@@ -50,4 +58,10 @@ abstract class RootActivity<out V : Presenter.View> : AppCompatActivity(), Kodei
     override fun showProgress() = progress.showMe()
 
     override fun hideProgress() = progress.hideMe()
+
+    override fun showRetry(error: String, f: () -> Unit) {
+        val viewGroup = (this.findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0) as ViewGroup
+
+        snackbar(viewGroup, message = error, retryCallback = { f() })
+    }
 }

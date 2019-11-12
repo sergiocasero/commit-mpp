@@ -19,10 +19,14 @@ class HomePresenter(
     private val days: MutableList<DayItem> = mutableListOf()
 
     override fun attach() {
+        getDays()
+    }
+
+    private fun getDays() {
         scope.launch {
             view.showProgress()
             repository.getDays().fold(
-                error = onError,
+                error = { onRetry(it) { getDays() } },
                 success = { daysResponse ->
                     days.clear()
                     days.addAll(daysResponse.items)
@@ -38,10 +42,8 @@ class HomePresenter(
         scope.launch {
             view.showProgress()
             repository.getDayTracks(days[dayPos].id).fold(
-                error = onError,
-                success = {
-                    view.showTracks(it.tracks)
-                }
+                error = { onRetry(it) { onDaySelected(dayPos) } },
+                success = { view.showTracks(it.tracks) }
             )
             view.hideProgress()
         }

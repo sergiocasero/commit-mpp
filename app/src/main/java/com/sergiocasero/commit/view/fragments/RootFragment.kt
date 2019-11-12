@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.sergiocasero.commit.extension.hideMe
 import com.sergiocasero.commit.extension.showMe
+import com.sergiocasero.commit.extension.snackbar
 import com.sergiocasero.commit.extension.toast
 import com.sergiocasero.commit.presenter.Presenter
 import org.kodein.di.Kodein
@@ -60,4 +61,7 @@ abstract class RootFragment<out V : Presenter.View> : Fragment(), KodeinAware, P
 
     override fun hideProgress() = progress.hideMe()
 
+    override fun showRetry(error: String, f: () -> Unit) {
+        view?.let { activity?.snackbar(it, message = error, retryCallback = { f() }) }
+    }
 }

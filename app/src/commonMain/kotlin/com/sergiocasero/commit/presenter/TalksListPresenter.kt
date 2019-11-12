@@ -16,14 +16,13 @@ class TalksListPresenter(
 ) : Presenter<TalksView>(errorHandler = errorHandler, executor = executor, view = view) {
 
     override fun attach() {
+        getTrack()
+    }
+
+    private fun getTrack() {
         scope.launch {
             view.showProgress()
-            repository.getTrack(view.obtainTrackId()).fold(
-                error = onError,
-                success = { track ->
-                    view.showSlots(track.slots)
-                }
-            )
+            repository.getTrack(view.obtainTrackId()).fold(error = { onRetry(it) { getTrack() } }, success = { view.showSlots(it.slots) })
             view.hideProgress()
         }
     }
