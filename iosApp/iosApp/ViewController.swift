@@ -66,6 +66,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         cell.dayName.text = day.title
         cell.dayName.lineBreakMode = .byClipping
         cell.dayIcon.image = UIImage(named: "calendar")
+        
+        cell.dayName.lineBreakMode = .byClipping
+        cell.dayIcon.image = UIImage(named: "calendar")?.withRenderingMode(.alwaysTemplate)
+        if(day.selected){
+            cell.dayName.textColor = UIColor.white
+            cell.dayIcon.tintColor = UIColor.white
+        } else {
+            cell.dayName.textColor = UIColor.gray
+            cell.dayIcon.tintColor = UIColor.gray
+        }
     
         return cell
     }
@@ -73,7 +83,12 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     @objc func tap(_ sender: UITapGestureRecognizer) {
         let location = sender.location(in: self.daysMenu)
         let indexPath = self.daysMenu.indexPathForItem(at: location)
+        for day in days {
+            day.selected = false
+        }
         if let index = indexPath {
+            days[index.item].selected = true
+            daysMenu.reloadData()
             presenter.onDaySelected(dayPos: days[index.item].pos)
         }
     }
