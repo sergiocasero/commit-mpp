@@ -8,6 +8,7 @@
 
 import UIKit
 import app
+import MaterialComponents
 
 class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, HomeView {
 
@@ -34,6 +35,22 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.attach()
+    }
+    
+    func showRetry(error: String, f: @escaping () -> Void) {
+        print("hello")
+        let message = MDCSnackbarMessage()
+        message.text = error
+        
+        let action = MDCSnackbarMessageAction()
+        let actionHandler = {() in
+            f()
+        }
+        action.handler = actionHandler
+        action.title = "Retry"
+        message.action = action
+        
+        MDCSnackbarManager.show(message)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

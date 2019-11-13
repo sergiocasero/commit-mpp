@@ -10,6 +10,23 @@ import app
 import MaterialComponents
 
 class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, SlotDetailView {
+    func showRetry(error: String, f: () -> Void) {
+        
+        print("hello")
+        let message = MDCSnackbarMessage()
+        message.text = error
+        
+        let action = MDCSnackbarMessageAction()
+        //let actionHandler = {() in
+        //    f()
+        //}
+        // action.handler = actionHandler
+        action.title = "Retry"
+        message.action = action
+        
+        MDCSnackbarManager.show(message)
+    }
+    
 
     @IBOutlet weak var time: UILabel!
     
@@ -87,7 +104,7 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
     }
     
     func showError(error: String) {
-        
+        print("hello from showError!!")
     }
     
     func getSlotId() -> Int64 {

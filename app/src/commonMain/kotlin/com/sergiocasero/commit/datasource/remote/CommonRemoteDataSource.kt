@@ -55,7 +55,7 @@ class CommonRemoteDataSource : RemoteDataSource {
         try {
             Either.Right(f())
         } catch (e: Exception) {
-            print(e.toString())
+            // print(e.toString())
             Either.Left(
                 when (e) {
                     is ClientRequestException -> when (e.response.status) {

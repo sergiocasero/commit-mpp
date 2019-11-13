@@ -2,7 +2,7 @@ import UIKit
 import app
 import MaterialComponents
 
-class ContentVC: UIViewController , UICollectionViewDataSource, UICollectionViewDelegate, TalksView{
+class ContentVC: UIViewController , UICollectionViewDataSource, UICollectionViewDelegate, TalksView {
 
     var pageIndex: Int = 0
     var trackId: Int64 = 0
@@ -23,6 +23,21 @@ class ContentVC: UIViewController , UICollectionViewDataSource, UICollectionView
         super.viewDidLoad()
         self.slotsView.delegate = self
         presenter.attach()
+    }
+    
+    func showRetry(error: String, f: @escaping () -> Void) {
+        let message = MDCSnackbarMessage()
+        message.text = error
+        
+        let action = MDCSnackbarMessageAction()
+        let actionHandler = {() in
+            f()
+        }
+        action.handler = actionHandler
+        action.title = "Retry"
+        message.action = action
+        
+        MDCSnackbarManager.show(message)
     }
     
     func showProgress() {
