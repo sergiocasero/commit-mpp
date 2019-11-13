@@ -11,7 +11,8 @@ data class DaysResponse(
 @Serializable
 data class DayItem(
     val id: Long,
-    val name: String
+    val name: String,
+    val default: Boolean
 )
 
 @Serializable

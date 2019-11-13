@@ -7,6 +7,9 @@ import com.sergiocasero.commit.common.result.Error
 import org.jetbrains.exposed.sql.*
 import org.jetbrains.exposed.sql.transactions.transaction
 import org.joda.time.DateTime
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.NoSuchElementException
 
 interface LocalDataSource {
     suspend fun saveData(data: CommitResponse)
@@ -157,10 +160,23 @@ class H2LocalDataSource : LocalDataSource {
         }
     }
 
-    private fun ResultRow.toDay() = DayItem(
-        id = this[DayVo.id],
-        name = this[DayVo.name]
-    )
+    private fun ResultRow.toDay(): DayItem {
+        val simpleDateFormat = SimpleDateFormat("dd MMM", Locale.ENGLISH)
+
+        val day = simpleDateFormat.parse(this[DayVo.name])
+
+        val calendar = Calendar.getInstance()
+        val nowNumber = calendar.get(Calendar.DATE)
+
+        calendar.time = day
+        val dayNumber = calendar.get(Calendar.DATE)
+
+        return DayItem(
+            id = this[DayVo.id],
+            name = this[DayVo.name],
+            default = if(dayNumber == 22) nowNumber <= 22 else nowNumber >= 23
+        )
+    }
 
     private fun ResultRow.toTrack() = TrackItem(
         id = this[TrackVo.id],
