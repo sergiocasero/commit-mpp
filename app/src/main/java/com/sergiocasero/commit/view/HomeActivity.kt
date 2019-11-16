@@ -65,6 +65,9 @@ class HomeActivity : RootActivity<HomeView>(), HomeView {
         days.forEach { day ->
             this.days.menu.add(Menu.NONE, day.pos, Menu.NONE, day.title)
                 .setIcon(R.drawable.ic_calendar_white_24dp)
+            if (day.selected) {
+                this.days.selectedItemId = day.pos
+            }
         }
     }
 

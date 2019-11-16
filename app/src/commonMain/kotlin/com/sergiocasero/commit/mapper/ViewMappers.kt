@@ -5,5 +5,6 @@ import com.sergiocasero.commit.models.DayView
 
 fun DayItem.toView(pos: Int): DayView = DayView(
     pos = pos,
-    title = name
+    title = name,
+    selected = default
 )

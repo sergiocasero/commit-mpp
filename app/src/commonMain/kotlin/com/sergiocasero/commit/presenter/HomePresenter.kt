@@ -30,9 +30,12 @@ class HomePresenter(
                 success = { daysResponse ->
                     days.clear()
                     days.addAll(daysResponse.items)
-                    view.showDays(days.mapIndexed { index, dayItem -> dayItem.toView(index) })
 
-                    onDaySelected(days.indexOf(days.first { it.default }))
+                    val daysView = days.mapIndexed { index, dayItem -> dayItem.toView(index) }
+                    view.showDays(daysView)
+
+                    val selectedDay = daysView.indexOf(daysView.first { it.selected })
+                    onDaySelected(selectedDay)
                 }
             )
             view.hideProgress()
