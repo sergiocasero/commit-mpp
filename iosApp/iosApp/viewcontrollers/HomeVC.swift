@@ -1,16 +1,8 @@
-//
-//  ViewController.swift
-//  PageViewControllerWithTabs
-//
-//  Created by Leela Prasad on 22/03/18.
-//  Copyright © 2018 Leela Prasad. All rights reserved.
-//
-
 import UIKit
 import app
 import MaterialComponents
 
-class ViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, HomeView {
+class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, HomeView {
 
     @IBOutlet weak var menuBarView: MenuTabsView!
     
@@ -126,7 +118,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             return nil
         }
         
-        let contentVC = storyboard?.instantiateViewController(withIdentifier: "ContentVC") as! ContentVC
+        let contentVC = storyboard?.instantiateViewController(withIdentifier: "ContentVC") as! SlotsListVC
         contentVC.trackId = Int64(tabs[index].id)
         contentVC.pageIndex = index
         currentIndex = index
@@ -172,7 +164,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     
 }
 
-extension ViewController: MenuBarDelegate {
+extension HomeVC : MenuBarDelegate {
 
     func menuBarDidSelectItemAt(menu: MenuTabsView, index: Int) {
 
@@ -195,11 +187,11 @@ extension ViewController: MenuBarDelegate {
 
 
 
-extension ViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
+extension HomeVC: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
-        var index = (viewController as! ContentVC).pageIndex
+        var index = (viewController as! SlotsListVC).pageIndex
         
         if (index == 0) || (index == NSNotFound) {
             return nil
@@ -211,7 +203,7 @@ extension ViewController: UIPageViewControllerDataSource, UIPageViewControllerDe
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
-        var index = (viewController as! ContentVC).pageIndex
+        var index = (viewController as! SlotsListVC).pageIndex
         
         if (index == tabs.count) || (index == NSNotFound) {
             return nil
@@ -226,7 +218,7 @@ extension ViewController: UIPageViewControllerDataSource, UIPageViewControllerDe
         
         if finished {
             if completed {
-                let cvc = pageViewController.viewControllers!.first as! ContentVC
+                let cvc = pageViewController.viewControllers!.first as! SlotsListVC
                 let newIndex = cvc.pageIndex
                 menuBarView.collView.selectItem(at: IndexPath.init(item: newIndex, section: 0), animated: true, scrollPosition: .centeredVertically)
                 menuBarView.collView.scrollToItem(at: IndexPath.init(item: newIndex, section: 0), at: .centeredHorizontally, animated: true)

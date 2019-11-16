@@ -1,11 +1,3 @@
-//
-//  BasicCell.swift
-//  MyPagerCollView
-//
-//  Created by Leela Prasad on 08/03/18.
-//  Copyright © 2018 Leela Prasad. All rights reserved.
-//
-
 import UIKit
 
 class BasicCell: UICollectionViewCell {
