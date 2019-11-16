@@ -15,3 +15,9 @@ local.properties
 .DS_Store
 .externalNativeBuild
 .database
+
+app/.idea/
+
+.idea/
+
+iosApp/.idea
