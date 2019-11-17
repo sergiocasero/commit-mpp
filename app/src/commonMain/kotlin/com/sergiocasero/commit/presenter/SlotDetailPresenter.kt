@@ -18,23 +18,50 @@ class SlotDetailPresenter(
 
     private var isFav = false
 
+    private var slot: Slot? = null
+
     override fun attach() {
         getSlot(view.getSlotId())
-        view.showFavUI(isFav)
     }
 
     private fun getSlot(slotId: Long) {
         scope.launch {
             view.showProgress()
-            repository.getSlot(slotId).fold(error = { onRetry(it) { getSlot(slotId) } }, success = { view.showSlot(it) })
+            repository.getSlot(slotId).fold(
+                error = { onRetry(it) { getSlot(slotId) } },
+                success = {
+                    slot = it
+                    view.showSlot(it)
+                    checkFav(it)
+                })
             view.hideProgress()
         }
     }
 
+    private fun checkFav(slot: Slot) {
+        scope.launch {
+            repository.isSlotFav(slot).fold(
+                error = { onRetry(it) { checkFav(slot) } },
+                success = {
+                    isFav = it
+                    view.showFavUI(isFav)
+                }
+            )
+        }
+    }
+
     fun onFavClick() {
-        isFav = !isFav
-        view.showFavUI(isFav)
-        // TODO do something stuff on db
+        scope.launch {
+            slot?.let {
+                repository.updateFavSlot(it, !isFav).fold(
+                    error = { onRetry(it) { onFavClick() } },
+                    success = {
+                        isFav = !isFav
+                        view.showFavUI(isFav)
+                    }
+                )
+            }
+        }
     }
 
     fun onSpeakerTwitterClick(speaker: Speaker) {
