@@ -5,9 +5,9 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sergiocasero.commit.R
 import com.sergiocasero.commit.common.model.Slot
-import com.sergiocasero.commit.navigator.Navigator
-import com.sergiocasero.commit.presenter.TalksListPresenter
-import com.sergiocasero.commit.presenter.TalksView
+import com.sergiocasero.commit.common.navigator.AndroidNavigator
+import com.sergiocasero.commit.common.presenter.TalksListPresenter
+import com.sergiocasero.commit.common.presenter.TalksView
 import com.sergiocasero.commit.view.adapter.SlotAdapter
 import kotlinx.android.synthetic.main.fragment_talks_list.*
 import org.kodein.di.Kodein
@@ -34,7 +34,7 @@ class TalksListFragment : RootFragment<TalksView>(), TalksView {
 
     override val presenter: TalksListPresenter by instance()
 
-    private val navigator: Navigator by instance()
+    private val navigator: AndroidNavigator by instance()
 
     override val layoutResourceId: Int = R.layout.fragment_talks_list
 

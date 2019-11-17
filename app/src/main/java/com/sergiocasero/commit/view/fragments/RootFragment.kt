@@ -9,7 +9,7 @@ import com.sergiocasero.commit.extension.hideMe
 import com.sergiocasero.commit.extension.showMe
 import com.sergiocasero.commit.extension.snackbar
 import com.sergiocasero.commit.extension.toast
-import com.sergiocasero.commit.presenter.Presenter
+import com.sergiocasero.commit.common.presenter.Presenter
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.x.kodein

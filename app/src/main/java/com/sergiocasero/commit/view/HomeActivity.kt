@@ -7,9 +7,9 @@ import androidx.fragment.app.Fragment
 import com.sergiocasero.commit.R
 import com.sergiocasero.commit.common.model.TrackItem
 import com.sergiocasero.commit.di.ACTIVITY_MODULE
-import com.sergiocasero.commit.models.DayView
-import com.sergiocasero.commit.presenter.HomePresenter
-import com.sergiocasero.commit.presenter.HomeView
+import com.sergiocasero.commit.common.models.DayView
+import com.sergiocasero.commit.common.presenter.HomePresenter
+import com.sergiocasero.commit.common.presenter.HomeView
 import com.sergiocasero.commit.view.adapter.ViewPagerAdapter
 import com.sergiocasero.commit.view.fragments.TalksListFragment
 import kotlinx.android.synthetic.main.activity_home.*

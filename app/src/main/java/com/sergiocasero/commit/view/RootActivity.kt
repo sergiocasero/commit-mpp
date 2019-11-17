@@ -7,17 +7,12 @@ import com.sergiocasero.commit.extension.hideMe
 import com.sergiocasero.commit.extension.showMe
 import com.sergiocasero.commit.extension.snackbar
 import com.sergiocasero.commit.extension.toast
-import com.sergiocasero.commit.presenter.Presenter
+import com.sergiocasero.commit.common.presenter.Presenter
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.android.kodein
 import org.kodein.di.android.subKodein
 import android.view.ViewGroup
-import androidx.core.app.ComponentActivity.ExtraData
-import androidx.core.content.ContextCompat.getSystemService
-import android.icu.lang.UCharacter.GraphemeClusterBreak.T
-import android.icu.lang.UCharacter.GraphemeClusterBreak.V
-
 
 
 abstract class RootActivity<out V : Presenter.View> : AppCompatActivity(), KodeinAware, Presenter.View {
