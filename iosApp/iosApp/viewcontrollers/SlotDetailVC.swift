@@ -1,10 +1,3 @@
-//
-//  SlotDetailVC.swift
-//  iosApp
-//
-//  Created by Sergio Casero Hernández on 07/11/2019.
-//
-
 import UIKit
 import app
 import MaterialComponents

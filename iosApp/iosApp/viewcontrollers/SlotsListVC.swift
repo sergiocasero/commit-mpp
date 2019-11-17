@@ -2,7 +2,7 @@ import UIKit
 import app
 import MaterialComponents
 
-class ContentVC: UIViewController , UICollectionViewDataSource, UICollectionViewDelegate, TalksView {
+class SlotsListVC: UIViewController , UICollectionViewDataSource, UICollectionViewDelegate, TalksView {
 
     var pageIndex: Int = 0
     var trackId: Int64 = 0

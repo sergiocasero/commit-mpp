@@ -161,7 +161,7 @@
         <!--Commit 2019-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="iosApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="HomeVC" customModule="iosApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -249,10 +249,10 @@
             </objects>
             <point key="canvasLocation" x="906" y="127"/>
         </scene>
-        <!--ContentVC-->
+        <!--Slots ListVC-->
         <scene sceneID="iH1-ry-Nya">
             <objects>
-                <viewController storyboardIdentifier="ContentVC" automaticallyAdjustsScrollViewInsets="NO" id="YbD-9m-gAe" customClass="ContentVC" customModule="iosApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ContentVC" automaticallyAdjustsScrollViewInsets="NO" id="YbD-9m-gAe" customClass="SlotsListVC" customModule="iosApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iSm-xi-Skw">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
