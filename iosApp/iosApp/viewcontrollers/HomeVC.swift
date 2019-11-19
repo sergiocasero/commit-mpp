@@ -14,7 +14,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     
     private lazy var presenter: HomePresenter = HomePresenter(
         repository: CommonClientRepository(
-            local: CommonLocalDataSource(),
+            local: LocalDataSource(),
             remote: CommonRemoteDataSource()
         ),
         view: self,

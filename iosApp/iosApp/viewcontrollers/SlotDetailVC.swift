@@ -35,7 +35,7 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
     
     private lazy var presenter = SlotDetailPresenter(
         repository: CommonClientRepository(
-            local: CommonLocalDataSource(),
+            local: LocalDataSource(),
             remote: CommonRemoteDataSource()
         ),
         navigator: Navigator(viewController: self),
