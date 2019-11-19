@@ -31,6 +31,7 @@ repositories {
     mavenLocal()
     jcenter()
     maven { url 'https://kotlin.bintray.com/ktor' }
+    maven { url "https://jitpack.io" }
 }
 
 dependencies {
@@ -47,6 +48,8 @@ dependencies {
 
     implementation 'org.jetbrains.exposed:exposed:0.16.1'
     implementation "com.h2database:h2:1.4.199"
+
+    implementation 'io.github.seik.kotlin-telegram-bot:telegram:4.5.0'
 
     implementation project(":common")
 
