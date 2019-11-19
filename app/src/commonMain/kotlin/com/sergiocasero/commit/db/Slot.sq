@@ -1,0 +1,12 @@
+CREATE TABLE Slots(
+slot_id INTEGER NOT NULL PRIMARY KEY
+);
+
+insertItem:
+INSERT OR REPLACE INTO Slots(slot_id)VALUES(?);
+
+selectAll:
+SELECT * FROM Slots;
+
+selectById:
+SELECT * FROM Slots WHERE slot_id = ?;

@@ -5,8 +5,12 @@ import com.sergiocasero.commit.common.result.Either
 import com.sergiocasero.commit.common.result.Error
 import com.sergiocasero.commit.common.result.Success
 
+expect fun createDb(): CommitDB
+
 class CommonLocalDataSource : LocalDataSource {
-    
+
+    private val slotsDb = createDb()
+
     override suspend fun saveFavSlot(slot: Slot): Either<Error, Success> {
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
