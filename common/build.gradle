@@ -2,6 +2,7 @@ plugins {
     id 'org.jetbrains.kotlin.multiplatform' version '1.3.50'
     id 'org.jetbrains.kotlin.plugin.serialization' version '1.3.50'
 }
+
 repositories {
     google()
     jcenter()
@@ -21,7 +22,9 @@ apply plugin: 'maven-publish'
 kotlin {
     jvm()
     js {
-        browser {}
+        browser {
+
+        }
         nodejs {}
     }
     // For ARM, should be changed to iosArm32 or iosArm64
@@ -74,6 +77,12 @@ kotlin {
                 implementation "io.ktor:ktor-client-js:$ktor_version"
                 implementation "io.ktor:ktor-client-json-js:$ktor_version"
                 implementation "io.ktor:ktor-client-serialization-js:$ktor_version"
+
+                implementation(npm("react", "^16.8.1"))
+                implementation(npm("text-encoding", "^0.7.0"))
+                implementation(npm("utf-8-validate", "^5.0.2"))
+                implementation(npm("bufferutil", "^4.0.1"))
+                implementation(npm("fs", "^0.0.1-security"))
             }
         }
         jsTest {
