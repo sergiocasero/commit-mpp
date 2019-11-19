@@ -1,5 +1,6 @@
 package com.sergiocasero.frontend.app
 
+import com.sergiocasero.frontend.view.home
 import react.RBuilder
 import react.RComponent
 import react.RProps
@@ -14,6 +15,7 @@ abstract class App : RComponent<RProps, AppState>() {
 
     override fun RBuilder.render() {
         div("app") {
+            home { }
             +"hello my friend"
             // when (state.screen) {
             //     Screen.SPLASH -> splash { setState { screen = it } }

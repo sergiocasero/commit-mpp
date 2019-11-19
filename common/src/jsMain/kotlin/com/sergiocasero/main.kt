@@ -8,7 +8,6 @@ import kotlin.browser.window
 fun main() {
     window.onload = {
         render(document.getElementById("app")) {
-            window.alert("hello")
             app()
         }
     }
