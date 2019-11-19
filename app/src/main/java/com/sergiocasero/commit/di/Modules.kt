@@ -1,7 +1,6 @@
 package com.sergiocasero.commit.di
 
 import android.content.Context
-import com.sergiocasero.commit.datasource.local.CommonLocalDataSource
 import com.sergiocasero.commit.datasource.local.LocalDataSource
 import com.sergiocasero.commit.datasource.remote.CommonRemoteDataSource
 import com.sergiocasero.commit.datasource.remote.RemoteDataSource
@@ -30,6 +29,6 @@ val domainModule = Kodein.Module("domainModule") {
 }
 
 val dataModule = Kodein.Module("dataModule") {
-    bind<LocalDataSource>() with singleton { CommonLocalDataSource() }
+    bind<LocalDataSource>() with singleton { LocalDataSource(context = instance()) }
     bind<RemoteDataSource>() with singleton { CommonRemoteDataSource() }
 }
