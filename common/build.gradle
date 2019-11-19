@@ -9,9 +9,8 @@ repositories {
     mavenCentral()
     maven { url "https://storage.googleapis.com/r8-releases/raw" }
     maven { url 'https://dl.bintray.com/netguru/maven/' }
-    maven {
-        url "https://jitpack.io"
-    }
+    maven { url "https://jitpack.io" }
+    maven { url = "https://kotlin.bintray.com/kotlin-js-wrappers" }
 }
 
 group 'com.sergiocasero.commit.common'
@@ -78,11 +77,18 @@ kotlin {
                 implementation "io.ktor:ktor-client-json-js:$ktor_version"
                 implementation "io.ktor:ktor-client-serialization-js:$ktor_version"
 
+                implementation 'org.jetbrains:kotlin-react:16.9.0-pre.87-kotlin-1.3.50'
+                implementation "org.jetbrains:kotlin-react-dom:16.9.0-pre.87-kotlin-1.3.50"
+
                 implementation(npm("react", "^16.8.1"))
                 implementation(npm("text-encoding", "^0.7.0"))
                 implementation(npm("utf-8-validate", "^5.0.2"))
                 implementation(npm("bufferutil", "^4.0.1"))
                 implementation(npm("fs", "^0.0.1-security"))
+                implementation(npm("react-dom", "^16.12.0"))
+                implementation(npm("core-js", "^3.4.1"))
+                implementation(npm("file-system", "^2.2.2"))
+                implementation(npm("node-gyp-build", "^4.2.0"))
             }
         }
         jsTest {
