@@ -12,7 +12,7 @@ class SlotsListVC: UIViewController , UICollectionViewDataSource, UICollectionVi
      var slots : [CommonSlot] = []
     
     private lazy var presenter: TalksListPresenter = TalksListPresenter(
-        repository: CommonClientRepository(local: CommonLocalDataSource(), remote: CommonRemoteDataSource()),
+        repository: CommonClientRepository(local: LocalDataSource(), remote: CommonRemoteDataSource()),
         navigator: Navigator(viewController: self),
         view: self,
         errorHandler: IosErrorHandler(),

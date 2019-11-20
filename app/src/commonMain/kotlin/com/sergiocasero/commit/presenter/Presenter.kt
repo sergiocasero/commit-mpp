@@ -19,7 +19,10 @@ abstract class Presenter<out V : Presenter.View>(
 
     protected val scope = CoroutineScope(job + executor.main)
 
-    protected fun onRetry(error: Error, retry: () -> Unit): Unit =  view.showRetry(errorHandler.convert(error)) { retry() }
+    protected val onError: (Error) -> Unit = { view.showError(errorHandler.convert(it)) }
+
+    protected fun onRetry(error: Error, retry: () -> Unit): Unit =
+        view.showRetry(errorHandler.convert(error)) { retry() }
 
     abstract fun attach()
 
