@@ -147,7 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s5j-qs-rez" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139.13043478260872" y="810.9375"/>
+            <point key="canvasLocation" x="-319" y="863"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Cyp-7s-70N">
@@ -257,6 +257,7 @@
                         <outlet property="fav" destination="Ovg-e7-ddB" id="GQo-dY-QAG"/>
                         <outlet property="menuBarView" destination="WKZ-DR-kMG" id="evu-pD-yIM"/>
                         <segue destination="jUe-wx-nL5" kind="show" id="eIr-vC-I2W"/>
+                        <segue destination="hAn-7F-1k7" kind="show" id="dbI-h4-XyA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -376,13 +377,13 @@
         <!--Fav SlotsVC-->
         <scene sceneID="qLT-bL-KxH">
             <objects>
-                <viewController storyboardIdentifier="FavSlotsVC" automaticallyAdjustsScrollViewInsets="NO" id="hAn-7F-1k7" customClass="FavSlotsVC" customModule="iosApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavSlotsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="hAn-7F-1k7" customClass="FavSlotsVC" customModule="iosApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="weR-Oq-cgl">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="c13-mm-XCV">
-                                <rect key="frame" x="5" y="44" width="404" height="818"/>
+                                <rect key="frame" x="5" y="0.0" width="404" height="774"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="mqQ-9V-jwO">
                                     <size key="itemSize" width="357" height="132"/>
@@ -473,7 +474,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8UK-JQ-wOz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="906" y="811"/>
+            <point key="canvasLocation" x="906" y="863"/>
         </scene>
     </scenes>
 </document>

@@ -23,6 +23,7 @@ class FavSlotsVC: UIViewController , UICollectionViewDataSource, UICollectionVie
         super.viewDidLoad()
         self.slotsView.delegate = self
         presenter.attach()
+        self.title = "Favoritos"
     }
     
     func showRetry(error: String, f: @escaping () -> Void) {

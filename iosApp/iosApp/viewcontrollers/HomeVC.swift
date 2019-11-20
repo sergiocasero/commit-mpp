@@ -15,10 +15,8 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     var days: [DayView] = []
     
     private lazy var presenter: HomePresenter = HomePresenter(
-        repository: CommonClientRepository(
-            local: LocalDataSource(),
-            remote: CommonRemoteDataSource()
-        ),
+        repository: CommonClientRepository(local: LocalDataSource(), remote: CommonRemoteDataSource()),
+        navigator: Navigator(viewController: self),
         view: self,
         errorHandler: IosErrorHandler(),
         executor: Executor())
@@ -30,6 +28,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         super.viewDidLoad()
         presenter.attach()
         initializeUI()
+        registerListeners()
     }
    
      func initializeUI() {
@@ -37,6 +36,14 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         fav.setImage(plusImage, for: .normal)
         fav.setImageTintColor(UIColor.white, for: .normal)
         fav.backgroundColor = UIColor.red
+    }
+    
+    func registerListeners() {
+        fav.addTarget(self, action: #selector(pressed), for: .touchUpInside)
+    }
+    
+    @objc func pressed(sender: UIButton) {
+        presenter.onFavClicked()
     }
     
     func showRetry(error: String, f: @escaping () -> Void) {
@@ -169,10 +176,6 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     }
     
     func showError(error: String) {
-        
-    }
-    
-    func navigateToFavSlots() {
         
     }
     

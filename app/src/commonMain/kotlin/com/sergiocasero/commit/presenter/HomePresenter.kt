@@ -6,11 +6,13 @@ import com.sergiocasero.commit.error.ErrorHandler
 import com.sergiocasero.commit.executor.Executor
 import com.sergiocasero.commit.mapper.toView
 import com.sergiocasero.commit.models.DayView
+import com.sergiocasero.commit.navigator.Navigator
 import com.sergiocasero.commit.repository.ClientRepository
 import kotlinx.coroutines.launch
 
 class HomePresenter(
     private val repository: ClientRepository,
+    private val navigator: Navigator,
     view: HomeView,
     errorHandler: ErrorHandler,
     executor: Executor
@@ -53,8 +55,8 @@ class HomePresenter(
         }
     }
 
-    fun onFavClicked(){
-        view.navigateToFavSlots()
+    fun onFavClicked() {
+        navigator.navigateToFavSlotScreen()
     }
 
 }
@@ -62,5 +64,4 @@ class HomePresenter(
 interface HomeView : Presenter.View {
     fun showDays(days: List<DayView>)
     fun showTracks(tracks: List<TrackItem>)
-    fun navigateToFavSlots()
 }

@@ -23,8 +23,6 @@ class HomeActivity : RootActivity<HomeView>(), HomeView {
 
     override val progress: View by lazy { progressView }
 
-    private val navigator: Navigator by instance()
-
     override val presenter: HomePresenter by instance()
 
     override val layoutResourceId: Int = R.layout.activity_home
@@ -37,6 +35,7 @@ class HomeActivity : RootActivity<HomeView>(), HomeView {
         bind<HomePresenter>() with provider {
             HomePresenter(
                 repository = instance(),
+                navigator = instance(),
                 view = this@HomeActivity,
                 errorHandler = instance(),
                 executor = instance()
@@ -63,10 +62,6 @@ class HomeActivity : RootActivity<HomeView>(), HomeView {
             true
         }
         fav.setOnClickListener { presenter.onFavClicked() }
-    }
-
-    override fun navigateToFavSlots() {
-        navigator.navigateToFavSlotScreen()
     }
 
     override fun showDays(days: List<DayView>) {
