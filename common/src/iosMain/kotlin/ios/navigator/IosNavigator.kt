@@ -1,5 +1,6 @@
-package com.sergiocasero.commit.common.navigator
+package ios.navigator
 
+import com.sergiocasero.commit.common.navigator.Navigator
 import platform.Foundation.NSURL
 import platform.UIKit.UIApplication
 import platform.UIKit.UIViewController

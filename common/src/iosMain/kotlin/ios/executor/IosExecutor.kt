@@ -1,12 +1,13 @@
-package com.sergiocasero.commit.common.executor
+package ios.executor
 
+import com.sergiocasero.commit.common.executor.Executor
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Runnable
 import platform.Foundation.NSRunLoop
 import platform.Foundation.performBlock
 import kotlin.coroutines.CoroutineContext
 
-class IosExecutor: AndroidExecutor {
+class IosExecutor: Executor {
     override val main: CoroutineDispatcher = MainLoopDispatcher
 }
 
