@@ -18,6 +18,15 @@ version '0.0.2'
 
 apply plugin: 'maven-publish'
 
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    sourceCompatibility = JavaVersion.VERSION_1_8
+    targetCompatibility = JavaVersion.VERSION_1_8
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
 kotlin {
     jvm()
     js {
@@ -55,10 +64,13 @@ kotlin {
                 implementation kotlin('stdlib-jdk8')
                 implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version"
                 implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.2'
+                implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-javafx:1.3.2'
 
                 implementation "io.ktor:ktor-client-okhttp:$ktor_version"
                 implementation "io.ktor:ktor-client-json-jvm:$ktor_version"
                 implementation "io.ktor:ktor-client-serialization-jvm:$ktor_version"
+
+                implementation 'no.tornado:tornadofx:1.7.19'
             }
         }
         jvmTest {
@@ -109,4 +121,15 @@ kotlin {
         iosTest {
         }
     }
+}
+
+jvmJar {
+
+}
+
+task run(type: JavaExec, dependsOn: [jvmJar]) {
+    group = "application"
+    main = "com.sergiocasero.desktop.MainKt"
+    classpath(configurations.jvmRuntimeClasspath, jvmJar)
+    args = []
 }
