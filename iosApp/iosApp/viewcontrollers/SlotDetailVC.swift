@@ -76,7 +76,7 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
         progress.sizeToFit()
         progress.center = CGPoint(x: screen.width / 2, y : screen.height / 2)
 
-        // view.addSubview(fav)
+        view.addSubview(fav)
         view.addSubview(progress)
     }
     

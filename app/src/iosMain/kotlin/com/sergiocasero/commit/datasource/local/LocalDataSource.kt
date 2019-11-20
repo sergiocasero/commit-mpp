@@ -1,6 +1,7 @@
 package com.sergiocasero.commit.datasource.local
 
 import com.sergiocasero.commit.common.model.Slot
+import com.sergiocasero.commit.common.model.SlotsResponse
 import com.sergiocasero.commit.common.result.Either
 import com.sergiocasero.commit.common.result.Error
 import com.sergiocasero.commit.common.result.Success
@@ -21,10 +22,15 @@ actual class LocalDataSource {
     @ImplicitReflectionSerializer
     actual fun saveFavSlot(slot: Slot): Either<Error, Success> {
         return try {
-            val savedSlotsString = nSUserDefaults.stringForKey(SAVED_SLOT_KEY) ?: "[]"
-            val slots = Json.parse<MutableList<Slot>>(savedSlotsString)
+            val savedSlotsString = nSUserDefaults.stringForKey(SAVED_SLOT_KEY)
+            val slots = if (savedSlotsString != null) {
+                val slotsResponse = Json.parse<SlotsResponse>(savedSlotsString)
+                slotsResponse.slots.toMutableList()
+            } else {
+                mutableListOf()
+            }
             slots.add(slot)
-            val json = Json.stringify(slots)
+            val json = Json.stringify(SlotsResponse(slots))
             nSUserDefaults.setObject(json, SAVED_SLOT_KEY)
             Either.Right(Success)
         } catch (e: Exception) {
@@ -35,24 +41,48 @@ actual class LocalDataSource {
     @ImplicitReflectionSerializer
     actual fun getFavSlots(): Either<Error, List<Slot>> {
         return try {
-            val savedSlotsString = nSUserDefaults.stringForKey(SAVED_SLOT_KEY) ?: "[]"
-            val slots = Json.parse<MutableList<Slot>>(savedSlotsString)
-            Either.Right(slots)
+            val savedSlotsString = nSUserDefaults.stringForKey(SAVED_SLOT_KEY)
+            if (savedSlotsString != null) {
+                val slotsResponse = Json.parse<SlotsResponse>(savedSlotsString)
+                Either.Right(slotsResponse.slots)
+            } else {
+                Either.Right(listOf())
+            }
+
         } catch (e: Exception) {
             Either.Left(Error.Default)
         }
     }
 
-    actual fun remoteFavSlot(slot: Slot): Either<Error, Success> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    @ImplicitReflectionSerializer
+    actual fun removeFavSlot(slot: Slot): Either<Error, Success> {
+        return try {
+            val savedSlotsString = nSUserDefaults.stringForKey(SAVED_SLOT_KEY)
+            val slots = if (savedSlotsString != null) {
+                val slotsResponse = Json.parse<SlotsResponse>(savedSlotsString)
+                slotsResponse.slots.toMutableList()
+            } else {
+                mutableListOf()
+            }
+            slots.remove(slot)
+            val json = Json.stringify(SlotsResponse(slots))
+            nSUserDefaults.setObject(json, SAVED_SLOT_KEY)
+            Either.Right(Success)
+        } catch (e: Exception) {
+            Either.Left(Error.Default)
+        }
     }
 
     @ImplicitReflectionSerializer
     actual fun isSlotFav(slot: Slot): Either<Error, Boolean> {
         return try {
-            val savedSlotsString = nSUserDefaults.stringForKey(SAVED_SLOT_KEY) ?: "[]"
-            val slots = Json.parse<MutableList<Slot>>(savedSlotsString)
-            Either.Right(slots.contains(slot))
+            val savedSlotsString = nSUserDefaults.stringForKey(SAVED_SLOT_KEY)
+            if (savedSlotsString != null) {
+                val slotsResponse = Json.parse<SlotsResponse>(savedSlotsString)
+                Either.Right(slotsResponse.slots.contains(slot))
+            } else {
+                Either.Right(false)
+            }
         } catch (e: Exception) {
             Either.Left(Error.Default)
         }

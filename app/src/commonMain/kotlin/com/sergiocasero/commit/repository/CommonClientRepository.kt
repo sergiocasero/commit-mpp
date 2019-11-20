@@ -24,7 +24,7 @@ class CommonClientRepository(
     @ImplicitReflectionSerializer
     override suspend fun updateFavSlot(slot: Slot, save: Boolean): Either<Error, Success> = when(save) {
         true -> local.saveFavSlot(slot)
-        false -> local.remoteFavSlot(slot)
+        false -> local.removeFavSlot(slot)
     }
     @ImplicitReflectionSerializer
     override suspend fun isSlotFav(slot: Slot): Either<Error, Boolean> = local.isSlotFav(slot)

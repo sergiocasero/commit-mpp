@@ -50,8 +50,18 @@ actual class LocalDataSource(context: Context) {
         }
     }
 
-    actual fun remoteFavSlot(slot: Slot): Either<Error, Success> {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    actual fun removeFavSlot(slot: Slot): Either<Error, Success> {
+        return try {
+            if (sharedPreferences.contains(SAVED_SLOTS_KEY)) {
+                val type = object : TypeToken<MutableList<Slot>>() {}.type
+                val slots: MutableList<Slot> = gson.fromJson(getString(SAVED_SLOTS_KEY), type)
+                slots.remove(slot)
+                setString(SAVED_SLOTS_KEY, gson.toJson(slots))
+            }
+            Either.Right(Success)
+        } catch (e: Exception) {
+            Either.Left(Error.Default)
+        }
     }
 
     actual fun isSlotFav(slot: Slot): Either<Error, Boolean> {
