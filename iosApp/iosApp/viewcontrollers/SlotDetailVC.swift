@@ -102,8 +102,8 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
     }
     
     func showFavUI(isFav: Bool) {
-        let color = isFav ? UIColor.purple : UIColor.white
-        let background = isFav ? UIColor.yellow : UIColor.gray
+        let color = isFav ? UIColor.white : UIColor.white
+        let background = isFav ? UIColor.red : UIColor.gray
         
         fav.setImageTintColor(color, for: .normal)
         fav.backgroundColor = background

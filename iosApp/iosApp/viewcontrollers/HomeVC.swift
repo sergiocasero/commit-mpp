@@ -4,6 +4,8 @@ import MaterialComponents
 
 class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, HomeView {
 
+    @IBOutlet weak var fav: MDCFloatingButton!
+    
     @IBOutlet weak var menuBarView: MenuTabsView!
     
     @IBOutlet weak var daysMenu: UICollectionView!
@@ -27,6 +29,14 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.attach()
+        initializeUI()
+    }
+   
+     func initializeUI() {
+        let plusImage = UIImage(named:"heart")?.withRenderingMode(.alwaysTemplate)
+        fav.setImage(plusImage, for: .normal)
+        fav.setImageTintColor(UIColor.white, for: .normal)
+        fav.backgroundColor = UIColor.red
     }
     
     func showRetry(error: String, f: @escaping () -> Void) {
@@ -107,7 +117,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         self.pageController = storyboard?.instantiateViewController(withIdentifier: "PageControllerVC") as! PageControllerVC
         self.pageController.view.frame = CGRect.init(x: 0, y: menuBarView.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - menuBarView.frame.maxY - daysMenu.frame.height)
         self.addChildViewController(self.pageController)
-        self.view.addSubview(self.pageController.view)
+        self.view.insertSubview(self.pageController.view, belowSubview: self.fav)
         self.pageController.didMove(toParentViewController: self)
     }
     
@@ -159,6 +169,10 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     }
     
     func showError(error: String) {
+        
+    }
+    
+    func navigateToFavSlots() {
         
     }
     

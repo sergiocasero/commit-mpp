@@ -18,8 +18,17 @@ actual class Navigator(private val viewController: UIViewController) {
     }
 
     actual fun navigateToSlotDetail(slotId: Long) {
-        val slotViewController = viewController.storyboard?.instantiateViewControllerWithIdentifier("SlotDetailVC") //Need cast
+        val slotViewController =
+            viewController.storyboard?.instantiateViewControllerWithIdentifier("SlotDetailVC") //Need cast
         slotViewController?.let {
+            viewController.presentViewController(it, true) {}
+        }
+    }
+
+    actual fun navigateToFavSlotScreen() {
+        val favSlotsViewController =
+            viewController.storyboard?.instantiateViewControllerWithIdentifier("FavSlotsVC") //Need cast
+        favSlotsViewController?.let {
             viewController.presentViewController(it, true) {}
         }
     }
