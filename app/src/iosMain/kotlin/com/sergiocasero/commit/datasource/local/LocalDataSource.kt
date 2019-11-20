@@ -34,6 +34,7 @@ actual class LocalDataSource {
             nSUserDefaults.setObject(json, SAVED_SLOT_KEY)
             Either.Right(Success)
         } catch (e: Exception) {
+            print(e)
             Either.Left(Error.Default)
         }
     }
@@ -50,6 +51,7 @@ actual class LocalDataSource {
             }
 
         } catch (e: Exception) {
+            print(e)
             Either.Left(Error.Default)
         }
     }
@@ -69,6 +71,7 @@ actual class LocalDataSource {
             nSUserDefaults.setObject(json, SAVED_SLOT_KEY)
             Either.Right(Success)
         } catch (e: Exception) {
+            print(e)
             Either.Left(Error.Default)
         }
     }
@@ -84,6 +87,7 @@ actual class LocalDataSource {
                 Either.Right(false)
             }
         } catch (e: Exception) {
+            print(e)
             Either.Left(Error.Default)
         }
     }
@@ -93,6 +97,7 @@ actual class LocalDataSource {
             nSUserDefaults.removeObjectForKey(SAVED_SLOT_KEY)
             Either.Right(Success)
         } catch (e: Exception) {
+            print(e)
             Either.Left(Error.Default)
         }
     }

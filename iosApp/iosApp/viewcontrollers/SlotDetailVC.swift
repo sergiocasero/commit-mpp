@@ -3,31 +3,14 @@ import app
 import MaterialComponents
 
 class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, SlotDetailView {
-    func showRetry(error: String, f: () -> Void) {
-        
-        print("hello")
-        let message = MDCSnackbarMessage()
-        message.text = error
-        
-        let action = MDCSnackbarMessageAction()
-        //let actionHandler = {() in
-        //    f()
-        //}
-        // action.handler = actionHandler
-        action.title = "Retry"
-        message.action = action
-        
-        MDCSnackbarManager.show(message)
-    }
-    
 
     @IBOutlet weak var time: UILabel!
     
     @IBOutlet weak var info: UILabel!
     
-    @IBOutlet weak var speakersList: UICollectionView!
+    @IBOutlet weak var fav: MDCFloatingButton!
     
-    private let fav = MDCFloatingButton()
+    @IBOutlet weak var speakersList: UICollectionView!
     
     private let progress = MDCActivityIndicator()
     
@@ -66,17 +49,14 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
         fav.setImage(plusImage, for: .normal)
         fav.backgroundColor = UIColor.gray
         fav.setImageTintColor(UIColor.white, for: .normal)
-        fav.sizeToFit()
         
         let screen = UIScreen.main.bounds
-        fav.center = CGPoint(x: screen.width - 50, y: screen.height - 50)
         
         time.layer.cornerRadius = 8
         
         progress.sizeToFit()
         progress.center = CGPoint(x: screen.width / 2, y : screen.height / 2)
 
-        view.addSubview(fav)
         view.addSubview(progress)
     }
     
@@ -184,5 +164,23 @@ class SlotDetailVC: UIViewController, UICollectionViewDataSource, UICollectionVi
     @objc func twitterClick(sender: UIButton) {
         presenter.onSpeakerTwitterClick(speaker: speakers[sender.tag])
     }
+    
+    func showRetry(error: String, f: () -> Void) {
+        
+        print("hello")
+        let message = MDCSnackbarMessage()
+        message.text = error
+        
+        let action = MDCSnackbarMessageAction()
+        //let actionHandler = {() in
+        //    f()
+        //}
+        // action.handler = actionHandler
+        action.title = "Retry"
+        message.action = action
+        
+        MDCSnackbarManager.show(message)
+    }
+    
     
 }

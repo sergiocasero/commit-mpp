@@ -108,6 +108,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nW5-Du-kgk" customClass="MDCFloatingButton">
+                                <rect key="frame" x="320" y="680" width="64" height="64"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="kLn-cR-rOP"/>
+                                    <constraint firstAttribute="width" constant="64" id="rFW-3d-pB0"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -119,6 +127,8 @@
                             <constraint firstItem="sLs-Nm-nL0" firstAttribute="leading" secondItem="bVa-oF-c5d" secondAttribute="leading" constant="20" id="It9-bH-xxN"/>
                             <constraint firstAttribute="bottom" secondItem="sLs-Nm-nL0" secondAttribute="bottom" id="N90-pd-P2S"/>
                             <constraint firstAttribute="trailing" secondItem="sLs-Nm-nL0" secondAttribute="trailing" constant="20" id="OJ4-QW-CXz"/>
+                            <constraint firstItem="bVa-oF-c5d" firstAttribute="bottom" secondItem="nW5-Du-kgk" secondAttribute="bottom" constant="30" id="OtG-Md-hdh"/>
+                            <constraint firstItem="bVa-oF-c5d" firstAttribute="trailing" secondItem="nW5-Du-kgk" secondAttribute="trailing" constant="30" id="Uuf-SU-7JM"/>
                             <constraint firstItem="bVa-oF-c5d" firstAttribute="trailing" secondItem="3he-Nt-ShN" secondAttribute="trailing" constant="10" id="VI7-ab-0Xe"/>
                             <constraint firstItem="flT-wC-2sC" firstAttribute="leading" secondItem="bVa-oF-c5d" secondAttribute="leading" constant="120" id="gIi-qU-wzq"/>
                             <constraint firstItem="bVa-oF-c5d" firstAttribute="trailing" secondItem="flT-wC-2sC" secondAttribute="trailing" constant="120" id="mGb-Pi-Shb"/>
@@ -129,6 +139,7 @@
                         <viewLayoutGuide key="safeArea" id="bVa-oF-c5d"/>
                     </view>
                     <connections>
+                        <outlet property="fav" destination="nW5-Du-kgk" id="1Bo-tI-YWv"/>
                         <outlet property="info" destination="3he-Nt-ShN" id="um3-gn-4O2"/>
                         <outlet property="speakersList" destination="sLs-Nm-nL0" id="Ne1-7U-kL0"/>
                         <outlet property="time" destination="flT-wC-2sC" id="yGq-nM-5A3"/>
@@ -136,7 +147,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="s5j-qs-rez" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="140" y="810.94452773613204"/>
+            <point key="canvasLocation" x="139.13043478260872" y="810.9375"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Cyp-7s-70N">
