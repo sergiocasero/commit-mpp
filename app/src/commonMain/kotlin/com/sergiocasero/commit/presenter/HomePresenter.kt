@@ -53,9 +53,14 @@ class HomePresenter(
         }
     }
 
+    fun onFavClicked(){
+        view.navigateToFavSlots()
+    }
+
 }
 
 interface HomeView : Presenter.View {
     fun showDays(days: List<DayView>)
     fun showTracks(tracks: List<TrackItem>)
+    fun navigateToFavSlots()
 }

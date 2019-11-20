@@ -3,6 +3,7 @@ package com.sergiocasero.commit.navigator
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import com.sergiocasero.commit.view.FavSlotsActivity
 import com.sergiocasero.commit.view.SlotDetailActivity
 
 actual class Navigator(private val context: Context) {
@@ -18,5 +19,12 @@ actual class Navigator(private val context: Context) {
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         context.startActivity(intent)
     }
+
+    actual fun navigateToFavSlotScreen() {
+        val intent = FavSlotsActivity.getCallingIntent(context)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+        context.startActivity(intent)
+    }
+
 
 }

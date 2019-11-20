@@ -8,6 +8,7 @@ import com.sergiocasero.commit.R
 import com.sergiocasero.commit.common.model.TrackItem
 import com.sergiocasero.commit.di.ACTIVITY_MODULE
 import com.sergiocasero.commit.models.DayView
+import com.sergiocasero.commit.navigator.Navigator
 import com.sergiocasero.commit.presenter.HomePresenter
 import com.sergiocasero.commit.presenter.HomeView
 import com.sergiocasero.commit.view.adapter.ViewPagerAdapter
@@ -21,6 +22,8 @@ import org.kodein.di.generic.provider
 class HomeActivity : RootActivity<HomeView>(), HomeView {
 
     override val progress: View by lazy { progressView }
+
+    private val navigator: Navigator by instance()
 
     override val presenter: HomePresenter by instance()
 
@@ -59,6 +62,11 @@ class HomeActivity : RootActivity<HomeView>(), HomeView {
             presenter.onDaySelected(it.itemId)
             true
         }
+        fav.setOnClickListener { presenter.onFavClicked() }
+    }
+
+    override fun navigateToFavSlots() {
+        navigator.navigateToFavSlotScreen()
     }
 
     override fun showDays(days: List<DayView>) {
