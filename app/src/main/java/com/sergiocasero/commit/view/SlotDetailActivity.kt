@@ -80,16 +80,11 @@ class SlotDetailActivity : RootActivity<SlotDetailView>(), SlotDetailView {
     }
 
     override fun showFavUI(isFav: Boolean) {
-        val textColor = ContextCompat.getColor(
-            this, when (isFav) {
-                true -> R.color.pink_500
-                false -> R.color.white
-            }
-        )
+        val textColor = ContextCompat.getColor(this, R.color.white)
 
         val backgroundColor = ContextCompat.getColor(
             this, when (isFav) {
-                true -> R.color.yellow_500
+                true -> R.color.red_800
                 false -> R.color.grey_500
             }
         )
