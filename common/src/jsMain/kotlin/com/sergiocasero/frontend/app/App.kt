@@ -16,7 +16,6 @@ abstract class App : RComponent<RProps, AppState>() {
     override fun RBuilder.render() {
         div("app") {
             home { }
-            +"hello my friend"
             // when (state.screen) {
             //     Screen.SPLASH -> splash { setState { screen = it } }
             //     Screen.HOME -> home {
