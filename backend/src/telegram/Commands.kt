@@ -3,8 +3,14 @@ package com.sergiocasero.telegram
 import com.sergiocasero.repository.CommitBackendRepository
 import kotlinx.coroutines.runBlocking
 import me.ivmg.telegram.Bot
+import me.ivmg.telegram.dispatcher.Dispatcher
+import me.ivmg.telegram.dispatcher.command
 import me.ivmg.telegram.entities.Update
 
+
+fun Dispatcher.command(botCommand: BotCommand) {
+    this.command(botCommand.commandName, botCommand.commandAction)
+}
 typealias CommandAction = (Bot, Update, List<String>) -> Unit
 
 abstract class BotCommand(

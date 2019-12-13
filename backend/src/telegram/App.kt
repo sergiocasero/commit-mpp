@@ -4,7 +4,6 @@ import com.sergiocasero.db.H2LocalDataSource
 import com.sergiocasero.remote.KtorRemoteDataSource
 import com.sergiocasero.repository.CommitBackendRepository
 import me.ivmg.telegram.Bot
-import me.ivmg.telegram.dispatcher.command
 import org.jetbrains.exposed.sql.Database
 
 class App {
@@ -13,16 +12,11 @@ class App {
     private val bot = Bot.Builder().apply {
         token = ""
         updater.dispatcher.apply {
-            val helloCommand = HelloWorldCommand()
-            val daysCommand = DaysCommand(repository)
-            val dayCommand = DayCommand(repository)
-            val trackCommand = TrackCommand(repository)
-            val slotCommand = SlotCommand(repository)
-            command(helloCommand.commandName, helloCommand.commandAction)
-            command(daysCommand.commandName, daysCommand.commandAction)
-            command(dayCommand.commandName, dayCommand.commandAction)
-            command(trackCommand.commandName, trackCommand.commandAction)
-            command(slotCommand.commandName, slotCommand.commandAction)
+            command(HelloWorldCommand())
+            command(DaysCommand(repository))
+            command(DayCommand(repository))
+            command(TrackCommand(repository))
+            command(SlotCommand(repository))
         }
     }.build()
 
