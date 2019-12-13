@@ -23,6 +23,10 @@
             android:name=".view.SlotDetailActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".view.FavSlotsActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

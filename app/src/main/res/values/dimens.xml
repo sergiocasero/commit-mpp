@@ -8,4 +8,5 @@
     <dimen name="item_speaker_avatar_background_height">110dp</dimen>
     <dimen name="slot_description_text_size">18sp</dimen>
     <dimen name="slot_time_text_size">18sp</dimen>
+    <dimen name="fav_bottom_margin">28dp</dimen>
 </resources>

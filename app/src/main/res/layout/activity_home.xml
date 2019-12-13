@@ -61,4 +61,16 @@
         android:layout_centerInParent="true"
         android:visibility="gone" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fav"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/red_800"
+        android:src="@drawable/ic_heart"
+        android:tint="@color/white"
+        android:layout_marginEnd="@dimen/default_margin"
+        android:layout_marginBottom="@dimen/fav_bottom_margin"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>

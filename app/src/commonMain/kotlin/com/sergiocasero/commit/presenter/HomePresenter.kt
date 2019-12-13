@@ -6,11 +6,13 @@ import com.sergiocasero.commit.error.ErrorHandler
 import com.sergiocasero.commit.executor.Executor
 import com.sergiocasero.commit.mapper.toView
 import com.sergiocasero.commit.models.DayView
+import com.sergiocasero.commit.navigator.Navigator
 import com.sergiocasero.commit.repository.ClientRepository
 import kotlinx.coroutines.launch
 
 class HomePresenter(
     private val repository: ClientRepository,
+    private val navigator: Navigator,
     view: HomeView,
     errorHandler: ErrorHandler,
     executor: Executor
@@ -51,6 +53,10 @@ class HomePresenter(
             )
             view.hideProgress()
         }
+    }
+
+    fun onFavClicked() {
+        navigator.navigateToFavSlotScreen()
     }
 
 }

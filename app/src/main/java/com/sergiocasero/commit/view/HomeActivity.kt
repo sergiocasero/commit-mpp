@@ -1,13 +1,16 @@
 package com.sergiocasero.commit.view
 
+import android.content.res.ColorStateList
 import android.view.Menu
 import android.view.View
 import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.sergiocasero.commit.R
 import com.sergiocasero.commit.common.model.TrackItem
 import com.sergiocasero.commit.di.ACTIVITY_MODULE
 import com.sergiocasero.commit.models.DayView
+import com.sergiocasero.commit.navigator.Navigator
 import com.sergiocasero.commit.presenter.HomePresenter
 import com.sergiocasero.commit.presenter.HomeView
 import com.sergiocasero.commit.view.adapter.ViewPagerAdapter
@@ -34,6 +37,7 @@ class HomeActivity : RootActivity<HomeView>(), HomeView {
         bind<HomePresenter>() with provider {
             HomePresenter(
                 repository = instance(),
+                navigator = instance(),
                 view = this@HomeActivity,
                 errorHandler = instance(),
                 executor = instance()
@@ -52,6 +56,9 @@ class HomeActivity : RootActivity<HomeView>(), HomeView {
         }
 
         tab.setupWithViewPager(viewPager)
+
+        fav.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this,R.color.red_800))
+        fav.imageTintList = ColorStateList.valueOf(ContextCompat.getColor(this,R.color.white))
     }
 
     override fun registerListeners() {
@@ -59,6 +66,7 @@ class HomeActivity : RootActivity<HomeView>(), HomeView {
             presenter.onDaySelected(it.itemId)
             true
         }
+        fav.setOnClickListener { presenter.onFavClicked() }
     }
 
     override fun showDays(days: List<DayView>) {

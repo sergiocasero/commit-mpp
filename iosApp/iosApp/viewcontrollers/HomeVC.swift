@@ -4,6 +4,8 @@ import MaterialComponents
 
 class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, HomeView {
 
+    @IBOutlet weak var fav: MDCFloatingButton!
+    
     @IBOutlet weak var menuBarView: MenuTabsView!
     
     @IBOutlet weak var daysMenu: UICollectionView!
@@ -13,10 +15,8 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     var days: [DayView] = []
     
     private lazy var presenter: HomePresenter = HomePresenter(
-        repository: CommonClientRepository(
-            local: LocalDataSource(),
-            remote: CommonRemoteDataSource()
-        ),
+        repository: CommonClientRepository(local: LocalDataSource(), remote: CommonRemoteDataSource()),
+        navigator: Navigator(viewController: self),
         view: self,
         errorHandler: IosErrorHandler(),
         executor: Executor())
@@ -27,6 +27,23 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter.attach()
+        initializeUI()
+        registerListeners()
+    }
+   
+     func initializeUI() {
+        let plusImage = UIImage(named:"heart")?.withRenderingMode(.alwaysTemplate)
+        fav.setImage(plusImage, for: .normal)
+        fav.setImageTintColor(UIColor.white, for: .normal)
+        fav.backgroundColor = UIColor.red
+    }
+    
+    func registerListeners() {
+        fav.addTarget(self, action: #selector(pressed), for: .touchUpInside)
+    }
+    
+    @objc func pressed(sender: UIButton) {
+        presenter.onFavClicked()
     }
     
     func showRetry(error: String, f: @escaping () -> Void) {
@@ -107,7 +124,7 @@ class HomeVC: UIViewController, UICollectionViewDataSource, UICollectionViewDele
         self.pageController = storyboard?.instantiateViewController(withIdentifier: "PageControllerVC") as! PageControllerVC
         self.pageController.view.frame = CGRect.init(x: 0, y: menuBarView.frame.maxY, width: self.view.frame.width, height: self.view.frame.height - menuBarView.frame.maxY - daysMenu.frame.height)
         self.addChildViewController(self.pageController)
-        self.view.addSubview(self.pageController.view)
+        self.view.insertSubview(self.pageController.view, belowSubview: self.fav)
         self.pageController.didMove(toParentViewController: self)
     }
     

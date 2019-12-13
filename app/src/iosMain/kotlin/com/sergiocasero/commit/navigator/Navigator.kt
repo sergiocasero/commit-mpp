@@ -3,6 +3,7 @@ package com.sergiocasero.commit.navigator
 import platform.Foundation.NSURL
 import platform.UIKit.UIApplication
 import platform.UIKit.UIViewController
+import platform.UIKit.navigationController
 
 actual class Navigator(private val viewController: UIViewController) {
     actual fun openSpeakerTwitter(twitterUser: String) {
@@ -18,9 +19,17 @@ actual class Navigator(private val viewController: UIViewController) {
     }
 
     actual fun navigateToSlotDetail(slotId: Long) {
-        val slotViewController = viewController.storyboard?.instantiateViewControllerWithIdentifier("SlotDetailVC") //Need cast
+        val slotViewController =
+            viewController.storyboard?.instantiateViewControllerWithIdentifier("SlotDetailVC") //Need cast
         slotViewController?.let {
-            viewController.presentViewController(it, true) {}
+            viewController.navigationController?.pushViewController(it, true)
+        }
+    }
+
+    actual fun navigateToFavSlotScreen() {
+        val favSlotsViewController = viewController.storyboard?.instantiateViewControllerWithIdentifier("FavSlotsVC")
+        favSlotsViewController?.let {
+            viewController.navigationController?.pushViewController(it, true)
         }
     }
 }
