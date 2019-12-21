@@ -54,7 +54,7 @@ class CommonRemoteDataSource : RemoteDataSource {
     private suspend fun <R> execute(f: suspend () -> R): Either<Error, R> =
         try {
             Either.Right(f())
-        } catch (e: Exception) {
+        } catch (e: Throwable) {
             // print(e.toString())
             Either.Left(
                 when (e) {
@@ -68,6 +68,7 @@ class CommonRemoteDataSource : RemoteDataSource {
                 }
             )
         }
+
     private fun HttpRequestBuilder.apiUrl(path: String) {
         url {
             takeFrom(END_POINT)

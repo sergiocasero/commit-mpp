@@ -10,7 +10,7 @@ actual class Executor {
     actual val main: CoroutineDispatcher = MainLoopDispatcher
 }
 
-object MainLoopDispatcher: CoroutineDispatcher() {
+object MainLoopDispatcher : CoroutineDispatcher() {
     override fun dispatch(context: CoroutineContext, block: Runnable) {
         NSRunLoop.mainRunLoop().performBlock {
             block.run()
